@@ -18,7 +18,24 @@
     </p:layoutUnit>  
       
     <p:layoutUnit  position="left" width="200" header="Disciplinas" resizable="true" closable="false" collapsible="true">  
-        <h:outputText value="Disciplinas" />  
+        <h:outputText value="Disciplinas" />
+        
+        <!--COMEÇA AQUI-->
+        <p:accordionPanel effect="bounceslide" autoHeight="false">  
+    <p:tab title="Disciplina A">  
+        <h:panelGrid columns="2" cellpadding="10">  
+            <h:outputText  
+                value="Modulo 1" />  
+        </h:panelGrid>  
+    </p:tab>  
+    <p:tab title="Disciplina B">  
+        <h:panelGrid columns="2" cellpadding="10">  
+            <h:outputText value="Modulo 2" />  
+        </h:panelGrid>  
+    </p:tab>
+        </p:accordionPanel>
+        <!--ACABA AQUI-->
+        
     </p:layoutUnit>  
       
     <p:layoutUnit position="right" width="200" header="Right" resizable="true" closable="false" collapsible="true">  
