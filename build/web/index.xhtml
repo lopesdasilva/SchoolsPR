@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:h="http://java.sun.com/jsf/html">
+    <h:head>
+        <title>Facelet Title</title>
+    </h:head>
+    <h:body>
+    <center><h:form>
+
+               
+                    <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
+                    <h:panelGrid columns="2" >
+                        <h:outputLabel value="Username: "/>
+                        <p:inputText id="username" required="true" requiredMessage="Insira um username." value="#{loginController.loginname}"/>
+
+                        <h:outputLabel value="Pasword "/>
+                        <p:password value="#{loginController.password}" minLength="6" id="password" feedback="false" required="true" requiredMessage="Insira um password."/> 
+
+                        <h:commandButton value="Login" action="#{loginController.CheckValidUser}"/> 
+                    </h:panelGrid>
+                  
+            </h:form>
+        </center>  
+    </h:body>
+</html>
+
