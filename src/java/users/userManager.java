@@ -9,29 +9,27 @@ import db.SQLInstruct;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.primefaces.component.password.Password;
 import sha1.sha1;
 
 /**
  *
  * @author lopesdasilva
  */
-@ManagedBean
-@RequestScoped
-public class loginController {
+@ManagedBean(name="user")
+@SessionScoped
+public class userManager {
 
     String loginname;
     String password;
-
+    boolean loggedIn=false;
+    String d="yahoo";
     /** Creates a new instance of loginController */
-    public loginController() {
+    public userManager() {
     }
 
     public String getLoginname() {
@@ -72,6 +70,7 @@ public class loginController {
             if (rSet.next()) {
 
                 session.setAttribute("loged", true);
+                loggedIn=true;       
                 return "success";
 
             }
@@ -89,6 +88,9 @@ public class loginController {
 
             System.out.println(ex.getMessage());
         }
+ 
+
         return "fail";
     }
+    
 }

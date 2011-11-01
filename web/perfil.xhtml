@@ -8,8 +8,11 @@
     </h:head>
     <h:body>
        
-    <p:layout fullPage="true">  
-         <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
+    <p:layout fullPage="true" >  
+        <p:layoutUnit position="top" height="100"  >  
+          <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
+    </p:layoutUnit>  
+       
     <p:layoutUnit position="bottom" height="75" header="Bottom" resizable="true" closable="false" collapsible="true">  
         <h:outputText value="South unit content." />  
     </p:layoutUnit>  
@@ -24,7 +27,7 @@
       
     <p:layoutUnit position="center">  
         <p:panel header="Avisos" footer="Data">  
-    <h:outputText value="Ultimos Avisos" />  
+    <h:outputText value="olá #{user.loginname}  #{user.d} " />  
 </p:panel>    
     </p:layoutUnit>  
       
