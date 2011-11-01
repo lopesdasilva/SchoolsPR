@@ -27,11 +27,17 @@ public class userManager {
     String loginname;
     String password;
     boolean loggedIn=false;
-    String d="yahoo";
+    String d="teste d";
     /** Creates a new instance of loginController */
     public userManager() {
     }
 
+    public boolean getLoggedIn(){
+        return loggedIn;
+    }
+    public String getD(){
+        return d;
+    }
     public String getLoginname() {
         return loginname;
     }
@@ -57,20 +63,17 @@ public class userManager {
 
         System.out.println(session.getAttribute("loged"));
         try {
-            System.out.println(loginname);
-            System.out.println(password);
+            System.out.println("User: "+loginname+" has logged On.");
+            
 
             DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
             db.loadDriver();
-
-            System.out.println("Driver loaded");
             String sqlStatement = SQLInstruct.login(loginname, new sha1().parseSHA1Password(password));
             ResultSet rSet = db.queryDB(sqlStatement);
 
             if (rSet.next()) {
-
-                session.setAttribute("loged", true);
-                loggedIn=true;       
+                
+               this.loggedIn=true;
                 return "success";
 
             }

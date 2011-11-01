@@ -8,7 +8,7 @@
     </h:head>
     <h:body>
        
-    <p:layout fullPage="true" >  
+        <p:layout fullPage="true" rendered="#{user.loggedIn}" >  
         <p:layoutUnit position="top" height="100"  >  
           <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
     </p:layoutUnit>  
@@ -27,7 +27,7 @@
       
     <p:layoutUnit position="center">  
         <p:panel header="Avisos" footer="Data">  
-    <h:outputText value="olá #{user.loginname}  #{user.d} " />  
+    <h:outputText value="olá #{user.loginname} Session: #{user.loggedIn}" />  
 </p:panel>    
     </p:layoutUnit>  
       
