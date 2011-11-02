@@ -21,25 +21,32 @@ import sha1.sha1;
  *
  * @author lopesdasilva
  */
-@ManagedBean(name="user")
+@ManagedBean(name = "user")
 @SessionScoped
 public class userManager {
 
     String loginname;
     String password;
-    boolean loggedIn=false;
-    String d="teste d";
+    boolean loggedIn = false;
+    String d = "teste d";
     User current;
+
     /** Creates a new instance of loginController */
     public userManager() {
     }
 
-    public boolean getLoggedIn(){
+    public User getCurrent() {
+        return current;
+    }
+
+    public boolean getLoggedIn() {
         return loggedIn;
     }
-    public String getD(){
+
+    public String getD() {
         return d;
     }
+
     public String getLoginname() {
         return loginname;
     }
@@ -57,16 +64,10 @@ public class userManager {
     }
 
     public String CheckValidUser() {
-        FacesContext facesContext = FacesContext.getCurrentInstance();
 
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
-
-        HttpSession session = request.getSession();
-
-        System.out.println(session.getAttribute("loged"));
         try {
-            System.out.println("User: "+loginname+" has logged On.");
-            
+            System.out.println("User: " + loginname + " has logged On.");
+
 
             DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
             db.loadDriver();
@@ -74,8 +75,11 @@ public class userManager {
             ResultSet rSet = db.queryDB(sqlStatement);
 
             if (rSet.next()) {
-                
-               this.loggedIn=true;
+
+                this.loggedIn = true;
+                current = new User(loginname);
+                current.getInfo();
+
                 return "success";
 
             }
@@ -93,9 +97,8 @@ public class userManager {
 
             System.out.println(ex.getMessage());
         }
- 
- FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "Wrong User or Password"));
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong User or Password"));
         return "fail";
     }
-    
 }

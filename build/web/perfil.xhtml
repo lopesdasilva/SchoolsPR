@@ -13,39 +13,22 @@
           <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
     </p:layoutUnit>  
        
-    <p:layoutUnit position="bottom" height="75" header="Bottom" resizable="true" closable="false" collapsible="true">  
-        <h:outputText value="South unit content." />  
-    </p:layoutUnit>  
       
-    <p:layoutUnit  position="left" width="200" header="Disciplinas" resizable="true" closable="false" collapsible="true">  
-        <h:outputText value="Disciplinas" />
+    <p:layoutUnit  position="left" width="190" header="Disciplinas" resizable="true" closable="false" collapsible="false">  
         
-        <!--COMEÇA AQUI-->
-        <p:accordionPanel effect="bounceslide" autoHeight="false">  
-    <p:tab title="Disciplina A">  
-        <h:panelGrid columns="2" cellpadding="10">  
-            <h:outputText  
-                value="Modulo 1" />  
-        </h:panelGrid>  
-    </p:tab>  
-    <p:tab title="Disciplina B">  
-        <h:panelGrid columns="2" cellpadding="10">  
-            <h:outputText value="Modulo 2" />  
-        </h:panelGrid>  
-    </p:tab>
-        </p:accordionPanel>
-        <!--ACABA AQUI-->
+        <p:menu model="#{user.current.userMenu.model}" effect="bounceslide"/> 
+       
         
     </p:layoutUnit>  
       
-    <p:layoutUnit position="right" width="200" header="Right" resizable="true" closable="false" collapsible="true">  
-        <h:outputText value="East unit content." />  
-    </p:layoutUnit>  
+
       
     <p:layoutUnit position="center">  
+        
         <p:panel header="Avisos" footer="Data">  
     <h:outputText value="olá #{user.loginname} Session: #{user.loggedIn}" />  
-</p:panel>    
+</p:panel>
+
     </p:layoutUnit>  
       
 </p:layout>  

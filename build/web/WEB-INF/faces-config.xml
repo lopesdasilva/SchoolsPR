@@ -8,8 +8,7 @@
     xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 <managed-bean>
         <managed-bean-name>user</managed-bean-name>
-        <managed-bean-class>users.userManager</managed-bean-class>
-        
+        <managed-bean-class>users.userManager</managed-bean-class>    
         <managed-bean-scope>session</managed-bean-scope></managed-bean>
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>

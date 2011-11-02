@@ -12,4 +12,7 @@ public class SQLInstruct {
         return "SELECT * FROM Users where"
                 + " username='" + userName + "' and password='" + hashPassword + "'";
     }
+    public static String disciplinas (String username){
+        return "select Users.username, Course.name from Users,Course where Users.username='"+username+"'";
+    }
 }
