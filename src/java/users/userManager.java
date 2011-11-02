@@ -9,6 +9,7 @@ import db.SQLInstruct;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
@@ -28,6 +29,7 @@ public class userManager {
     String password;
     boolean loggedIn=false;
     String d="teste d";
+    User current;
     /** Creates a new instance of loginController */
     public userManager() {
     }
@@ -92,7 +94,7 @@ public class userManager {
             System.out.println(ex.getMessage());
         }
  
-
+ FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Error", "Wrong User or Password"));
         return "fail";
     }
     
