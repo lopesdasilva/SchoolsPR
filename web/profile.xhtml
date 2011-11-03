@@ -15,16 +15,16 @@
     <h:body>
 
 
-        <div id="top" class="top">
+        <div id="top" class="top" rendered="#{user.loggedIn}" >
             <ui:insert name="top"><img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/></ui:insert>
         </div>
         <div>
-            <div id="left">
+            <div id="left" rendered="#{user.loggedIn}">
                 <ui:insert name="left" >
-                    <p:menu model="#{user.current.userMenu.model}"  /> 
+                    <p:menu rendered="#{user.loggedIn}" model="#{user.current.userMenu.model}" effect="bounceslide"/> 
                 </ui:insert>
             </div>
-            <div id="content" class="left_content">
+            <div id="content" class="left_content" rendered="#{user.loggedIn}">
                 <ui:insert name="content">Content</ui:insert>
             </div>
         </div>

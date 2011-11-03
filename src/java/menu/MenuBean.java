@@ -1,7 +1,6 @@
 package menu;
 
 import java.util.LinkedList;
-import javax.el.MethodExpression;
 import org.primefaces.component.menuitem.MenuItem;
 import org.primefaces.component.submenu.Submenu;
 import org.primefaces.model.DefaultMenuModel;
@@ -29,8 +28,7 @@ public class MenuBean {
 
         MenuItem item = new MenuItem();
         item.setValue("Informações");
-        item.setActionListener("#{user.checkUserAuth}");
-        item.setUrl("#{user.CheckValidUser}");
+        item.setUrl("#");
         submenu.getChildren().add(item);
 
         model.addSubmenu(submenu);
@@ -64,7 +62,7 @@ public class MenuBean {
 
             MenuItem item = new MenuItem();
             item.setValue("Informações");
-            item.setUrl("#{user.CheckValidUser}");
+            item.setUrl("#");
             submenu.getChildren().add(item);
 
             item = new MenuItem();
