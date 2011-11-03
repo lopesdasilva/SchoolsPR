@@ -15,6 +15,8 @@ public class SQLInstruct {
                 + " username='" + userName + "' and password='" + hashPassword + "'";
     }
     public static String disciplinas (String username){
-        return "select Users.username, Course.name from Users,Course where Users.username='"+username+"'";
+        return "Select name, discipline from User,Discipline,UserDiscipline WHERE User.name='"+username+"' "
+                + "AND User.id=UserDiscipline.user_id AND UserDiscipline.discipline_id=Discipline.id";
     }
+    
 }

@@ -4,8 +4,12 @@
  */
 package users;
 
+import db.DBConnect;
+import db.SQLInstruct;
+import java.sql.ResultSet;
 import java.util.LinkedList;
 import menu.MenuBean;
+import sha1.sha1;
 import tables.Discipline;
 
 /**
@@ -34,13 +38,26 @@ public class User {
         this.username = username;
 
 
+        //populate disciplines
+
+        try {
+            DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+            db.loadDriver();
+            String sqlStatement = SQLInstruct.disciplinas(username);
+            ResultSet rSet = db.queryDB(sqlStatement);
+
+            while (rSet.next()) {
+                disciplines.addLast(new Discipline(rSet.getString(2)));
+            }
+        } catch (Exception e) {
+        }
 
         //test
-        disciplines.addLast(new Discipline("PSM"));
-        disciplines.addLast(new Discipline("IGRS"));
-        disciplines.addLast(new Discipline("PSM"));
-        disciplines.addLast(new Discipline("SRCMA"));
-        disciplines.addLast(new Discipline("GESTAO I"));
+        //disciplines.addLast(new Discipline("PSM"));
+        //disciplines.addLast(new Discipline("IGRS"));
+        //disciplines.addLast(new Discipline("PSM"));
+        //disciplines.addLast(new Discipline("SRCMA"));
+        //disciplines.addLast(new Discipline("GESTAO I"));
 
         this.userMenu = new MenuBean(disciplines);
 
