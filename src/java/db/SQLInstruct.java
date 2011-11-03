@@ -14,9 +14,15 @@ public class SQLInstruct {
         return "SELECT * FROM User where"
                 + " username='" + userName + "' and password='" + hashPassword + "'";
     }
-    public static String disciplinas (String username){
-        return "Select name, discipline from User,Discipline,UserDiscipline WHERE User.name='"+username+"' "
-                + "AND User.id=UserDiscipline.user_id AND UserDiscipline.discipline_id=Discipline.id";
+    public static String informacoes (String username){
+       // return "Select name, discipline from User,Discipline,UserDiscipline WHERE User.name='"+username+"' "
+       //         + "AND User.id=UserDiscipline.user_id AND UserDiscipline.discipline_id=Discipline.id";
+
+        return "Select discipline, module, test  from User,UserDiscipline,Discipline,DisciplineModule,Module,ModuleTest,Test WHERE User.name='"+username+"' AND User.id=UserDiscipline.user_id AND UserDiscipline.discipline_id=Discipline.id AND Discipline.id=DisciplineModule.discipline_id AND DisciplineModule.module_id=Module.id AND Module.id=ModuleTest.module_id AND ModuleTest.test_id=Test.id";
+        
     }
+    
+    
+    
     
 }

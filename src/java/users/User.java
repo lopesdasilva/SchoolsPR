@@ -30,6 +30,7 @@ public class User {
         return disciplines;
     }
 
+   
     public MenuBean getUserMenu() {
         return userMenu;
     }
@@ -43,12 +44,25 @@ public class User {
         try {
             DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
             db.loadDriver();
-            String sqlStatement = SQLInstruct.disciplinas(username);
+            String sqlStatement = SQLInstruct.informacoes(username);
             ResultSet rSet = db.queryDB(sqlStatement);
 
             while (rSet.next()) {
-                disciplines.addLast(new Discipline(rSet.getString(2)));
+                Discipline d = existe(rSet.getString(1));
+                Discipline new_discipline = new Discipline(rSet.getString(1));
+
+                if(d==null){
+                    disciplines.addLast(new_discipline);
+                    new_discipline.addModule(rSet.getString(2),rSet.getString(3));
+
+                }else{
+                d.addModule(rSet.getString(2), rSet.getString(3));
+                }
+                d=null;
             }
+            
+
+            
         } catch (Exception e) {
         }
 
@@ -62,4 +76,13 @@ public class User {
         this.userMenu = new MenuBean(disciplines);
 
     }
+
+    private Discipline existe(String discip) {
+    for(Discipline d:disciplines){
+        if(d.getName().equals(discip)){
+            return d;
+        }
+    }
+    return null;
+            }
 }
