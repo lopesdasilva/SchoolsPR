@@ -61,6 +61,11 @@ public class userManager {
         this.password = password;
     }
 
+    public String test(){
+        System.out.println("yahoo");
+        return "success";
+    }    
+    
     public String CheckValidUser() {
 
         try {

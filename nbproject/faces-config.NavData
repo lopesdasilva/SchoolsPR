@@ -4,6 +4,8 @@
     <Scope Scope="Project">
         <Node id="index.xhtml" x="150" y="150" zoom="true"/>
         <Node id="perfil.xhtml" x="400" y="150" zoom="true"/>
+        <Node id="perfil2.xhtml" x="214" y="258" zoom="true"/>
+        <Node id="profile.xhtml" x="650" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
 </Scene>
