@@ -4,13 +4,10 @@
  */
 package users;
 
-import db.DBConnect;
-import db.SQLInstruct;
-import java.sql.ResultSet;
 import java.util.LinkedList;
-import java.util.List;
-import sha1.sha1;
 import menu.MenuBean;
+import tables.Discipline;
+
 /**
  *
  * @author lopesdasilva
@@ -19,41 +16,33 @@ public class User {
 
     String username;
     String name;
-    MenuBean userMenu=new MenuBean();
     String idUser;
-    String[] disciplinas={"","",""}; 
-    DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+    //Ui
+    MenuBean userMenu;
+    //Disciplines
+    LinkedList<Discipline> disciplines = new LinkedList<Discipline>();
 
-        
-    public MenuBean getUserMenu(){
+    public LinkedList<Discipline> getDisciplines() {
+        return disciplines;
+    }
+
+    public MenuBean getUserMenu() {
         return userMenu;
     }
-    public String[] getDisciplinas(){
-        return disciplinas;
-    }
-    
+
     public User(String username) {
         this.username = username;
 
 
 
-    }
+        //test
+        disciplines.addLast(new Discipline("PSM"));
+        disciplines.addLast(new Discipline("IGRS"));
+        disciplines.addLast(new Discipline("PSM"));
+        disciplines.addLast(new Discipline("SRCMA"));
+        disciplines.addLast(new Discipline("GESTAO"));
 
-    public void getInfo() {
-
-        //Obtain userInfon(Id, name)
-        try {
-            db.loadDriver();
-            String sqlStatement = SQLInstruct.disciplinas(username);
-            ResultSet rSet = db.queryDB(sqlStatement);
-          
-            int i=0;
-            if (rSet.next()) {
-            disciplinas[i]=rSet.getString("name");  
-            System.out.println("Disciplina "+i+" "+disciplinas[i]);
-            i++;
-            }
-        }catch(Exception e){}
+        this.userMenu = new MenuBean(disciplines);
 
     }
 }

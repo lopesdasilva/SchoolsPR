@@ -76,7 +76,6 @@ public class userManager {
 
                 this.loggedIn = true;
                 current = new User(loginname);
-                current.getInfo();
 
                 return "success";
 
