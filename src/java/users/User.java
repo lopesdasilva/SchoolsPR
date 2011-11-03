@@ -40,7 +40,7 @@ public class User {
         disciplines.addLast(new Discipline("IGRS"));
         disciplines.addLast(new Discipline("PSM"));
         disciplines.addLast(new Discipline("SRCMA"));
-        disciplines.addLast(new Discipline("GESTAO"));
+        disciplines.addLast(new Discipline("GESTAO I"));
 
         this.userMenu = new MenuBean(disciplines);
 
