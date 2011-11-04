@@ -108,45 +108,40 @@ public class userManager {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong User or Password"));
         return "fail";
     }
+    
 
-<<<<<<< HEAD
+    
+
     public String yahoo() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
-            DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
-            db.loadDriver();
-            
-            //Meter as variaveis que o rui ainda vai arranjar.
-            String sqlStatement = SQLInstruct.tests("Math","SumModule");
-            ResultSet rSet = db.queryDB(sqlStatement);
+        DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+        db.loadDriver();
 
-            while(rSet.next()){
-        for(Discipline d: current.disciplines){
-            if(d.getName().equals("Math")){//Sybstituir Math
-                //fazer while do rSet(Fazer rSet)
-                d.addTest("SumModule", rSet.getString(1));//Substituir SumModule
+        //Meter as variaveis que o rui ainda vai arranjar.
+        String sqlStatement = SQLInstruct.tests("Math", "SumModule");
+        ResultSet rSet = db.queryDB(sqlStatement);
+
+        while (rSet.next()) {
+            for (Discipline d : current.disciplines) {
+                if (d.getName().equals("Math")) {//Sybstituir Math
+                    //fazer while do rSet(Fazer rSet)
+                    d.addTest("SumModule", rSet.getString(1));//Substituir SumModule
+                }
             }
         }
-            }
-        
-=======
-    public String yahoo() {
->>>>>>> já é possivel identificar os botoes
-        
-        System.out.println("test");
-        System.out.println("google");
         return "success";
     }
 
     public void onItemClick(ActionEvent event) {
         Object obj = event.getSource();
-        MenuItem aux_module = (MenuItem)obj;
+        MenuItem aux_module = (MenuItem) obj;
         Submenu aux_discipline = (Submenu) aux_module.getParent();
-        
-        String moduleSelected=aux_module.getValue()+"";
-        String disciplineSelected= aux_discipline.getLabel();
-        
-        
-        System.out.println("Module Selected: "+moduleSelected);
-        System.out.println("Discipline Selected: "+disciplineSelected);
-       
+
+        String moduleSelected = aux_module.getValue() + "";
+        String disciplineSelected = aux_discipline.getLabel();
+
+
+        System.out.println("Module Selected: " + moduleSelected);
+        System.out.println("Discipline Selected: " + disciplineSelected);
+
     }
 }
