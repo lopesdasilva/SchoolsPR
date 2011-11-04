@@ -61,11 +61,11 @@ public class userManager {
         this.password = password;
     }
 
-    public String test(){
+    public String test() {
         System.out.println("yahoo");
         return "success";
-    }    
-    
+    }
+
     public String CheckValidUser() {
 
         try {
@@ -103,8 +103,8 @@ public class userManager {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong User or Password"));
         return "fail";
     }
-    
-    public String yahoo(){
+
+    public String yahoo() {
         System.out.println("test");
         System.out.println("google");
         return "success";
