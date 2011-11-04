@@ -69,6 +69,7 @@ public class userManager {
     public String CheckValidUser() {
 
         try {
+            System.out.println("User: " + loginname + " has logged On.");
 
 
             DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
@@ -80,7 +81,6 @@ public class userManager {
 
                 this.loggedIn = true;
                 current = new User(loginname);
-                System.out.println("User: " + loginname + " has logged On.");
 
                 return "success";
 

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+        xmlns:p="http://primefaces.prime.com.tr/ui">
+    <h:head>
+        <title>Perfil</title>
+    </h:head>
+    <h:body>
+       
+        <p:layout fullPage="true"  >  <!--rendered="#{user.loggedIn}"-->
+        <p:layoutUnit position="top" height="100"  >  
+          <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
+    </p:layoutUnit>  
+       
+      
+    <p:layoutUnit  position="left" width="190" header="Disciplinas" resizable="true" closable="false" collapsible="false">  
+        
+        <p:menu model="#{user.current.userMenu.model}" effect="bounceslide"/> 
+       
+        
+    </p:layoutUnit>  
+      
+
+      
+    <p:layoutUnit position="center">  
+        
+        <p:panel header="Avisos" footer="Data">  
+    <h:outputText value="olá #{user.loginname} Session: #{user.loggedIn}" />  
+
+</p:panel>
+
+    </p:layoutUnit>  
+      
+</p:layout>  
+    </h:body>
+</html>
+

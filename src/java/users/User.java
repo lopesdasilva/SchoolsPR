@@ -52,7 +52,6 @@ public class User {
                 Discipline new_discipline = new Discipline(rSet.getString(1));
 
                 if(d==null){
-                    System.out.println(rSet.getString(1));
                     disciplines.addLast(new_discipline);
                     new_discipline.addModule(rSet.getString(2),rSet.getString(3));
 
