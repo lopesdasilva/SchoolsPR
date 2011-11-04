@@ -12,7 +12,7 @@
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>*.xhtml</url-pattern>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>/pages/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -20,14 +20,13 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
-    
     <!-- Protected Areas -->
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Only admins</web-resource-name>
-            <url-pattern>/protected/admin/*</url-pattern>
+            <url-pattern>/pages/protected/admin/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMIN</role-name>
@@ -36,23 +35,22 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>Users and admins</web-resource-name>
-            <url-pattern>/protected/user/*</url-pattern>
+            <url-pattern>/pages/protected/*</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>ADMIN</role-name>
             <role-name>USER</role-name>
         </auth-constraint>
     </security-constraint>
-    <!-- Validation By Form -->
+     <!-- Validation By Form -->
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/index.xhtml</form-login-page>
-            <form-error-page>/index.xhtml</form-error-page>
+            <form-login-page>/pages/index.xhtml</form-login-page>
+            <form-error-page>/pages/index.xhtml</form-error-page>
         </form-login-config>
     </login-config>
- 
-    <!-- Allowed Roles -->
+     <!-- Allowed Roles -->
     <security-role>
         <role-name>ADMIN</role-name>
     </security-role>
@@ -67,6 +65,6 @@
     </filter>
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
-        <url-pattern>/protected/*</url-pattern>
+        <url-pattern>/pages/protected/*</url-pattern>
     </filter-mapping>
 </web-app>
