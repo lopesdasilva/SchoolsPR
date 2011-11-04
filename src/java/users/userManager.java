@@ -103,4 +103,9 @@ public class userManager {
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Error", "Wrong User or Password"));
         return "fail";
     }
+    
+    public String yahoo(){
+        System.out.println("test");
+        return "success";
+    }
 }
