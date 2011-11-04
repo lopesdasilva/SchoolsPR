@@ -61,7 +61,6 @@ public class User {
             }
 
 
-
         } catch (Exception e) {
         }
 
@@ -75,6 +74,7 @@ public class User {
         this.userMenu = new MenuBean(disciplines);
 
     }
+
 
     private Discipline existe(String discip) {
         for (Discipline d : disciplines) {

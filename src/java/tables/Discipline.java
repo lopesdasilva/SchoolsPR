@@ -50,4 +50,13 @@ public class Discipline {
                 }
                 m=null;        }
     
+    public void addTest(String module,String test){
+        for(Module m: modules){
+            if(m.getName().equals(module)){
+                System.out.println("Disciplina "+ getName()+"Entrei no modulo: "+module);
+                m.addTest(test);
+            }
+        }
+    }
+    
 }

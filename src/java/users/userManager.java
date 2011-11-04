@@ -14,6 +14,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import sha1.sha1;
+import tables.Discipline;
 
 /**
  *
@@ -104,7 +105,24 @@ public class userManager {
         return "fail";
     }
 
-    public String yahoo() {
+    public String yahoo() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+            DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+            db.loadDriver();
+            
+            //Meter as variaveis que o rui ainda vai arranjar.
+            String sqlStatement = SQLInstruct.tests("Math","SumModule");
+            ResultSet rSet = db.queryDB(sqlStatement);
+
+            while(rSet.next()){
+        for(Discipline d: current.disciplines){
+            if(d.getName().equals("Math")){//Sybstituir Math
+                //fazer while do rSet(Fazer rSet)
+                d.addTest("SumModule", rSet.getString(1));//Substituir SumModule
+            }
+        }
+            }
+        
+        
         System.out.println("test");
         System.out.println("google");
         return "success";

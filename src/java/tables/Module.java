@@ -12,12 +12,12 @@ import java.util.LinkedList;
  */
 public class Module {
    private String name;
-   private LinkedList<Test> tests;
+   private LinkedList<String> tests;
    
 
     Module(String name) {
         this.name=name;
-        tests = new LinkedList<Test>();
+        tests = new LinkedList<String>();
     }
    
    public String getName(){
@@ -25,7 +25,8 @@ public class Module {
    }
 
     void addTest(String test) {
-        
+        tests.addLast(test);
+        System.out.println("Adicionado: "+test);
     }
    
    
