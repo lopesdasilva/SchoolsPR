@@ -37,7 +37,7 @@ public class MenuBean {
             MenuItem item = new MenuItem();
             item.setValue("Informações");
             //item.setUrl("profile.xhtml");
-            
+            item.setAjax(false);
             item.setActionExpression(createAction("#{user.yahoo}", String.class));
           //  item.setActionListener(createActionListener(("#{user.yahoo}")));
             submenu.getChildren().add(item);

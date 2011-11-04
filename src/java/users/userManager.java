@@ -106,6 +106,7 @@ public class userManager {
     
     public String yahoo(){
         System.out.println("test");
+        System.out.println("google");
         return "success";
     }
 }
