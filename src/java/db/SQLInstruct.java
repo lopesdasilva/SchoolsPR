@@ -22,6 +22,10 @@ public class SQLInstruct {
         
     }
     
+    public static String tests(String module){
+        return "SELECT test FROM Module,ModuleTest,Test WHERE Module.id='"+module+"' AND Module.id=ModuleTest.module_id AND ModuleTest.test_id=Test.id";
+    }
+    
     
     
     
