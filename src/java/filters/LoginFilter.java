@@ -1,9 +1,13 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package filters;
- 
+
 import java.io.IOException;
  
 import javax.servlet.*;
- ;
+ 
  
 public class LoginFilter implements Filter {
  
@@ -15,6 +19,7 @@ public class LoginFilter implements Filter {
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException,
             ServletException {
  
+       
  
         filterChain.doFilter(servletRequest, servletResponse);
     }
