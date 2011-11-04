@@ -34,7 +34,7 @@ public class MenuBean {
             item.setValue("Informações");
             item.setUrl("#");
             submenu.getChildren().add(item);
-            for (Module m: d.modules) {
+            for (Module m: d.getModules()) {
                 item = new MenuItem();
                 item.setValue(m.getName());
                 item.setUrl("#");

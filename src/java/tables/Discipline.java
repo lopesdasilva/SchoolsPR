@@ -24,7 +24,7 @@ public class Discipline {
         return name;
     }
     
-    public LinkedList<Module> getModule(){
+    public LinkedList<Module> getModules(){
         return modules;
     }
  
