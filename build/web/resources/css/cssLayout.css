@@ -1,7 +1,7 @@
 
 #top {
     position: relative;
-    background-color: #ffffff;
+    background-color: #036fab;
     color: white;
     padding: 5px;
     margin: 0px 0px 10px 0px;
@@ -9,7 +9,7 @@
 
 #bottom {
     position: relative;
-    background-color: #ffffff;
+    background-color: #c2dfef;
     padding: 5px;
     margin: 10px 0px 0px 0px;
 }
@@ -18,30 +18,26 @@
     float: left;
     background-color: #ffffff;
     padding: 5px;
-    width: 300px;
+    width: 150px;
 }
 
 #right {
     float: right;
-    background-color: #ffffff;
+    background-color: #ece3a5;
     padding: 5px;
     width: 150px;
 }
 
 .center_content {
     position: relative;
-    background-color: #ffffff;
+    background-color: #dddddd;
     padding: 5px;
 }
 
 .left_content {
-<<<<<<< HEAD
     background-color: #000000;
-=======
-    background-color: #ffffff;
->>>>>>> Query dos testes feita
     padding: 5px;
-    margin-left: 200px;
+    margin-left: 170px;
 }
 
 .right_content {

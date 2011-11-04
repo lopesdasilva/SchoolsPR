@@ -16,24 +16,18 @@
 
 
         <div id="top" class="top"  >
-            <p:panel>
             <ui:insert name="top"><img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/></ui:insert>
-            </p:panel>
         </div>
         <div>
             <div id="left" >
                 <ui:insert name="left" >
                     <h:form>
-                        
                         <p:menu  model="#{user.current.userMenu.model}" />
-                       
                         </h:form>
                 </ui:insert>
             </div>
             <div id="content" class="left_content" rendered="#{user.loggedIn}">
-                <p:panel>
                 <ui:insert name="content">Content</ui:insert>
-                </p:panel>
             </div>
         </div>
     </h:body>
