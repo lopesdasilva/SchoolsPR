@@ -30,7 +30,6 @@ public class User {
         return disciplines;
     }
 
-   
     public MenuBean getUserMenu() {
         return userMenu;
     }
@@ -51,18 +50,18 @@ public class User {
                 Discipline d = existe(rSet.getString(1));
                 Discipline new_discipline = new Discipline(rSet.getString(1));
 
-                if(d==null){
+                if (d == null) {
                     disciplines.addLast(new_discipline);
                     new_discipline.addModule(rSet.getString(2));
 
-                }else{
-                d.addModule(rSet.getString(2));
+                } else {
+                    d.addModule(rSet.getString(2));
                 }
-                d=null;
+                d = null;
             }
-            
 
-            
+
+
         } catch (Exception e) {
         }
 
@@ -78,11 +77,11 @@ public class User {
     }
 
     private Discipline existe(String discip) {
-    for(Discipline d:disciplines){
-        if(d.getName().equals(discip)){
-            return d;
-        }
-    }
-    return null;
+        for (Discipline d : disciplines) {
+            if (d.getName().equals(discip)) {
+                return d;
             }
+        }
+        return null;
+    }
 }
