@@ -13,6 +13,10 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import menu.MenuBean;
+import org.primefaces.component.menuitem.MenuItem;
+import org.primefaces.component.submenu.Submenu;
 import sha1.sha1;
 import tables.Discipline;
 
@@ -70,7 +74,7 @@ public class userManager {
     public String CheckValidUser() {
 
         try {
-            System.out.println("User: " + loginname + " has logged On.");
+
 
 
             DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
@@ -82,7 +86,7 @@ public class userManager {
 
                 this.loggedIn = true;
                 current = new User(loginname);
-
+                System.out.println("User: " + loginname + " has logged On.");
                 return "success";
 
             }
@@ -105,6 +109,7 @@ public class userManager {
         return "fail";
     }
 
+<<<<<<< HEAD
     public String yahoo() throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
             DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
             db.loadDriver();
@@ -122,9 +127,26 @@ public class userManager {
         }
             }
         
+=======
+    public String yahoo() {
+>>>>>>> já é possivel identificar os botoes
         
         System.out.println("test");
         System.out.println("google");
         return "success";
+    }
+
+    public void onItemClick(ActionEvent event) {
+        Object obj = event.getSource();
+        MenuItem aux_module = (MenuItem)obj;
+        Submenu aux_discipline = (Submenu) aux_module.getParent();
+        
+        String moduleSelected=aux_module.getValue()+"";
+        String disciplineSelected= aux_discipline.getLabel();
+        
+        
+        System.out.println("Module Selected: "+moduleSelected);
+        System.out.println("Discipline Selected: "+disciplineSelected);
+       
     }
 }

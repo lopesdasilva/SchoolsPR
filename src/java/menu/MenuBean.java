@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import javax.el.MethodExpression;
 import javax.faces.application.Application;
 import javax.faces.context.FacesContext;
+import javax.faces.el.MethodBinding;
 import javax.faces.event.ActionEvent;
 import javax.faces.event.MethodExpressionActionListener;
 import org.primefaces.component.menuitem.MenuItem;
@@ -37,7 +38,10 @@ public class MenuBean {
             MenuItem item = new MenuItem();
             item.setValue("Informações");
             //item.setUrl("profile.xhtml")
-            item.setUrl("#");
+            Application app = FacesContext.getCurrentInstance().getApplication();
+            javax.faces.el.MethodBinding mb = app.createMethodBinding("#{user.onItemClick}", new Class[]{ActionEvent.class});
+
+            item.setActionListener(mb);
             //  item.setActionListener(createActionListener(("#{user.yahoo}")));
             submenu.getChildren().add(item);
 
@@ -45,7 +49,11 @@ public class MenuBean {
                 item = new MenuItem();
                 item.setValue(m.getName());
                 item.setAjax(false);
-                item.setActionExpression(createAction("#{user.yahoo}", String.class));
+                item.setValue(m.getName());
+                item.setActionListener(createActionListener("#{user.onItemClick}"));
+
+                //para usar mais tarde
+                //item.setActionExpression(createAction("#{user.yahoo}", ActionEvent.class));
                 submenu.getChildren().add(item);
             }
             model.addSubmenu(submenu);
@@ -62,8 +70,9 @@ public class MenuBean {
         return context.getApplication().getExpressionFactory().createMethodExpression(context.getELContext(), actionExpression, returnType, new Class[0]);
     }
 
-    public static MethodExpressionActionListener createActionListener(String actionListenerExpression) {
-        FacesContext context = FacesContext.getCurrentInstance();
-        return new MethodExpressionActionListener(context.getApplication().getExpressionFactory().createMethodExpression(context.getELContext(), actionListenerExpression, null, new Class[]{ActionEvent.class}));
+    public static MethodBinding createActionListener(String actionListenerExpression) {
+        Application app = FacesContext.getCurrentInstance().getApplication();
+        return app.createMethodBinding("#{user.onItemClick}", new Class[]{ActionEvent.class});
+ 
     }
 }
