@@ -13,7 +13,7 @@ import java.util.LinkedList;
  */
 public class Discipline {
     private String name;
-    LinkedList<Module> modules;
+    public LinkedList<Module> modules;
 
     public Discipline(String name) {
        this.name=name;
