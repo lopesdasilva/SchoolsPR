@@ -53,10 +53,10 @@ public class User {
 
                 if(d==null){
                     disciplines.addLast(new_discipline);
-                    new_discipline.addModule(rSet.getString(2),rSet.getString(3));
+                    new_discipline.addModule(rSet.getString(2));
 
                 }else{
-                d.addModule(rSet.getString(2), rSet.getString(3));
+                d.addModule(rSet.getString(2));
                 }
                 d=null;
             }

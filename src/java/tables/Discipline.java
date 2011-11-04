@@ -23,6 +23,10 @@ public class Discipline {
     public String getName() {
         return name;
     }
+    
+    public LinkedList<Module> getModule(){
+        return modules;
+    }
  
     public String toString(){
         return name;
@@ -36,17 +40,13 @@ public class Discipline {
     return null;
     }
 
-    public void addModule(String module, String test) {
+    public void addModule(String module) {
         Module m = existe(module);
         Module new_module = new Module(module);
 
                 if(m==null){
-                    System.out.println(module);
+                    System.out.println(getName()+"-Adicionado Modulo:"+module);
                     modules.addLast(new_module);
-                    new_module.addTest(test);
-
-                }else{
-                m.addTest(test);
                 }
                 m=null;        }
     
