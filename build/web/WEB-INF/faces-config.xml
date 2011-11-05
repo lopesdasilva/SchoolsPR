@@ -27,7 +27,7 @@
     <navigation-rule>
         <from-view-id>/perfil2.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{user.yahoo}</from-action>           
+            
             <to-view-id>module.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
