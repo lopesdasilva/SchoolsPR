@@ -31,6 +31,7 @@ public class MenuBean {
 
     public MenuBean(LinkedList<Discipline> disciplines) {
 
+       
         model = new DefaultMenuModel();
 
         for (Discipline d : disciplines) {
@@ -40,13 +41,8 @@ public class MenuBean {
 
             MenuItem item = new MenuItem();
             item.setValue("Informações");
-            //item.setUrl("#");
+            item.setUrl("#");
 
-
-            MethodExpression methodExpression = FacesContext.getCurrentInstance().getApplication().getExpressionFactory().createMethodExpression(FacesContext.getCurrentInstance().getELContext(), "#{user.moduleSelection}", null, new Class[]{ActionEvent.class});
-            item.setAjax(false);
-            item.setActionExpression(createAction_old("#{userM.yahoo}", String.class));
-            //  item.setActionListener(createActionListener(("#{user.yahoo}")));
             submenu.getChildren().add(item);
 
             for (Module m : d.getModules()) {

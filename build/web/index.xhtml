@@ -12,12 +12,14 @@
 
                
                     <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
+                     <p:messages showDetail="true" autoUpdate="true"/> 
                     <h:panelGrid columns="2" >
+                     
                         <h:outputLabel value="Username: "/>
                         <p:inputText id="username" required="true" requiredMessage="Insira um username." value="#{userM.loginname}"/>
                          
                         <h:outputLabel value="Pasword: "/>
-                        <p:password value="#{userM.password}" minLength="6" id="password" feedback="false" required="true" requiredMessage="Insira um password."/> 
+                        <p:password value="#{userM.password}" minLength="6" id="password" feedback="false" required="true" requiredMessage="Insira uma password."/> 
                       
                         <h:commandButton value="Login" action="#{userM.CheckValidUser}"/>
                          
