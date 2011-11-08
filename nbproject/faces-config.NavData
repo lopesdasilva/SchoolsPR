@@ -2,10 +2,8 @@
 <Scene Scope="Project" version="2">
     <Scope Scope="Faces Configuration Only"/>
     <Scope Scope="Project">
-        <Node id="module2.xhtml" x="150" y="300" zoom="true"/>
         <Node id="module.xhtml" x="400" y="150" zoom="true"/>
         <Node id="index.xhtml" x="150" y="150" zoom="true"/>
-        <Node id="perfil2.xhtml" x="178" y="280" zoom="true"/>
         <Node id="profile.xhtml" x="650" y="150" zoom="true"/>
     </Scope>
     <Scope Scope="All Faces Configurations"/>
