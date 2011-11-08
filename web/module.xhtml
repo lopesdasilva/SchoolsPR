@@ -13,7 +13,7 @@
             <ui:define name="content">
                 <h1 class="title ui-widget-header ui-corner-all">#{userM.disciplineSelected} > #{userM.moduleSelected}</h1>
         <div class="entry">
-            <p>Informação sobre o Modulo seleccionado.................</p>
+            <p>TODO: Informação sobre o modulo seleccionado na base de dados e metodos java para obter essas informações. </p>
 
             <p:accordionPanel value="#{userM.moduleSelectedList.tests}" var="test">
 
@@ -22,10 +22,12 @@
                         <p:graphicImage value="http://www.w3schools.com/images/w3html.gif" />
 
                         <h:panelGrid columns="2" cellpadding="10">
-                            <h:outputText value="Name: " />
+                            <h:outputText value="Nome do Teste: " />
                             <h:outputText value="#{test.name}" style="font-weight: bold"/>
+                             <h:outputText value="Descrição: " />
+                             <h:outputText value="#{test.description}" style="font-weight: bold"/>
 
-                             <p:commandButton value="Modal" onclick="dlg1.show();" type="button"/>
+                             <p:commandButton value="Resolver teste" onclick="dlg1.show();" type="button"/>
                                 <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" >  
                                     <h:outputText value="Teste" />  
                                 </p:dialog>

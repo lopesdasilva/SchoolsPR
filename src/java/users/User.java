@@ -11,6 +11,7 @@ import java.util.LinkedList;
 import menu.MenuBean;
 import sha1.sha1;
 import tables.Discipline;
+import tables.Notice;
 
 /**
  *
@@ -25,7 +26,12 @@ public class User {
     MenuBean userMenu;
     //Disciplines
     LinkedList<Discipline> disciplines = new LinkedList<Discipline>();
+    LinkedList<Notice> notices = new LinkedList<Notice>();
 
+    public LinkedList<Notice> getNotices() {
+        return notices;
+    }
+    
     public LinkedList<Discipline> getDisciplines() {
         return disciplines;
     }
@@ -37,7 +43,22 @@ public class User {
     public User(String username) {
         this.username = username;
 
-
+        //populate notices
+            //TODO:
+        notices.add(new Notice("Nome da Disciplina I","Aviso sobre a disciplina 1.. Proximo teste dia qualquer coisa. "
+                + "TODO: Introduzir na base dados uma tabela avisos (possivelemente) e fazer querys para as"
+                + " obter ja existe a classe notice"));
+        notices.add(new Notice("Nome da Disciplina II","Aviso sobre a disciplina 1.. Proximo teste dia qualquer coisa. "
+                + "TODO: Introduzir na base dados uma tabela avisos (possivelemente) e fazer querys para as"
+                + " obter ja existe a classe notice"));
+        notices.add(new Notice("Nome da Disciplina III","Aviso sobre a disciplina 1.. Proximo teste dia qualquer coisa. "
+                + "TODO: Introduzir na base dados uma tabela avisos (possivelemente) e fazer querys para as"
+                + " obter ja existe a classe notice"));
+        notices.add(new Notice("Nome da Disciplina IV","Aviso sobre a disciplina 1.. Proximo teste dia qualquer coisa. "
+                + "TODO: Introduzir na base dados uma tabela avisos (possivelemente) e fazer querys para as"
+                + " obter ja existe a classe notice"));
+        
+        
         //populate disciplines
 
         try {

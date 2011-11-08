@@ -9,9 +9,6 @@ import db.SQLInstruct;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -22,7 +19,6 @@ import org.primefaces.component.submenu.Submenu;
 import sha1.sha1;
 import tables.Discipline;
 import tables.Module;
-import tables.Test;
 
 /**
  *
@@ -36,7 +32,6 @@ public class userManager {
     String password;
     boolean loggedIn = false;
    
-    
     User current;
     
     String disciplineSelected;
@@ -127,15 +122,18 @@ public class userManager {
         return "fail";
     }
 
-    public String yahoo() {
-        
-  
-
-        
-
-        return "success";
+    public String moduleRedirect() {
+        return "module";
+    }
+    
+     public String homeRedirect() {
+        return "home";
     }
 
+    public String infoRedirect() {
+        return "info";
+    }
+    
     public String moduleSelection(ActionEvent event) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         Object obj = event.getSource();
         MenuItem aux_module = (MenuItem) obj;

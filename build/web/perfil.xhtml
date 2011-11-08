@@ -2,14 +2,34 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:h="http://java.sun.com/jsf/html">
 
     <body>
 
         <ui:composition template="./profile.xhtml">
 
             <ui:define name="content">
-               CONTEUDO DO PERFIL
+
+
+                <h1 class="title ui-widget-header ui-corner-all">Perfil</h1>
+                <div class="entry">
+                    <p>TODO: Informação sobre o modulo seleccionado na base de dados e metodos java para obter essas informações. </p>
+                </div>
+                <center>
+                    <p:carousel value="#{userM.current.notices}" var="discipline" headerText="Avisos" rows="1" itemStyle="height:200px;width:600px;" effect="easeInStrong">  
+                        <p:tab> 
+                            <h:outputText  value="#{discipline.disciplineName}" style="text-align: left"/>
+                            <h:panelGrid columns="2" cellpadding="10">
+                                <p:graphicImage value="http://www.w3schools.com/images/icon_doc.gif" />  
+                                <h:outputText  
+                                    value="#{discipline.text}" />  
+                            </h:panelGrid>  
+                        </p:tab>
+                    </p:carousel> 
+                </center>
+
+
             </ui:define>
 
         </ui:composition>

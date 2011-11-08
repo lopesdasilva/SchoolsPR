@@ -13,6 +13,11 @@ import java.io.Serializable;
 public class Test implements Serializable {
  
     private String name;
+    private String description;
+
+    public String getDescription() {
+        return description;
+    }
 
     public String getName() {
         System.out.println(name);
@@ -22,5 +27,7 @@ public class Test implements Serializable {
     
     public Test(String name){
         this.name=name;
+        //TODO: adicionar  
+        this.description="";
     }
 }

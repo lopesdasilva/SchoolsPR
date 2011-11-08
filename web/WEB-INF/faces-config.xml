@@ -14,8 +14,7 @@
     <navigation-rule>
         <from-view-id>/index.xhtml</from-view-id>
         <navigation-case>
-            <from-action>#{userM.CheckValidUser}
-            </from-action>
+            <from-action>#{userM.CheckValidUser}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>perfil.xhtml</to-view-id>
         </navigation-case>
@@ -28,7 +27,26 @@
     <navigation-rule>
         <from-view-id>/perfil.xhtml</from-view-id>
         <navigation-case>
+            <from-outcome>module</from-outcome>
             <to-view-id>module.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>info</from-outcome>
+            <to-view-id>/info.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/info.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/perfil.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/module.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>home</from-outcome>
+            <to-view-id>/perfil.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
 </faces-config>

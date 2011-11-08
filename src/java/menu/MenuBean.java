@@ -31,9 +31,20 @@ public class MenuBean {
 
     public MenuBean(LinkedList<Discipline> disciplines) {
 
-       
+
         model = new DefaultMenuModel();
 
+
+        Submenu smenu = new Submenu();
+        smenu.setLabel("SchoolsPR");
+
+        MenuItem itm = new MenuItem();
+        itm.setValue("Inicio");
+        itm.setAjax(false);
+        itm.setActionExpression(createAction_old("#{userM.homeRedirect}", String.class));
+
+        smenu.getChildren().add(itm);
+        model.addSubmenu(smenu);
         for (Discipline d : disciplines) {
 
             Submenu submenu = new Submenu();
@@ -41,7 +52,8 @@ public class MenuBean {
 
             MenuItem item = new MenuItem();
             item.setValue("Informações");
-            item.setUrl("#");
+            item.setAjax(false);
+            item.setActionExpression(createAction_old("#{userM.infoRedirect}", String.class));
 
             submenu.getChildren().add(item);
 
@@ -49,7 +61,7 @@ public class MenuBean {
                 item = new MenuItem();
                 item.setValue(m.getName());
                 item.setAjax(false);
-                
+
                 //item.setActionListener(createActionListener("#{user.moduleSelection}"));
 
                 //para usar mais tarde
@@ -58,10 +70,10 @@ public class MenuBean {
                 //Class[] sadsa= {String.class};
                 //System.out.println("AQUIIIII"+resloveMethodExpression("#{user.moduleSelection}", null,new Class[] {String.class},null).toString());
                 // item.setActionExpression((MethodExpression)resloveMethodExpression("#{user.moduleSelection}", null,new Class[] {String.class},null));
-              
+
                 //MARTELO!!!
                 item.setActionListener(createActionListener("#{userM.moduleSelection}"));
-                item.setActionExpression(createAction_old("#{userM.yahoo}", String.class));
+                item.setActionExpression(createAction_old("#{userM.moduleRedirect}", String.class));
                 submenu.getChildren().add(item);
             }
             model.addSubmenu(submenu);
