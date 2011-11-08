@@ -144,8 +144,8 @@ public class userManager {
         moduleSelected = aux_module.getValue() + "";
         disciplineSelected = aux_discipline.getLabel();
 
-
-
+        
+        
         DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
         db.loadDriver();
 
@@ -153,14 +153,16 @@ public class userManager {
         String sqlStatement = SQLInstruct.tests(disciplineSelected, moduleSelected);
         ResultSet rSet = db.queryDB(sqlStatement);
 
-        while (rSet.next()) {
+        
 
             for (Discipline d : current.disciplines) {
-                if (d.getName().equals(disciplineSelected)) {//Sybstituir Math
-                    //fazer while do rSet(Fazer rSet)
+                if (d.getName().equals(disciplineSelected) ) {
+                    if(d.existe(moduleSelected).getTests().size()==0){//só adiciona caso a lista ainda esteja vazia :)
+                    while (rSet.next()) {
                     d.addTest(moduleSelected, rSet.getString(1));//Substituir SumModule
+                    }
                 }
-
+                    
             }
 
         }
