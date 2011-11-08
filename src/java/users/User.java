@@ -76,7 +76,7 @@ public class User {
     }
 
 
-    private Discipline existe(String discip) {
+    public Discipline existe(String discip) {
         for (Discipline d : disciplines) {
             if (d.getName().equals(discip)) {
                 return d;

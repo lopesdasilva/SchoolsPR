@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:p="http://primefaces.prime.com.tr/ui"
+      xmlns:p="http://primefaces.org/ui"
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
@@ -14,15 +14,15 @@
                     <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
                     <h:panelGrid columns="2" >
                         <h:outputLabel value="Username: "/>
-                        <p:inputText id="username" required="true" requiredMessage="Insira um username." value="#{user.loginname}"/>
+                        <p:inputText id="username" required="true" requiredMessage="Insira um username." value="#{userM.loginname}"/>
                          
                         <h:outputLabel value="Pasword: "/>
-                        <p:password value="#{user.password}" minLength="6" id="password" feedback="false" required="true" requiredMessage="Insira um password."/> 
+                        <p:password value="#{userM.password}" minLength="6" id="password" feedback="false" required="true" requiredMessage="Insira um password."/> 
                       
-                        <h:commandButton value="Login" action="#{user.CheckValidUser}"/>
+                        <h:commandButton value="Login" action="#{userM.CheckValidUser}"/>
                          
                     </h:panelGrid>
-                <p:growl id="growl" showDetail="true" />    
+                 
             </h:form>
         </center>  
     </h:body>

@@ -3,7 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.prime.com.tr/ui">
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -27,11 +27,11 @@
             <div id="left" >
                 <ui:insert name="left" >
                     <h:form>
-                        <p:menu  model="#{user.current.userMenu.model}" />
+                        <p:menu  model="#{userM.current.userMenu.model}" />
                         </h:form>
                 </ui:insert>
             </div>
-            <div id="content" class="left_content" rendered="#{user.loggedIn}">
+            <div id="content" class="left_content">
                 <ui:insert name="content">Content</ui:insert>
             </div>
         </div>

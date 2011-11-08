@@ -45,7 +45,7 @@ public class MenuBean {
 
             MethodExpression methodExpression = FacesContext.getCurrentInstance().getApplication().getExpressionFactory().createMethodExpression(FacesContext.getCurrentInstance().getELContext(), "#{user.moduleSelection}", null, new Class[]{ActionEvent.class});
             item.setAjax(false);
-            item.setActionExpression(createAction_old("#{user.yahoo}", String.class));
+            item.setActionExpression(createAction_old("#{userM.yahoo}", String.class));
             //  item.setActionListener(createActionListener(("#{user.yahoo}")));
             submenu.getChildren().add(item);
 
@@ -64,8 +64,8 @@ public class MenuBean {
                 // item.setActionExpression((MethodExpression)resloveMethodExpression("#{user.moduleSelection}", null,new Class[] {String.class},null));
               
                 //MARTELO!!!
-                item.setActionListener(createActionListener("#{user.moduleSelection}"));
-                item.setActionExpression(createAction_old("#{user.yahoo}", String.class));
+                item.setActionListener(createActionListener("#{userM.moduleSelection}"));
+                item.setActionExpression(createAction_old("#{userM.yahoo}", String.class));
                 submenu.getChildren().add(item);
             }
             model.addSubmenu(submenu);
