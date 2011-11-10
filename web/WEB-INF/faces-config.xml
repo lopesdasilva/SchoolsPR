@@ -17,11 +17,17 @@
             <from-action>#{userM.CheckValidUser}</from-action>
             <from-outcome>success</from-outcome>
             <to-view-id>perfil.xhtml</to-view-id>
+            
         </navigation-case>
         <navigation-case>
             <from-action>#{userM.CheckValidUser}</from-action>
             <from-outcome>fail</from-outcome>
             <to-view-id>index.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-action>#{userM.CheckValidUser}</from-action>
+            <from-outcome>successA</from-outcome>
+            <to-view-id>admin/admin.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
     <navigation-rule>

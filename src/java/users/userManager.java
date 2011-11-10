@@ -31,13 +31,9 @@ public class userManager {
     String loginname;
     String password;
     boolean loggedIn = false;
-   
     User current;
-    
     String disciplineSelected;
     String moduleSelected;
-
-    
     Module moduleSelectedList;
 
     public Module getModuleSelectedList() {
@@ -86,7 +82,7 @@ public class userManager {
     }
 
     public String CheckValidUser() {
-      
+
         try {
 
 
@@ -97,11 +93,15 @@ public class userManager {
             ResultSet rSet = db.queryDB(sqlStatement);
 
             if (rSet.next()) {
-
+                
                 this.loggedIn = true;
                 current = new User(loginname);
-                System.out.println("User: " + loginname + " has logged On.");
-                return "success";
+                System.out.println("User: " + loginname + " has logged On. ADMIN: "+rSet.getBoolean("isAdmin"));
+                if (rSet.getBoolean("isAdmin")) {
+                    return "successA";
+                } else {
+                    return "success";
+                }
 
             }
 
@@ -125,15 +125,15 @@ public class userManager {
     public String moduleRedirect() {
         return "module";
     }
-    
-     public String homeRedirect() {
+
+    public String homeRedirect() {
         return "home";
     }
 
     public String infoRedirect() {
         return "info";
     }
-    
+
     public String moduleSelection(ActionEvent event) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         Object obj = event.getSource();
         MenuItem aux_module = (MenuItem) obj;
@@ -142,8 +142,8 @@ public class userManager {
         moduleSelected = aux_module.getValue() + "";
         disciplineSelected = aux_discipline.getLabel();
 
-        
-        
+
+
         DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
         db.loadDriver();
 
@@ -151,16 +151,16 @@ public class userManager {
         String sqlStatement = SQLInstruct.tests(disciplineSelected, moduleSelected);
         ResultSet rSet = db.queryDB(sqlStatement);
 
-        
 
-            for (Discipline d : current.disciplines) {
-                if (d.getName().equals(disciplineSelected) ) {
-                    if(d.existe(moduleSelected).getTests().size()==0){//só adiciona caso a lista ainda esteja vazia :)
+
+        for (Discipline d : current.disciplines) {
+            if (d.getName().equals(disciplineSelected)) {
+                if (d.existe(moduleSelected).getTests().size() == 0) {//só adiciona caso a lista ainda esteja vazia :)
                     while (rSet.next()) {
-                    d.addTest(moduleSelected, rSet.getString(1));//Substituir SumModule
+                        d.addTest(moduleSelected, rSet.getString(1));//Substituir SumModule
                     }
                 }
-                    
+
             }
 
         }

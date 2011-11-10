@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+       <ui:composition template="./adminTemplate.xhtml">
+
+            <ui:define name="content">
+                <center>
+                    <p:panel header="Gestão de Conta">
+                        <h:panelGrid columns="2" id="grid">  
+                            <h:outputLabel value="Nome: "/>
+                            <p:inputText id="user_name"   
+                                         value="" required="true"/>  
+
+                            <h:outputLabel value="Correio electrónico:" for="txt_author"/>  
+                            <p:inputText id="user_email" required="true"   
+                                         value="" />  
+                            <h:outputLabel value="Página alternativa:" for="txt_author"/>  
+                            <p:inputText id="user_email" required="true"   
+                                         value="" /> 
+                            <h:outputLabel value="Endereço do CV externo" for="txt_author"/>  
+                            <p:inputText id="user_email" required="true"   
+                                         value="" /> 
+
+
+
+                        </h:panelGrid>  
+                    </p:panel>
+                </center>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
