@@ -51,6 +51,7 @@ public class MenuBean {
             MenuItem item = new MenuItem();
             item.setValue("Informações");
             item.setAjax(false);
+            item.setActionListener(createActionListener("#{userM.disciplineSelection}"));
             item.setActionExpression(createAction_old("#{userM.infoRedirect}", String.class));
 
             submenu.getChildren().add(item);

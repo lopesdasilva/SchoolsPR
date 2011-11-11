@@ -19,15 +19,13 @@ public class Discipline {
         return info;
     }
 
-    public void setInfo(String info) {
-        this.info = info;
-    }
     
     private LinkedList<Module> modules;
 
     public Discipline(String name,String info) {
        this.name=name;
        this.info=info;
+       System.out.println(this.name+":"+this.info);
        modules=new LinkedList<Module>();
     }
 
@@ -56,7 +54,6 @@ public class Discipline {
         Module new_module = new Module(module,info_module);
 
                 if(m==null){
-                    System.out.println(getName()+"-Adicionado Modulo:"+module);
                     modules.addLast(new_module);
                 }
                 m=null;        }
@@ -64,7 +61,6 @@ public class Discipline {
     public void addTest(String module,String test){
         for(Module m: modules){
             if(m.getName().equals(module)){
-                System.out.println("Disciplina "+ getName()+"Entrei no modulo: "+module);
                 m.addTest(test);
             }
         }

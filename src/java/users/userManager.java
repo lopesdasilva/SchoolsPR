@@ -44,7 +44,6 @@ public class userManager {
     public Module getModuleSelectedList() {
         return moduleSelectedList;
     }
-    
 
     public String getDisciplineSelected() {
         return disciplineSelected;
@@ -99,10 +98,10 @@ public class userManager {
             ResultSet rSet = db.queryDB(sqlStatement);
 
             if (rSet.next()) {
-                
+
                 this.loggedIn = true;
                 current = new User(loginname);
-                System.out.println("User: " + loginname + " has logged On. ADMIN: "+rSet.getBoolean("isAdmin"));
+                System.out.println("User: " + loginname + " has logged On. ADMIN: " + rSet.getBoolean("isAdmin"));
                 if (rSet.getBoolean("isAdmin")) {
                     return "successA";
                 } else {
@@ -170,10 +169,25 @@ public class userManager {
             }
 
         }
-
         moduleSelectedList = current.existe(disciplineSelected).existe(moduleSelected);
+
+
+        return "success";
+    }
+
+    public String disciplineSelection(ActionEvent event) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+        Object obj = event.getSource();
+        MenuItem aux_info = (MenuItem) obj;
+        Submenu aux_discipline = (Submenu) aux_info.getParent();
+
+        disciplineSelected = aux_discipline.getLabel();
+
+
+
+
         disciplineSelectedList = current.existe(disciplineSelected);
-        System.out.println("DISCIPLINA INFO:"+disciplineSelectedList.getInfo());
+
+
 
         return "success";
     }

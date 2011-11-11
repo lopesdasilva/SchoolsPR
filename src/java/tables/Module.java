@@ -31,6 +31,7 @@ public class Module {
     Module(String name,String info) {
         this.name=name;
         this.info=info;
+        System.out.println(name+":"+info);
         tests = new LinkedList<Test>();
     }
    
@@ -40,7 +41,6 @@ public class Module {
 
     void addTest(String test) {
         tests.addLast(new Test(test));
-        System.out.println("Adicionado Teste: "+test);
     }
    
    

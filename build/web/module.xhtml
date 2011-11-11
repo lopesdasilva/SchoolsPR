@@ -13,8 +13,7 @@
             <ui:define name="content">
                 <h1 class="title ui-widget-header ui-corner-all">#{userM.disciplineSelected} > #{userM.moduleSelected}</h1>
         <div class="entry">
-            <p>TODO: Informação sobre o modulo seleccionado na base de dados e metodos java para obter essas informações. </p>
-
+            <h:outputText value="#{userM.moduleSelectedList.info}"></h:outputText>
             <p:accordionPanel value="#{userM.moduleSelectedList.tests}" var="test">
 
                 <p:tab title="#{test.name}">

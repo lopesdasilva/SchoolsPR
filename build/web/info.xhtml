@@ -9,10 +9,9 @@
 
         <ui:composition template="./profile.xhtml">
             <ui:define name="content">
-                <h1 class="title ui-widget-header ui-corner-all">DisciplineSelected</h1>
+                <h1 class="title ui-widget-header ui-corner-all">#{userM.disciplineSelectedList.name}</h1>
         <div class="entry">
             <h:outputText value="#{userM.disciplineSelectedList.info}"  ></h:outputText>
-                asdTODO: Informação da disciplina na base de dados e metodos java para obter essa informação.
         </div>
             </ui:define>
 
