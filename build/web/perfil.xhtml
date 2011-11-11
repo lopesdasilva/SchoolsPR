@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" 
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
 
     <body>
 
@@ -17,12 +18,15 @@
                 <center>
                     <p:carousel value="#{userM.current.notices}" var="discipline" headerText="Avisos" rows="1" itemStyle="height:200px;width:600px;" effect="easeInStrong">  
                         <p:tab> 
-                            <h:outputText  value="#{discipline.disciplineName}" style="text-align: left"/>
+                            <h:form>
+                            <h:outputText  id ="discipline" value="#{discipline.disciplineName}" style="text-align: left"/>
                             <h:panelGrid columns="2" cellpadding="10">
                                 <p:graphicImage value="http://www.w3schools.com/images/icon_doc.gif" />  
-                                <h:outputText  
+                                <h:outputText id="text"  
                                     value="#{discipline.text}" />  
                             </h:panelGrid>  
+                            <h:commandButton value="isRead" image="eye-icon.jpg" action="#{userM.current.putRead}"/>
+                            </h:form>
                         </p:tab>
                     </p:carousel> 
                 </center>

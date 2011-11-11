@@ -4,10 +4,10 @@ public class SQLInstruct {
 
     //Database Configs:
     //public static final String dbAdress="jdbc:mysql://192.168.1.2:3306/school";
-   public static final String dbAdress="jdbc:mysql://lopesdasilva.servebeer.com:3306/school";
-    //public static final String dbAdress="jdbc:mysql://localhost:3306/school";
+    //public static final String dbAdress="jdbc:mysql://lopesdasilva.servebeer.com:3306/school";
+    public static final String dbAdress="jdbc:mysql://localhost:3306/School";
     public static final String dbUsername="root";
-    public static final String dbPassword="rr2011";
+    public static final String dbPassword="";
    
 
     public static String login(String userName, String hashPassword) {
@@ -24,6 +24,10 @@ public class SQLInstruct {
 
     public static String tests(String discipline, String module) {
         return "SELECT test FROM Discipline,DisciplineModule,Module,ModuleTest,Test WHERE Discipline.discipline='"+ discipline +"' AND Module.module='"+ module+"' AND Discipline.id=DisciplineModule.discipline_id AND DisciplineModule.module_id=Module.id AND Module.id=ModuleTest.module_id AND ModuleTest.test_id=Test.id";
+    }
+    
+    public static String notices(String userName){
+        return "SELECT discipline.discipline ,notice.notice, notice.isRead FROM user,userdiscipline,discipline,disciplinenotice,notice WHERE user.name='"+userName+"' AND user.id=userdiscipline.user_id AND userdiscipline.discipline_id=discipline.id AND discipline.id=disciplinenotice.discipline_id AND  disciplinenotice.notice_id=notice.id";
     }
     
     

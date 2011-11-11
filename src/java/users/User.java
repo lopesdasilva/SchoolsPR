@@ -13,11 +13,22 @@ import sha1.sha1;
 import tables.Discipline;
 import tables.Notice;
 
+
 /**
  *
  * @author lopesdasilva
  */
 public class User {
+    
+    String text;
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
 
     String username;
     String name;
@@ -43,27 +54,22 @@ public class User {
     public User(String username) {
         this.username = username;
 
-        //populate notices
-            //TODO:
-        notices.add(new Notice("Nome da Disciplina I","Aviso sobre a disciplina 1.. Proximo teste dia qualquer coisa. "
-                + "TODO: Introduzir na base dados uma tabela avisos (possivelemente) e fazer querys para as"
-                + " obter ja existe a classe notice"));
-        notices.add(new Notice("Nome da Disciplina II","Aviso sobre a disciplina 1.. Proximo teste dia qualquer coisa. "
-                + "TODO: Introduzir na base dados uma tabela avisos (possivelemente) e fazer querys para as"
-                + " obter ja existe a classe notice"));
-        notices.add(new Notice("Nome da Disciplina III","Aviso sobre a disciplina 1.. Proximo teste dia qualquer coisa. "
-                + "TODO: Introduzir na base dados uma tabela avisos (possivelemente) e fazer querys para as"
-                + " obter ja existe a classe notice"));
-        notices.add(new Notice("Nome da Disciplina IV","Aviso sobre a disciplina 1.. Proximo teste dia qualquer coisa. "
-                + "TODO: Introduzir na base dados uma tabela avisos (possivelemente) e fazer querys para as"
-                + " obter ja existe a classe notice"));
-        
-        
-        //populate disciplines
 
         try {
+            
             DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
             db.loadDriver();
+            
+            //avisos
+            String querysqlStatement = SQLInstruct.notices(username);
+            ResultSet query_notices = db.queryDB(querysqlStatement);
+            
+            while(query_notices.next()){
+                if(!query_notices.getBoolean("isRead"))
+                notices.add(new Notice(query_notices.getString(1),query_notices.getString(2),query_notices.getBoolean("isRead")));
+            }
+            
+            //fim avisos
             String sqlStatement = SQLInstruct.informacoes(username);
             ResultSet rSet = db.queryDB(sqlStatement);
 
@@ -95,6 +101,20 @@ public class User {
         this.userMenu = new MenuBean(disciplines);
 
     }
+    
+    public String putRead(){
+        //falta identificar o que é o text para comparar com as noticias q existem.
+        System.out.println("Entrei no putRead do user." + text);
+        for(Notice n:notices){
+            if(n.getText().equals(text)){
+                System.out.println(n.getText() + " - aviso removido");
+                n.putRead();
+                notices.remove(n);;
+            }
+        }
+        return "sucess";
+    }
+    
 
 
     public Discipline existe(String discip) {

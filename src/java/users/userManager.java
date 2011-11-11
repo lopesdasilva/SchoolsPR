@@ -105,8 +105,10 @@ public class userManager {
             db.loadDriver();
             String sqlStatement = SQLInstruct.login(loginname, new sha1().parseSHA1Password(password));
             ResultSet rSet = db.queryDB(sqlStatement);
+            
 
             if (rSet.next()) {
+                
 
                 this.loggedIn = true;
                 current = new User(loginname);
@@ -196,7 +198,6 @@ public class userManager {
         Object obj = event.getSource();
         MenuItem aux_info = (MenuItem) obj;
         Submenu aux_discipline = (Submenu) aux_info.getParent();
-
         disciplineSelected = aux_discipline.getLabel();
 
 
