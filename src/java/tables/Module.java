@@ -11,6 +11,15 @@ import java.util.LinkedList;
  * @author lopesdasilva
  */
 public class Module {
+   private String info;
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
    private String name;
    private LinkedList<Test> tests;
 
@@ -19,8 +28,9 @@ public class Module {
     }
    
 
-    Module(String name) {
+    Module(String name,String info) {
         this.name=name;
+        this.info=info;
         tests = new LinkedList<Test>();
     }
    

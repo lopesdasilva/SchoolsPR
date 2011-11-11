@@ -13,10 +13,21 @@ import java.util.LinkedList;
  */
 public class Discipline {
     private String name;
+    private String info;
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+    
     private LinkedList<Module> modules;
 
-    public Discipline(String name) {
+    public Discipline(String name,String info) {
        this.name=name;
+       this.info=info;
        modules=new LinkedList<Module>();
     }
 
@@ -40,9 +51,9 @@ public class Discipline {
     return null;
     }
 
-    public void addModule(String module) {
+    public void addModule(String module,String info_module) {
         Module m = existe(module);
-        Module new_module = new Module(module);
+        Module new_module = new Module(module,info_module);
 
                 if(m==null){
                     System.out.println(getName()+"-Adicionado Modulo:"+module);

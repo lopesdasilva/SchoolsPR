@@ -35,10 +35,16 @@ public class userManager {
     String disciplineSelected;
     String moduleSelected;
     Module moduleSelectedList;
+    Discipline disciplineSelectedList;
+
+    public Discipline getDisciplineSelectedList() {
+        return disciplineSelectedList;
+    }
 
     public Module getModuleSelectedList() {
         return moduleSelectedList;
     }
+    
 
     public String getDisciplineSelected() {
         return disciplineSelected;
@@ -166,7 +172,8 @@ public class userManager {
         }
 
         moduleSelectedList = current.existe(disciplineSelected).existe(moduleSelected);
-
+        disciplineSelectedList = current.existe(disciplineSelected);
+        System.out.println("DISCIPLINA INFO:"+disciplineSelectedList.getInfo());
 
         return "success";
     }

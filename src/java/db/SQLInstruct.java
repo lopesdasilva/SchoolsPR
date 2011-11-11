@@ -18,7 +18,7 @@ public class SQLInstruct {
        // return "Select name, discipline from User,Discipline,UserDiscipline WHERE User.name='"+username+"' "
        //         + "AND User.id=UserDiscipline.user_id AND UserDiscipline.discipline_id=Discipline.id";
 
-        return "Select discipline, module  from User,UserDiscipline,Discipline,DisciplineModule,Module WHERE User.name='"+username+"' AND User.id=UserDiscipline.user_id AND UserDiscipline.discipline_id=Discipline.id AND Discipline.id=DisciplineModule.discipline_id AND DisciplineModule.module_id=Module.id ";
+        return "Select discipline, Discipline.info ,module,Module.info  from User,UserDiscipline,Discipline,DisciplineModule,Module WHERE User.name='"+username+"' AND User.id=UserDiscipline.user_id AND UserDiscipline.discipline_id=Discipline.id AND Discipline.id=DisciplineModule.discipline_id AND DisciplineModule.module_id=Module.id ";
         
     }
 

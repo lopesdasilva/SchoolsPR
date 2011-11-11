@@ -69,14 +69,14 @@ public class User {
 
             while (rSet.next()) {
                 Discipline d = existe(rSet.getString(1));
-                Discipline new_discipline = new Discipline(rSet.getString(1));
+                Discipline new_discipline = new Discipline(rSet.getString(1),rSet.getString(2));
 
                 if (d == null) {
                     disciplines.addLast(new_discipline);
-                    new_discipline.addModule(rSet.getString(2));
+                    new_discipline.addModule(rSet.getString(3),rSet.getString(4));
 
                 } else {
-                    d.addModule(rSet.getString(2));
+                    d.addModule(rSet.getString(3),rSet.getString(4));
                 }
                 d = null;
             }
