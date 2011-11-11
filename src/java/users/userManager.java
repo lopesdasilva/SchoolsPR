@@ -9,6 +9,7 @@ import db.SQLInstruct;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.LinkedList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -19,6 +20,8 @@ import org.primefaces.component.submenu.Submenu;
 import sha1.sha1;
 import tables.Discipline;
 import tables.Module;
+import tables.Question;
+import tables.Test;
 
 /**
  *
@@ -36,6 +39,12 @@ public class userManager {
     String moduleSelected;
     Module moduleSelectedList;
     Discipline disciplineSelectedList;
+    Test testSelected;
+
+    public Test getTestSelected() {
+        return testSelected;
+    }
+    
 
     public Discipline getDisciplineSelectedList() {
         return disciplineSelectedList;
@@ -171,7 +180,15 @@ public class userManager {
         }
         moduleSelectedList = current.existe(disciplineSelected).existe(moduleSelected);
 
-
+        //TODO importar as perguntas so de uma escolha para o java
+        LinkedList<Question> q=new LinkedList<Question>();
+        q.add(new Question("2+2="));
+        q.add(new Question("2*2="));
+        q.add(new Question("2/2="));
+        testSelected=new Test("Teste de Matematica");
+        testSelected.setQuestions(q);
+        
+        
         return "success";
     }
 

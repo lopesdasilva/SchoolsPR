@@ -12,44 +12,55 @@
 
             <ui:define name="content">
                 <h1 class="title ui-widget-header ui-corner-all">#{userM.disciplineSelected} > #{userM.moduleSelected}</h1>
-        <div class="entry">
-            <h:outputText value="#{userM.moduleSelectedList.info}"></h:outputText>
-            <p:accordionPanel value="#{userM.moduleSelectedList.tests}" var="test">
+                <div class="entry">
+                    <h:outputText value="#{userM.moduleSelectedList.info}"></h:outputText>
+                    <p:accordionPanel value="#{userM.moduleSelectedList.tests}" var="test">
 
-                <p:tab title="#{test.name}">
-                    <h:panelGrid  columns="2" cellpadding="10">
-                        <p:graphicImage value="http://www.w3schools.com/images/w3html.gif" />
+                        <p:tab title="#{test.name}">
+                            <h:panelGrid  columns="2" cellpadding="10">
+                                <p:graphicImage value="http://www.w3schools.com/images/w3html.gif" />
 
-                        <h:panelGrid columns="2" cellpadding="10">
-                            <h:outputText value="Nome do Teste: " />
-                            <h:outputText value="#{test.name}" style="font-weight: bold"/>
-                             <h:outputText value="Descrição: " />
-                             <h:outputText value="#{test.description}" style="font-weight: bold"/>
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:outputText value="Nome do Teste: " />
+                                    <h:outputText value="#{test.name}" style="font-weight: bold"/>
+                                    <h:outputText value="Descrição: " />
+                                    <h:outputText value="#{test.description}" style="font-weight: bold"/>
 
-                             <p:commandButton value="Resolver teste" onclick="dlg1.show();" type="button"/>
-                                <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" >  
-                                    <h:outputText value="Teste" />  
-                                </p:dialog>
-                        </h:panelGrid>
+                                    <p:commandButton value="Resolver teste" onclick="dlg1.show();" type="button"/>
+                                    <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" >  
+                                        <h:outputText value="Teste" />  
+                                    </p:dialog>
+                                </h:panelGrid>
 
-                    </h:panelGrid>
+                            </h:panelGrid>
 
-                </p:tab>
-            </p:accordionPanel>
-        </div>
-                
-                
-              
+                        </p:tab>
+                    </p:accordionPanel>
+                </div>
+
+
+
                 <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="500" > 
 
 
-                    <p:tabView dynamic="true" cache="true">  
+                    <p:tabView dynamic="true" cache="true"  >  
 
-                        <p:tab title="Escolha Única">  
-                            <h:panelGrid columns="2" cellpadding="10">  
-                                <h:outputText  
-                                    value="Escolha Única" />  
-                            </h:panelGrid>  
+                        <p:tab title="Escolha Única" >
+                            <p:dataList value="#{userM.testSelected.questions}" var="question">  
+                                <p:column>
+                                    <h:outputText  
+                                        value="#{question.question}" />
+                                    <p:dataList >
+                                        <h:outputText  
+                                            value=" 2" />
+                                        <h:outputText  
+                                            value=" 4" />
+                                        <h:outputText  
+                                            value=" 3" />
+                                    </p:dataList>
+                                </p:column>
+
+                            </p:dataList>  
                         </p:tab>  
 
                         <p:tab title="Escolha múltipla">  
@@ -61,18 +72,18 @@
                         <p:tab title="Desenvolvimento">  
                             <h:panelGrid columns="2" cellpadding="10">
                                 <h:panelGrid columns="1">
-                                <h:form>
-                                    <h:outputText value="Whats your firstname?" />  
-                                    <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
-                                </h:form>
-                                <h:form>
-                                    <h:outputText value="Whats your surname?" />  
-                                    <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
-                                </h:form>
-                                <h:form>
-                                    <h:outputText value="Whats your firstname?" />  
-                                    <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
-                                </h:form>
+                                    <h:form>
+                                        <h:outputText value="Whats your firstname?" />  
+                                        <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
+                                    </h:form>
+                                    <h:form>
+                                        <h:outputText value="Whats your surname?" />  
+                                        <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
+                                    </h:form>
+                                    <h:form>
+                                        <h:outputText value="Whats your firstname?" />  
+                                        <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
+                                    </h:form>
                                 </h:panelGrid>
                             </h:panelGrid>  
                         </p:tab>  
@@ -82,9 +93,9 @@
 
 
                 </p:dialog>
-                
-                
-                
+
+
+
             </ui:define>
 
         </ui:composition>

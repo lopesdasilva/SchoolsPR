@@ -5,6 +5,7 @@
 package tables;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  *
@@ -12,6 +13,15 @@ import java.io.Serializable;
  */
 public class Test implements Serializable {
  
+    private LinkedList<Question> questions= new LinkedList<Question>();
+
+    public void setQuestions(LinkedList<Question> questions) {
+        this.questions = questions;
+    }
+
+    public LinkedList<Question> getQuestions() {
+        return questions;
+    }
     private String name;
     private String description;
 
