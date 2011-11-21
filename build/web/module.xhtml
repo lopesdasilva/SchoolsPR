@@ -26,7 +26,6 @@
                                     <h:outputText value="#{test.name}" style="font-weight: bold"/>
                                     <h:outputText value="Descrição: " />
                                     <h:outputText value="#{test.description}" style="font-weight: bold"/>
-
                                     <p:commandButton value="Resolver teste" onclick="dlg1.show();" type="button"/>
                                     <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" >  
                                         <h:outputText value="Teste" />  
@@ -47,11 +46,14 @@
                     <p:tabView dynamic="true" cache="false"  >  
 
                         <p:tab title="Escolha Única" >
-                            <p:dataList value="#{userM.testSelected.questions}" var="q"> 
+                            <p:dataList value="#{userM.testSelected.questions}" var="q">
+                                <p:column>
                                 <h:outputText value="#{q.question}" />  
                                 <p:selectOneRadio value="#{q.question}" layout="pageDirection">  
                                     <f:selectItems value="#{q.answer}" />  
-                                </p:selectOneRadio>  
+                                </p:selectOneRadio>
+                                <p:commandButton value="Salvar" onclick="" type="button"/>
+                                </p:column>
                             </p:dataList> 
                         </p:tab>  
 
