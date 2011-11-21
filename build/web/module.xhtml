@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" 
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <body>
 
@@ -43,24 +44,15 @@
                 <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="500" > 
 
 
-                    <p:tabView dynamic="true" cache="true"  >  
+                    <p:tabView dynamic="true" cache="false"  >  
 
                         <p:tab title="Escolha Única" >
-                            <p:dataList value="#{userM.testSelected.questions}" var="question">  
-                                <p:column>
-                                    <h:outputText  
-                                        value="#{question.question}" />
-                                    <p:dataList >
-                                        <h:outputText  
-                                            value=" 2" />
-                                        <h:outputText  
-                                            value=" 4" />
-                                        <h:outputText  
-                                            value=" 3" />
-                                    </p:dataList>
-                                </p:column>
-
-                            </p:dataList>  
+                            <p:dataList value="#{userM.testSelected.questions}" var="q"> 
+                                <h:outputText value="#{q.question}" />  
+                                <p:selectOneRadio value="#{q.question}" layout="pageDirection">  
+                                    <f:selectItems value="#{q.answer}" />  
+                                </p:selectOneRadio>  
+                            </p:dataList> 
                         </p:tab>  
 
                         <p:tab title="Escolha múltipla">  

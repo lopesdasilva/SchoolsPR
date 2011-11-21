@@ -3,7 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1">
         <file>
             <url>src/java/users/userManager.java</url>
+<<<<<<< HEAD
             <line>143</line>
+=======
+            <line>150</line>
+>>>>>>> novo server sql
         </file>
     </editor-bookmarks>
 </project-private>

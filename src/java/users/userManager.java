@@ -184,12 +184,13 @@ public class userManager {
 
         //TODO importar as perguntas so de uma escolha para o java
         LinkedList<Question> q=new LinkedList<Question>();
-        q.add(new Question("2+2="));
-        q.add(new Question("2*2="));
-        q.add(new Question("2/2="));
+        q.add(new Question("2+2=","4","5","3","6"));
+        q.add(new Question("2*2=","2","4","6","7"));
+        q.add(new Question("2/2=","1","5","9","6"));
+       
         testSelected=new Test("Teste de Matematica");
         testSelected.setQuestions(q);
-        
+       
         
         return "success";
     }

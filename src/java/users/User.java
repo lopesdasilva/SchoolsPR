@@ -9,7 +9,6 @@ import db.SQLInstruct;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import menu.MenuBean;
-import sha1.sha1;
 import tables.Discipline;
 import tables.Notice;
 
