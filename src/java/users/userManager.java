@@ -20,8 +20,11 @@ import org.primefaces.component.submenu.Submenu;
 import sha1.sha1;
 import tables.Discipline;
 import tables.Module;
-import tables.Question;
+import tables.question.Question;
 import tables.Test;
+import tables.question.Answer;
+import tables.question.QuestionDesenolvimento;
+import tables.question.QuestionEscolhaMultipla;
 
 /**
  *
@@ -143,6 +146,7 @@ public class userManager {
     }
 
     public String homeRedirect() {
+        System.out.println("home");
         return "home";
     }
 
@@ -184,12 +188,21 @@ public class userManager {
 
         //TODO importar as perguntas so de uma escolha para o java
         LinkedList<Question> q=new LinkedList<Question>();
-        q.add(new Question("2+2=","4","5","3","6"));
-        q.add(new Question("2*2=","2","4","6","7"));
-        q.add(new Question("2/2=","1","5","9","6"));
+        q.add(new QuestionEscolhaMultipla("2+2=","4","5","3","6"));
+        q.add(new QuestionEscolhaMultipla("2*2=","2","4","6","7"));
+        q.add(new QuestionEscolhaMultipla("2/2=","1","5","9","6"));
        
         testSelected=new Test("Teste de Matematica");
         testSelected.setQuestions(q);
+       
+        LinkedList<Question> qDesen=new LinkedList<Question>();
+        qDesen.add(new QuestionDesenolvimento("Quem foi o Primeiro Rei de Portugal?"));
+        qDesen.add(new QuestionDesenolvimento("Quem mandou plantar o pinhal de Leiria?"));
+        qDesen.add(new QuestionDesenolvimento("Quem é o Presidente da República?"));
+        qDesen.getFirst().setUserAnswer(new Answer("A minha Resposta"));
+        testSelected.setQuestionsDesenvolvimento(qDesen);
+        
+        
        
         
         return "success";

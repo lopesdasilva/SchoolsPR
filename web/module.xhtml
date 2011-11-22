@@ -48,11 +48,11 @@
                         <p:tab title="Escolha Única" >
                             <p:dataList value="#{userM.testSelected.questions}" var="q">
                                 <p:column>
-                                <h:outputText value="#{q.question}" />  
-                                <p:selectOneRadio value="#{q.question}" layout="pageDirection">  
-                                    <f:selectItems value="#{q.answer}" />  
-                                </p:selectOneRadio>
-                                <p:commandButton value="Salvar" onclick="" type="button"/>
+                                    <h:outputText value="#{q.question}" />  
+                                    <p:selectOneRadio value="#{q.question}" layout="pageDirection" >  
+                                        <f:selectItems value="#{q.hipoteses}" />  
+                                    </p:selectOneRadio>
+                                    <p:commandButton value="Salvar" onclick="" type="button"/>
                                 </p:column>
                             </p:dataList> 
                         </p:tab>  
@@ -63,23 +63,18 @@
                             </h:panelGrid>  
                         </p:tab>  
 
-                        <p:tab title="Desenvolvimento">  
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <h:panelGrid columns="1">
-                                    <h:form>
-                                        <h:outputText value="Whats your firstname?" />  
-                                        <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
-                                    </h:form>
-                                    <h:form>
-                                        <h:outputText value="Whats your surname?" />  
-                                        <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
-                                    </h:form>
-                                    <h:form>
-                                        <h:outputText value="Whats your firstname?" />  
-                                        <h:inputTextarea rows="10" cols="50" ></h:inputTextarea><h:button value="Guardar"></h:button>
-                                    </h:form>
-                                </h:panelGrid>
-                            </h:panelGrid>  
+                        <p:tab title="Desenvolvimento">
+                            <p:dataList value="#{userM.testSelected.questionsDesenvolvimento}" var="qD">
+                                <h:panelGrid columns="2" cellpadding="10">
+                                    <h:panelGrid columns="1">
+                                        <h:form>
+                                            <h:outputText value="#{qD.question}" />  
+                                            <h:inputTextarea rows="10" cols="50" value="#{qD.userAnswer.s}"></h:inputTextarea>
+                                            <h:button value="Guardar"></h:button>
+                                        </h:form>
+                                    </h:panelGrid>
+                                </h:panelGrid>  
+                            </p:dataList>
                         </p:tab>  
 
                     </p:tabView>  

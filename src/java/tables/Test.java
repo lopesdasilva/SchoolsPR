@@ -4,6 +4,7 @@
  */
 package tables;
 
+import tables.question.Question;
 import java.io.Serializable;
 import java.util.LinkedList;
 
@@ -14,6 +15,15 @@ import java.util.LinkedList;
 public class Test implements Serializable {
  
     private LinkedList<Question> questions= new LinkedList<Question>();
+    private LinkedList<Question> questionsDesenvolvimento= new LinkedList<Question>();
+
+    public void setQuestionsDesenvolvimento(LinkedList<Question> questionsDesenvolvimento) {
+        this.questionsDesenvolvimento = questionsDesenvolvimento;
+    }
+
+    public LinkedList<Question> getQuestionsDesenvolvimento() {
+        return questionsDesenvolvimento;
+    }
 
     public void setQuestions(LinkedList<Question> questions) {
         this.questions = questions;
