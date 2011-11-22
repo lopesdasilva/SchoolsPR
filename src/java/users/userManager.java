@@ -6,6 +6,7 @@ package users;
  */
 import db.DBConnect;
 import db.SQLInstruct;
+import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -15,6 +16,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
+import org.primefaces.component.commandbutton.CommandButton;
 import org.primefaces.component.menuitem.MenuItem;
 import org.primefaces.component.submenu.Submenu;
 import sha1.sha1;
@@ -32,7 +34,7 @@ import tables.question.QuestionEscolhaMultipla;
  */
 @ManagedBean(name = "userM")
 @SessionScoped
-public class userManager {
+public class userManager implements Serializable{
 
     String loginname;
     String password;
@@ -43,6 +45,11 @@ public class userManager {
     Module moduleSelectedList;
     Discipline disciplineSelectedList;
     Test testSelected;
+    public String selectedTest;
+
+    public String getSelectedTest() {
+        return selectedTest;
+    }
 
     public Test getTestSelected() {
         return testSelected;
@@ -185,27 +192,13 @@ public class userManager {
         }
         moduleSelectedList = current.existe(disciplineSelected).existe(moduleSelected);
 
-        //TODO importar as perguntas so de uma escolha para o java
-        LinkedList<Question> q=new LinkedList<Question>();
-        q.add(new QuestionEscolhaMultipla("2+2=","4","5","3","6"));
-        q.add(new QuestionEscolhaMultipla("2*2=","2","4","6","7"));
-        q.add(new QuestionEscolhaMultipla("2/2=","1","5","9","6"));
-       
-        testSelected=new Test("Teste de Matematica");
-        testSelected.setQuestions(q);
-       
-        LinkedList<Question> qDesen=new LinkedList<Question>();
-        qDesen.add(new QuestionDesenolvimento("Quem foi o Primeiro Rei de Portugal?"));
-        qDesen.add(new QuestionDesenolvimento("Quem mandou plantar o pinhal de Leiria?"));
-        qDesen.add(new QuestionDesenolvimento("Quem é o Presidente da República?"));
-        qDesen.getFirst().setUserAnswer(new Answer("A minha Resposta"));
-        testSelected.setQuestionsDesenvolvimento(qDesen);
+        
         
          
             
 // questions
-        String query_development = SQLInstruct.developmentQuestions("Math");//Alterar por botão.
-        ResultSet query_questions_development = db.queryDB(query_development);
+    //    String query_development = SQLInstruct.developmentQuestions("Math");//Alterar por botão.
+      //  ResultSet query_questions_development = db.queryDB(query_development);
         
         
        
@@ -231,6 +224,41 @@ public class userManager {
     
     public void getQuestions(){
         System.out.println("VENHAM CÀ MINHAS PERGUNTINHAS");
+    }
+    
+    public void setTest(ActionEvent actionEvent){
+         Object obj =actionEvent.getSource();
+        CommandButton cb = (CommandButton) obj;
+        this.selectedTest=cb.getLabel();
+    }
+    
+    
+    public void yahoo(ActionEvent actionEvent){
+           Object obj =actionEvent.getSource();
+        CommandButton cb = (CommandButton) obj;
+        this.selectedTest=cb.getLabel();
+        System.out.println("DEBUG: "+this.selectedTest);
+      
+        //TODO importar as perguntas so de uma escolha para o java
+        LinkedList<Question> q=new LinkedList<Question>();
+        q.add(new QuestionEscolhaMultipla("2+2=","4","5","3","6"));
+        q.add(new QuestionEscolhaMultipla("2*2=","2","4","6","7"));
+        q.add(new QuestionEscolhaMultipla("2/2=","1","5","9","6"));
+       
+        
+       
+        LinkedList<Question> qDesen=new LinkedList<Question>();
+        qDesen.add(new QuestionDesenolvimento("Quem foi o Primeiro Rei de Portugal?"));
+        qDesen.add(new QuestionDesenolvimento("Quem mandou plantar o pinhal de Leiria?"));
+        qDesen.add(new QuestionDesenolvimento("Quem é o Presidente da República?"));
+        qDesen.getFirst().setUserAnswer(new Answer("A minha Resposta"));
+        
+        
+        
+        testSelected=new Test(this.selectedTest);
+        testSelected.setQuestions(q);
+        testSelected.setQuestionsDesenvolvimento(qDesen);
+        
     }
     
 }

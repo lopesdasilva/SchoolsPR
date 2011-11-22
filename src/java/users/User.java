@@ -6,6 +6,7 @@ package users;
 
 import db.DBConnect;
 import db.SQLInstruct;
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.util.LinkedList;
 import menu.MenuBean;
@@ -17,7 +18,7 @@ import tables.Notice;
  *
  * @author lopesdasilva
  */
-public class User {
+public class User implements Serializable{
     
     String text;
 

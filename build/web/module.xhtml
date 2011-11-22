@@ -15,10 +15,10 @@
                 <h1 class="title ui-widget-header ui-corner-all">#{userM.disciplineSelected} > #{userM.moduleSelected}</h1>
                 <div class="entry">
                     <h:outputText value="#{userM.moduleSelectedList.info}"></h:outputText>
-                    <p:accordionPanel value="#{userM.moduleSelectedList.tests}" var="test">
+                    <p:accordionPanel id="panel" value="#{userM.moduleSelectedList.tests}" var="test">
 
                         <p:tab title="#{test.name}">
-                            <h:panelGrid  columns="2" cellpadding="10">
+                            <h:panelGrid id="pgrid" columns="2" cellpadding="10">
                                 <p:graphicImage value="http://www.w3schools.com/images/w3html.gif" />
 
                                 <h:panelGrid columns="2" cellpadding="10">
@@ -26,8 +26,12 @@
                                     <h:outputText value="#{test.name}" style="font-weight: bold"/>
                                     <h:outputText value="Descrição: " />
                                     <h:outputText value="#{test.description}" style="font-weight: bold"/>
-                                    <p:commandButton value="Resolver teste" onclick="dlg1.show();" type="button"/>
-
+                                    <h:outputText value="#{userM.disciplineSelected}"/>
+                                   <!-- <p:commandButton value="Resolver teste"  onclick="dlg1.show();" type="button"  /> -->
+                                   <h:form>  
+                                       <!-- aqui esta um martelo que o tabv diz que nao existe?? :S-->
+                                       <p:commandButton  value="Resolver teste" update="tabv" onclick="dlg1.show();" actionListener="#{userM.yahoo}"   label="#{test.name}" />
+                                   </h:form>
                                     <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" >  
                                         <h:outputText value="Teste" />  
                                     </p:dialog>
@@ -41,10 +45,10 @@
 
 
 
-                <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="500" > 
+                <p:dialog id="testes" header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="500" > 
 
 
-                    <p:tabView dynamic="true" cache="false"  >  
+                    <p:tabView id="tabv" dynamic="true" cache="false"  >  
 
                         <p:tab title="Escolha Única" >
                             <p:dataList value="#{userM.testSelected.questions}" var="q">
