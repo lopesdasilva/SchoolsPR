@@ -201,6 +201,12 @@ public class userManager {
         qDesen.getFirst().setUserAnswer(new Answer("A minha Resposta"));
         testSelected.setQuestionsDesenvolvimento(qDesen);
         
+         
+            
+// questions
+        String query_development = SQLInstruct.developmentQuestions("Math");//Alterar por botão.
+        ResultSet query_questions_development = db.queryDB(query_development);
+        
         
        
         
