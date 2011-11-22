@@ -101,6 +101,8 @@ public class User {
 
     }
     
+    
+    
     public String putRead(){
         //falta identificar o que é o text para comparar com as noticias q existem.
         System.out.println("Entrei no putRead do user." + text);

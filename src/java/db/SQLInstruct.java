@@ -4,11 +4,21 @@ public class SQLInstruct {
 
     //Database Configs:
 
+<<<<<<< HEAD
    
    //public static final String dbAdress="jdbc:mysql://lopesdasilva.servebeer.com:3306/school";
     public static final String dbAdress="jdbc:mysql://localhost:3306/School";
     public static final String dbUsername="root";
     public static final String dbPassword="";
+=======
+    //public static final String dbAdress="jdbc:mysql://www.freesql.org:3306/school";
+   //public static final String dbAdress="jdbc:mysql://lopesdasilva.servebeer.com:3306/school";
+    public static final String dbAdress="jdbc:mysql://localhost:3306/school";
+        public static final String dbUsername="root";
+        public static final String dbPassword="";
+    //public static final String dbUsername="schoolspr";
+    //public static final String dbPassword="rr2011";
+>>>>>>> Query à DB sobre as questions.
 
 
     public static String login(String userName, String hashPassword) {
@@ -31,6 +41,13 @@ public class SQLInstruct {
         return "SELECT discipline.discipline ,notice.notice, notice.isRead FROM user,userdiscipline,discipline,disciplinenotice,notice WHERE user.name='"+userName+"' AND user.id=userdiscipline.user_id AND userdiscipline.discipline_id=discipline.id AND discipline.id=disciplinenotice.discipline_id AND  disciplinenotice.notice_id=notice.id";
     }
     
+    public static String developmentQuestions(String test){
+        return "SELECT question,answer,correct_answer FROM development, test,testquestion WHERE test.test='"+test+"' AND test.id=testquestion.test_id AND testquestion.development_id = development.id";
+    }
+    
+    public static String multipleQuestions(String test){
+        return "SELECT question,answer,h1,h2,h3,h4,correct_answer FROM multiple, test,testquestion WHERE test.test='"+test+"' AND test.id=testquestion.test_id AND testquestion.multiple_id = multiple.id";
+    }
     
     
     

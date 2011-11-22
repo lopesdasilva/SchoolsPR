@@ -18,7 +18,6 @@ public class Notice {
     }
     
     public void putRead(){
-        System.out.println(text+" está lido.");
         isRead=true;
     }
 

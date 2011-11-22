@@ -31,7 +31,6 @@ public class Module {
     Module(String name,String info) {
         this.name=name;
         this.info=info;
-        System.out.println(name+":"+info);
         tests = new LinkedList<Test>();
     }
    

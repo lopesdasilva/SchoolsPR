@@ -94,7 +94,6 @@ public class userManager {
     }
 
     public String test() {
-        System.out.println("yahoo");
         return "success";
     }
 
@@ -223,4 +222,9 @@ public class userManager {
 
         return "success";
     }
+    
+    public void getQuestions(){
+        System.out.println("VENHAM CÀ MINHAS PERGUNTINHAS");
+    }
+    
 }
