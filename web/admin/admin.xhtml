@@ -23,6 +23,20 @@
                             </h:panelGrid>  
                         </p:tab>
                     </p:carousel> -->
+                
+                <div>
+            <div id="left" >
+                <ui:insert name="left" >
+                    <h:form>
+                        <p:menu  model="#{userM.current.userMenu.model}" style="width: auto " />
+                        </h:form>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
+        </div>
+                
                 </center>
             </ui:define>
 

@@ -13,8 +13,10 @@ public class QuestionDesenolvimento extends Question {
     String question;
     Answer userAnswer;
 
-    public QuestionDesenolvimento(String question) {
+    public QuestionDesenolvimento(String question,String userAnswer) {
         this.question = question;
+        Answer answer = new Answer(userAnswer);
+        this.userAnswer=answer;
     }
 
     @Override

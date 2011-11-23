@@ -265,7 +265,7 @@ public class userManager implements Serializable{
         
         LinkedList<Question> qDesen=new LinkedList<Question>();
          while(rSet_development.next()){
-               qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1)));
+               qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1),rSet_development.getString(2)));
 
          }
         
@@ -283,5 +283,10 @@ public class userManager implements Serializable{
         testSelected.setQuestionsDesenvolvimento(qDesen);
         
     }
+    
+     public void guardar(ActionEvent actionEvent){
+         System.out.println("Botao guardar.");
+     }
+    
     
 }
