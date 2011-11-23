@@ -233,30 +233,53 @@ public class userManager implements Serializable{
     }
     
     
-    public void yahoo(ActionEvent actionEvent){
+    public void yahoo(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
            Object obj =actionEvent.getSource();
         CommandButton cb = (CommandButton) obj;
         this.selectedTest=cb.getLabel();
         System.out.println("DEBUG: "+this.selectedTest);
       
-        //TODO importar as perguntas so de uma escolha para o java
-        LinkedList<Question> q=new LinkedList<Question>();
-        q.add(new QuestionEscolhaMultipla("2+2=","4","5","3","6"));
-        q.add(new QuestionEscolhaMultipla("2*2=","2","4","6","7"));
-        q.add(new QuestionEscolhaMultipla("2/2=","1","5","9","6"));
-       
+        //ligar à db
+        DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+        db.loadDriver();
         
-       
+        //fazer query
+        String multiple = SQLInstruct.multipleQuestions(selectedTest);
+        ResultSet rSet_multiple = db.queryDB(multiple);
+        
+        //TODO importar as perguntas so de uma escolha para o java
+        LinkedList<Question> qMulti=new LinkedList<Question>();
+        
+        while(rSet_multiple.next()){
+            qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1)+"=",rSet_multiple.getString(3),rSet_multiple.getString(4),rSet_multiple.getString(5),rSet_multiple.getString(6)));
+        }
+        
+        /* EXEMPLO DO RUI
+        qMulti.add(new QuestionEscolhaMultipla("2+2=","4","5","3","6"));
+        qMulti.add(new QuestionEscolhaMultipla("2*2=","2","4","6","7"));
+        qMulti.add(new QuestionEscolhaMultipla("2/2=","1","5","9","6"));
+       */
+        
+        String development = SQLInstruct.developmentQuestions(selectedTest);
+        ResultSet rSet_development = db.queryDB(development);
+        
         LinkedList<Question> qDesen=new LinkedList<Question>();
-        qDesen.add(new QuestionDesenolvimento("Quem foi o Primeiro Rei de Portugal?"));
+         while(rSet_development.next()){
+               qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1)));
+
+         }
+        
+        //EXEMPLO DO RUI
+        /*
+          * qDesen.add(new QuestionDesenolvimento("Quem foi o Primeiro Rei de Portugal?"));
         qDesen.add(new QuestionDesenolvimento("Quem mandou plantar o pinhal de Leiria?"));
         qDesen.add(new QuestionDesenolvimento("Quem é o Presidente da República?"));
         qDesen.getFirst().setUserAnswer(new Answer("A minha Resposta"));
-        
+        */
         
         
         testSelected=new Test(this.selectedTest);
-        testSelected.setQuestions(q);
+        testSelected.setQuestions(qMulti);
         testSelected.setQuestionsDesenvolvimento(qDesen);
         
     }
