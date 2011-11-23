@@ -69,24 +69,17 @@
                         </p:tab>  
 
                         <p:tab title="Desenvolvimento">
-                            <h:panelGrid columns="2">
-                                
                             <p:dataList value="#{userM.testSelected.questionsDesenvolvimento}" var="qD">
                                 <h:panelGrid columns="2" cellpadding="10">
                                     <h:panelGrid columns="1">
                                         <h:form>
                                             <h:outputText value="#{qD.question}" />  
                                             <h:inputTextarea rows="10" cols="50" value="#{qD.userAnswer.s}"></h:inputTextarea>
-                                            <p:commandButton value="Guardar" actionListener="#{userM.yahoo}" label="#{qD.question}" update="testes" />
+                                            <h:button value="Guardar"></h:button>
                                         </h:form>
                                     </h:panelGrid>
                                 </h:panelGrid>  
                             </p:dataList>
-                                <p:dataList>
-                                    <h:outputText value="ASD"/>
-                                </p:dataList>
-                                    
-                            </h:panelGrid>
                         </p:tab>  
 
                     </p:tabView>  

@@ -285,9 +285,7 @@ public class userManager implements Serializable{
     }
     
      public void guardar(ActionEvent actionEvent){
-          Object obj =actionEvent.getSource();
-        CommandButton cb = (CommandButton) obj;
-        System.out.println("fgdfgdhgfd: "+cb.getLabel());
+         System.out.println("Botao guardar.");
      }
     
     
