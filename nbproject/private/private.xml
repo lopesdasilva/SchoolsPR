@@ -2,12 +2,12 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1">
         <file>
-            <url>src/java/users/userManager.java</url>
-            <line>235</line>
-        </file>
-        <file>
             <url>web/module.xhtml</url>
             <line>70</line>
+        </file>
+        <file>
+            <url>src/java/users/userManager.java</url>
+            <line>235</line>
         </file>
     </editor-bookmarks>
 </project-private>
