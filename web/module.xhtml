@@ -45,7 +45,7 @@
 
 
 
-                <p:dialog id="testes" header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="500" > 
+                <p:dialog id="testes" header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="650" > 
 
 
                     <p:tabView id="tabv" dynamic="true" cache="false"  >  
@@ -71,12 +71,41 @@
                         <p:tab title="Desenvolvimento">
                             <p:dataList value="#{userM.testSelected.questionsDesenvolvimento}" var="qD">
                                 <h:panelGrid columns="2" cellpadding="10">
-                                    <h:panelGrid columns="1">
+                                    <h:panelGrid columns="2">
                                         <h:form>
                                             <h:outputText value="#{qD.question}" />  
-                                            <h:inputTextarea rows="10" cols="50" value="#{qD.userAnswer.s}"></h:inputTextarea>
+                                            <h:inputTextarea rows="10" cols="50" value="#{qD.userAnswer.s}"></h:inputTextarea><br/>
                                             <h:button value="Guardar"></h:button>
                                         </h:form>
+                                        <p:scrollPanel style="width:200px;height:200px">
+                                            <p:dataList value="#{tableBean.carsSmall}" var="car" type="ordered">  
+                                            <!--Podemos por assim os URL secalhar-->
+                                            </p:dataList>
+
+                                                
+                                             <h:outputText value="#{qD.question}"/><br/>
+                                             <p:rating value="" stars="3"/><br/>
+                                            
+                                            <h:outputText value="URL"/><br/>
+                                             <p:rating value="" stars="3"/><br/>
+
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            <h:outputText value="URL"/><br/>
+                                            
+                                        </p:scrollPanel>
                                     </h:panelGrid>
                                 </h:panelGrid>  
                             </p:dataList>

@@ -41,11 +41,13 @@ public class SQLInstruct {
         return "SELECT question,answer,h1,h2,h3,h4,correct_answer FROM multiple, test,testmultiple WHERE test.test='"+test+"' AND test.id=testmultiple.test_id AND testmultiple.multiple_id = multiple.id";
     }
     
-    
-    public static String updateAnswer(String answer, String user, String discipline, String module){
+    //POR FAZER
+    public static String updateAnswer(String answer, String user, String discipline, String module,String test,String question){
         return "UPDATE development SET answer='"+answer+"' WHERE"
                 + " user.name = '"+ user +"'" ;
         
     }
+
+  
     
 }

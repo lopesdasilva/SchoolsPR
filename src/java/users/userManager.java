@@ -222,9 +222,7 @@ public class userManager implements Serializable{
         return "success";
     }
     
-    public void getQuestions(){
-        System.out.println("VENHAM CÀ MINHAS PERGUNTINHAS");
-    }
+  
     
     public void setTest(ActionEvent actionEvent){
          Object obj =actionEvent.getSource();
@@ -284,8 +282,27 @@ public class userManager implements Serializable{
         
     }
     
-     public void guardar(ActionEvent actionEvent){
+     public void guardar(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
          System.out.println("Botao guardar.");
+
+         /*
+          *Falta este método ser invocado quando é clicado no botão.
+          *Falta ter os dados que vem de seguida à mão para enviar para o sqlisntruct.
+          *Falta, também, receber a resposta que está no campo de texto. 
+          */
+         String user="";
+         String discipline="";
+         String module="";
+         String test="";
+         String question="";
+         String answer="My answer";
+         
+         DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+         db.loadDriver();
+         
+         String saveAnswer = SQLInstruct.updateAnswer(user,discipline,module,test,question,answer);
+         db.updateDB(saveAnswer);
+         
      }
     
     

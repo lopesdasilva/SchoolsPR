@@ -22,7 +22,16 @@
             <p:panel>
                 <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
             </p:panel>
-            <p:menubar>  
+
+                <p:menubar>  
+                <p:submenu label="Disciplinas" icon="ui-icon ui-icon-document">  
+                    <p:menuitem value="Adicionar Avisos" action="" url="#"/>
+                        <p:menuitem value="Aidicionar Disciplina" url="#"/>
+                    
+                </p:submenu>
+                </p:menubar>
+                
+            <!--<p:menubar>  
                 <p:submenu label="Disciplinas" icon="ui-icon ui-icon-document">  
                     <p:submenu label="Disciplina I" icon="ui-icon ui-icon-contact"> 
                         <p:menuitem value="Avisos" url="#"/>
@@ -55,7 +64,7 @@
                 </p:submenu>
                 <p:menuitem value="Gestão de Conta" url="admin/manager.xhtml"/>
             </p:menubar>
-
+-->
                 
             </ui:insert>
         </div>
@@ -64,6 +73,10 @@
             <ui:insert name="content">Content</ui:insert>
         </div>
 
+                <div id="top" class="top">
+                    
+                </div>
+        
     </h:body>
 
 </html>
