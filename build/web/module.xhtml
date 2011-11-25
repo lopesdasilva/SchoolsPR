@@ -26,12 +26,12 @@
                                     <h:outputText value="#{test.name}" style="font-weight: bold"/>
                                     <h:outputText value="Descrição: " />
                                     <h:outputText value="#{test.description}" style="font-weight: bold"/>
-                                    <h:outputText value="#{userM.disciplineSelected}"/>
-                                   <!-- <p:commandButton value="Resolver teste"  onclick="dlg1.show();" type="button"  /> -->
-                                   <h:form>  
-                                       <!-- aqui esta um martelo que o tabv diz que nao existe?? :S-->
-                                       <p:commandButton  value="Resolver teste" update="tabv" onclick="dlg1.show();" actionListener="#{userM.yahoo}"   label="#{test.name}" />
-                                   </h:form>
+
+                                    <!-- <p:commandButton value="Resolver teste"  onclick="dlg1.show();" type="button"  /> -->
+                                    <h:form >  
+                                        <!-- aqui esta um martelo que o tabv diz que nao existe?? :S-->
+                                        <p:commandButton  value="Resolver teste" update="tabv" onclick="dlg1.show();" actionListener="#{userM.yahoo}"   label="#{test.name}" />
+                                    </h:form>
                                     <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" >  
                                         <h:outputText value="Teste" />  
                                     </p:dialog>
@@ -48,72 +48,45 @@
                 <p:dialog id="testes" header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="650" > 
 
 
-                    <p:tabView id="tabv" dynamic="true" cache="false"  >  
+                    <p:tabView id="tabv" dynamic="true" cache="false" >  
 
-                        <p:tab title="Escolha Única" >
+                        <p:tab id="EM" title="Escolha Multipla" >
                             <p:dataList value="#{userM.testSelected.questions}" var="q">
+
                                 <p:column>
                                     <h:outputText value="#{q.question}" />  
                                     <p:selectOneRadio value="#{q.question}" layout="pageDirection" >  
                                         <f:selectItems value="#{q.hipoteses}" />  
                                     </p:selectOneRadio>
-                                    <p:commandButton value="Salvar" onclick="" type="button"/>
                                 </p:column>
                             </p:dataList> 
                         </p:tab>  
 
-                        <p:tab title="Escolha múltipla">  
-                            <h:panelGrid columns="2" cellpadding="10">  
-                                <h:outputText value="Escolha Múltipla"/>  
-                            </h:panelGrid>  
-                        </p:tab>  
-
-                        <p:tab title="Desenvolvimento">
+                        <p:tab id="DS" title="Desenvolvimento">
+                            <p:column>
+                                <h:form> 
+                                    <p:commandButton value="Guardar" actionListener="#{userM.guardar}"></p:commandButton>
+                                </h:form>
+                            </p:column>
                             <p:dataList value="#{userM.testSelected.questionsDesenvolvimento}" var="qD">
-                                <h:panelGrid columns="2" cellpadding="10">
-                                    <h:panelGrid columns="2">
-                                        <h:form>
-                                            <h:outputText value="#{qD.question}" />  
-                                            <h:inputTextarea rows="10" cols="50" value="#{qD.userAnswer.s}"></h:inputTextarea><br/>
-                                            <h:button value="Guardar"></h:button>
-                                        </h:form>
-                                        <p:scrollPanel style="width:200px;height:200px">
-                                            <p:dataList value="#{tableBean.carsSmall}" var="car" type="ordered">  
-                                            <!--Podemos por assim os URL secalhar-->
-                                            </p:dataList>
-
-                                                
-                                             <h:outputText value="#{qD.question}"/><br/>
-                                             <p:rating value="" stars="3"/><br/>
-                                            
-                                            <h:outputText value="URL"/><br/>
-                                             <p:rating value="" stars="3"/><br/>
-
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            <h:outputText value="URL"/><br/>
-                                            
-                                        </p:scrollPanel>
-                                    </h:panelGrid>
-                                </h:panelGrid>  
+                                <!--<p:column>
+                                    <h:outputText value="#{qD.question}" />  
+                                    <p:inplace  editor="true" >
+                                        <p:inputText value="#{qD.userAnswer.s}" label="Editar"/>
+                                    </p:inplace>
+                                </p:column>-->
+                                <p:column>
+                                    <h:form>  
+                                        <h:outputText value="#{qD.question}"/>
+                                        <p:inplace  editor="true" >
+                                            <p:inputText value="#{qD.userAnswer.s}"  required="true" label="text"/>
+                                        </p:inplace>
+                                    </h:form>
+                                </p:column>
                             </p:dataList>
+
                         </p:tab>  
-
-                    </p:tabView>  
-
-
+                    </p:tabView>
 
                 </p:dialog>
 

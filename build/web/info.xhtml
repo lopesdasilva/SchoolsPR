@@ -3,16 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" 
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
 
     <body>
 
         <ui:composition template="./profile.xhtml">
             <ui:define name="content">
                 <h1 class="title ui-widget-header ui-corner-all">#{userM.disciplineSelectedList.name}</h1>
-        <div class="entry">
-            <h:outputText value="#{userM.disciplineSelectedList.info}"  ></h:outputText>
-        </div>
+                <div class="entry">
+                    <h:form>  
+
+                        <h:outputText value="yahoo: "/>
+                        <p:inplace  editor="true" >
+                            <p:inputText value="#{userM.rui}" required="true" label="text"/>
+                        </p:inplace>
+
+                    </h:form>  
+
+                </div>
             </ui:define>
 
         </ui:composition>

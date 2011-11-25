@@ -10,6 +10,16 @@ package tables.question;
  */
 public class QuestionDesenolvimento extends Question {
 
+    
+    String testarrrr="1234";
+
+    public void setTestarrrr(String testarrrr) {
+        this.testarrrr = testarrrr;
+    }
+
+    public String getTestarrrr() {
+        return testarrrr;
+    }
     String question;
     Answer userAnswer;
 

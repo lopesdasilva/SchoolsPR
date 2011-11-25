@@ -24,7 +24,6 @@ import tables.Discipline;
 import tables.Module;
 import tables.question.Question;
 import tables.Test;
-import tables.question.Answer;
 import tables.question.QuestionDesenolvimento;
 import tables.question.QuestionEscolhaMultipla;
 
@@ -34,8 +33,17 @@ import tables.question.QuestionEscolhaMultipla;
  */
 @ManagedBean(name = "userM")
 @SessionScoped
-public class userManager implements Serializable{
+public class userManager implements Serializable {
 
+    String rui = "teste";
+
+    public void setRui(String rui) {
+        this.rui = rui;
+    }
+
+    public String getRui() {
+        return rui;
+    }
     String loginname;
     String password;
     boolean loggedIn = false;
@@ -45,6 +53,10 @@ public class userManager implements Serializable{
     Module moduleSelectedList;
     Discipline disciplineSelectedList;
     Test testSelected;
+
+    public void setTestSelected(Test testSelected) {
+        this.testSelected = testSelected;
+    }
     public String selectedTest;
 
     public String getSelectedTest() {
@@ -54,7 +66,6 @@ public class userManager implements Serializable{
     public Test getTestSelected() {
         return testSelected;
     }
-    
 
     public Discipline getDisciplineSelectedList() {
         return disciplineSelectedList;
@@ -114,10 +125,10 @@ public class userManager implements Serializable{
             db.loadDriver();
             String sqlStatement = SQLInstruct.login(loginname, new sha1().parseSHA1Password(password));
             ResultSet rSet = db.queryDB(sqlStatement);
-            
+
 
             if (rSet.next()) {
-                
+
 
                 this.loggedIn = true;
                 current = new User(loginname);
@@ -192,17 +203,17 @@ public class userManager implements Serializable{
         }
         moduleSelectedList = current.existe(disciplineSelected).existe(moduleSelected);
 
-        
-        
-         
-            
+
+
+
+
 // questions
-    //    String query_development = SQLInstruct.developmentQuestions("Math");//Alterar por botão.
-      //  ResultSet query_questions_development = db.queryDB(query_development);
-        
-        
-       
-        
+        //    String query_development = SQLInstruct.developmentQuestions("Math");//Alterar por botão.
+        //  ResultSet query_questions_development = db.queryDB(query_development);
+
+
+
+
         return "success";
     }
 
@@ -221,89 +232,102 @@ public class userManager implements Serializable{
 
         return "success";
     }
-    
-  
-    
-    public void setTest(ActionEvent actionEvent){
-         Object obj =actionEvent.getSource();
+
+    public void setTest(ActionEvent actionEvent) {
+        Object obj = actionEvent.getSource();
         CommandButton cb = (CommandButton) obj;
-        this.selectedTest=cb.getLabel();
+        this.selectedTest = cb.getLabel();
     }
-    
-    
-    public void yahoo(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-           Object obj =actionEvent.getSource();
+
+    public void yahoo(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+        Object obj = actionEvent.getSource();
         CommandButton cb = (CommandButton) obj;
-        this.selectedTest=cb.getLabel();
-        System.out.println("DEBUG: "+this.selectedTest);
-      
+        this.selectedTest = cb.getLabel();
+        System.out.println("DEBUG: " + this.selectedTest);
+
         //ligar à db
         DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
         db.loadDriver();
-        
+
         //fazer query
         String multiple = SQLInstruct.multipleQuestions(selectedTest);
         ResultSet rSet_multiple = db.queryDB(multiple);
-        
+
         //TODO importar as perguntas so de uma escolha para o java
-        LinkedList<Question> qMulti=new LinkedList<Question>();
-        
-        while(rSet_multiple.next()){
-            qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1)+"=",rSet_multiple.getString(3),rSet_multiple.getString(4),rSet_multiple.getString(5),rSet_multiple.getString(6)));
+        LinkedList<Question> qMulti = new LinkedList<Question>();
+
+        while (rSet_multiple.next()) {
+            qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1) + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6)));
         }
-        
+
         /* EXEMPLO DO RUI
         qMulti.add(new QuestionEscolhaMultipla("2+2=","4","5","3","6"));
         qMulti.add(new QuestionEscolhaMultipla("2*2=","2","4","6","7"));
         qMulti.add(new QuestionEscolhaMultipla("2/2=","1","5","9","6"));
-       */
-        
+         */
+
         String development = SQLInstruct.developmentQuestions(selectedTest);
         ResultSet rSet_development = db.queryDB(development);
-        
-        LinkedList<Question> qDesen=new LinkedList<Question>();
-         while(rSet_development.next()){
-               qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1),rSet_development.getString(2)));
 
-         }
-        
+        LinkedList<Question> qDesen = new LinkedList<Question>();
+        while (rSet_development.next()) {
+            qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), rSet_development.getString(2)));
+
+        }
+
         //EXEMPLO DO RUI
         /*
-          * qDesen.add(new QuestionDesenolvimento("Quem foi o Primeiro Rei de Portugal?"));
+         * qDesen.add(new QuestionDesenolvimento("Quem foi o Primeiro Rei de Portugal?"));
         qDesen.add(new QuestionDesenolvimento("Quem mandou plantar o pinhal de Leiria?"));
         qDesen.add(new QuestionDesenolvimento("Quem é o Presidente da República?"));
         qDesen.getFirst().setUserAnswer(new Answer("A minha Resposta"));
-        */
-        
-        
-        testSelected=new Test(this.selectedTest);
+         */
+
+
+        testSelected = new Test(this.selectedTest);
         testSelected.setQuestions(qMulti);
         testSelected.setQuestionsDesenvolvimento(qDesen);
-        
-    }
-    
-     public void guardar(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-         System.out.println("Botao guardar.");
 
-         /*
-          *Falta este método ser invocado quando é clicado no botão.
-          *Falta ter os dados que vem de seguida à mão para enviar para o sqlisntruct.
-          *Falta, também, receber a resposta que está no campo de texto. 
-          */
-         String user="";
-         String discipline="";
-         String module="";
-         String test="";
-         String question="";
-         String answer="My answer";
-         
-         DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
-         db.loadDriver();
-         
-         String saveAnswer = SQLInstruct.updateAnswer(user,discipline,module,test,question,answer);
-         db.updateDB(saveAnswer);
-         
-     }
-    
-    
+    }
+
+    public void guardar(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+
+
+
+
+
+        //  System.out.println("PERGUNTA: "+qD.getQuestion());
+        // System.out.println("Resposta: "+qD.getUserAnswer().getS());
+
+
+        DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+        db.loadDriver();
+
+        /*
+         *Falta este método ser invocado quando é clicado no botão.
+         *Falta ter os dados que vem de seguida à mão para enviar para o sqlisntruct.
+         *Falta, também, receber a resposta que está no campo de texto. 
+         */
+        for (Question qD : testSelected.getQuestionsDesenvolvimento()) {
+            System.out.println("A guardar a pergunta: " + qD.getQuestion());
+            String user = loginname;
+            String discipline = disciplineSelected;
+            String module = moduleSelected;
+            String test = testSelected.getName();
+            String question = qD.getQuestion();
+            String answer = qD.getUserAnswer().getS();
+            System.out.println("Username: " + user
+                    + " \nDisciplina: " + discipline
+                    + " \nModule: " + module
+                    + " \nTestName: " + test
+                    + " \nQuestion: " + question
+                    + " \nUserAnswer: " + answer);
+
+            String saveAnswer = SQLInstruct.updateAnswer(answer, user, discipline, module, test, question);
+            System.out.println(saveAnswer);
+            db.updateDB(saveAnswer);
+
+        }
+        db.closeDB();
+    }
 }
