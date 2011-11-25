@@ -43,8 +43,18 @@ public class SQLInstruct {
     
     //POR FAZER
     public static String updateAnswer(String answer, String user, String discipline, String module,String test,String question){
-        return "UPDATE development SET answer='"+answer+"' WHERE"
-                + " user.name = '"+ user +"'" ;
+        return "UPDATE development SET development.answer='"+answer+"' WHERE EXISTS"
+                 +"(SELECT question FROM user,userdiscipline,discipline,disciplinemodule,module,moduletest,test,testdevelopment WHERE"
+                  +"user.name = '"+user+"' AND"
+                  +"user.id=userdiscipline.user_id AND"
+                  +"userdiscipline.discipline_id=discipline.id AND"
+                  +"discipline.discipline='"+discipline+"' AND"
+                  +"discipline.id=disciplinemodule.discipline_id AND"
+                  +"disciplinemodule.module_id=module.id AND module.module='"+module+"' AND"
+                  +"module.id=moduletest.module_id AND"
+                  +"moduletest.test_id = test.id AND test.test='"+test+"' AND"
+                  +"test.id=testdevelopment.test_id AND testdevelopment.development_id=development.id AND"
+                  +"development.question='"+question+"') ";
         
     }
 
