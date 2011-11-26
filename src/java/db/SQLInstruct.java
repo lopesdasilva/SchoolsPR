@@ -34,18 +34,16 @@ public class SQLInstruct {
     
     //só testado no workbench
     public static String developmentQuestions(String test){
-        return "SELECT question,answer,correct_answer FROM development, test,testdevelopment WHERE test.test='"+test+"' AND test.id=testdevelopment.test_id AND testdevelopment.development_id = development.id";
+        return "SELECT question,answer,correct_answer,development.id FROM development, test,testdevelopment WHERE test.test='"+test+"' AND test.id=testdevelopment.test_id AND testdevelopment.development_id = development.id";
     }
     
     public static String multipleQuestions(String test){
         return "SELECT question,answer,h1,h2,h3,h4,correct_answer FROM multiple, test,testmultiple WHERE test.test='"+test+"' AND test.id=testmultiple.test_id AND testmultiple.multiple_id = multiple.id";
     }
     
-    //POR FAZER
-    public static String updateAnswer(String answer, String user, String discipline, String module,String test,String question){
-        return "UPDATE development SET development.answer='"+answer+"' WHERE EXISTS"
-                 +"(SELECT question FROM user,userdiscipline,discipline,disciplinemodule,module,moduletest,test,testdevelopment WHERE"
-                  +" user.name = '"+user+"' AND"
+    public static String developmentAnswer(String user,String discipline,String module,String test, String question){
+        return "SELECT answer.answer FROM user,userdiscipline,discipline,disciplinemodule,module,moduletest,test,testdevelopment,development,answer WHERE"
+                  +" user.name = '"+user+"' AND user.id=answer.user_id AND"
                   +" user.id=userdiscipline.user_id AND"
                   +" userdiscipline.discipline_id=discipline.id AND"
                   +" discipline.discipline='"+discipline+"' AND"
@@ -54,8 +52,31 @@ public class SQLInstruct {
                   +" module.id=moduletest.module_id AND"
                   +" moduletest.test_id = test.id AND test.test='"+test+"' AND"
                   +" test.id=testdevelopment.test_id AND testdevelopment.development_id=development.id AND"
-                  +" development.question='"+question+"') ";
+                  +" development.question='"+question+"' AND development.id=answer.development_id";
+       
+    }
+    
+
+    
+    //POR FAZER
+    public static String updateAnswer(String answer, String user, String discipline, String module,String test,String question){
+        return "UPDATE answer SET answer.answer='"+answer+"' WHERE EXISTS"
+                 +"(SELECT answer FROM user,userdiscipline,discipline,disciplinemodule,module,moduletest,test,testdevelopment,development WHERE"
+                  +" user.name = '"+user+"' AND user.id=answer.user_id AND"
+                  +" user.id=userdiscipline.user_id AND"
+                  +" userdiscipline.discipline_id=discipline.id AND"
+                  +" discipline.discipline='"+discipline+"' AND"
+                  +" discipline.id=disciplinemodule.discipline_id AND"
+                  +" disciplinemodule.module_id=module.id AND module.module='"+module+"' AND"
+                  +" module.id=moduletest.module_id AND"
+                  +" moduletest.test_id = test.id AND test.test='"+test+"' AND"
+                  +" test.id=testdevelopment.test_id AND testdevelopment.development_id=development.id AND"
+                  +" development.question='"+question+"' AND development.id=answer.development_id) ";
         
+    }
+
+    public static String addDevelopmentAnswer(int development_id, int user_id) {
+        return "INSERT INTO answer (user_id, development_id) VALUES ('"+user_id+"', '"+development_id+"')";
     }
 
   

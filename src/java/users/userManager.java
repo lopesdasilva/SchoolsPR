@@ -44,6 +44,8 @@ public class userManager implements Serializable {
     public String getRui() {
         return rui;
     }
+    
+    int user_id;
     String loginname;
     String password;
     boolean loggedIn = false;
@@ -128,8 +130,8 @@ public class userManager implements Serializable {
 
 
             if (rSet.next()) {
-
-
+                user_id=rSet.getInt(1);
+                
                 this.loggedIn = true;
                 current = new User(loginname);
                 System.out.println("User: " + loginname + " has logged On. ADMIN: " + rSet.getBoolean("isAdmin"));
@@ -266,13 +268,24 @@ public class userManager implements Serializable {
         qMulti.add(new QuestionEscolhaMultipla("2/2=","1","5","9","6"));
          */
 
+        testSelected = new Test(this.selectedTest);
+
+
         String development = SQLInstruct.developmentQuestions(selectedTest);
         ResultSet rSet_development = db.queryDB(development);
 
         LinkedList<Question> qDesen = new LinkedList<Question>();
         while (rSet_development.next()) {
-            qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), rSet_development.getString(2)));
-
+            int development_id=rSet_development.getInt(4);
+            String development_answer = SQLInstruct.developmentAnswer(loginname, disciplineSelected, moduleSelected, testSelected.getName(), rSet_development.getString(1));
+            ResultSet rSet_development_answer = db.queryDB(development_answer);
+            if (rSet_development_answer.next()) {
+                qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), rSet_development_answer.getString(1)));
+            } else {
+                String add_development_answer=SQLInstruct.addDevelopmentAnswer(development_id,user_id);
+                db.updateDB(add_development_answer);
+                qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), "Sem resposta.clique aqui para responder."));
+            }
         }
 
         //EXEMPLO DO RUI
@@ -284,7 +297,6 @@ public class userManager implements Serializable {
          */
 
 
-        testSelected = new Test(this.selectedTest);
         testSelected.setQuestions(qMulti);
         testSelected.setQuestionsDesenvolvimento(qDesen);
 
