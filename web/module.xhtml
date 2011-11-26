@@ -45,7 +45,7 @@
 
 
 
-                <p:dialog id="testes" header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="650" > 
+                <p:dialog id="testes" header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="800" > 
 
 
                     <p:tabView id="tabv" dynamic="true" cache="false" >  
@@ -65,10 +65,11 @@
                         <p:tab id="DS" title="Desenvolvimento">
                             <p:column>
                                 <h:form> 
-                                    <p:commandButton value="Guardar" actionListener="#{userM.guardar}"></p:commandButton>
+                                    <p:commandButton value="Guardar" actionListener="#{userM.guardar}" onclick="bar.show()"></p:commandButton>
                                 </h:form>
                             </p:column>
-                            <p:dataList value="#{userM.testSelected.questionsDesenvolvimento}" var="qD">
+
+                            <p:dataList value="#{userM.testSelected.questionsDesenvolvimento}" itemType="none" var="qD">
                                 <!--<p:column>
                                     <h:outputText value="#{qD.question}" />  
                                     <p:inplace  editor="true" >
@@ -76,20 +77,51 @@
                                     </p:inplace>
                                 </p:column>-->
                                 <p:column>
-                                    <h:form>  
-                                        <h:outputText value="#{qD.question}"/>
-                                        <p:inplace  editor="true" >
-                                            <p:inputText value="#{qD.userAnswer.s}"  required="true" label="text"/>
-                                        </p:inplace>
-                                    </h:form>
+                                   <h:panelGrid columns="2">
+                                        <p:panel style="border-color: inactiveborder">
+                                            <h:form>
+                                                <h:outputText value="#{qD.question}"/><br/>
+                                                <p:inplace  editor="true" >
+                                                    <p:inputText value="#{qD.userAnswer.s}"  required="true" label="text"/>
+                                                </p:inplace>
+                                            </h:form>
+                                           
+                                        <!--URLS-->
+                                        </p:panel>
+                                        <p:panel style="border-color: inactiveborder">
+                                        <p:accordionPanel value="Google" style="border: #AFAFAF" activeIndex="off">  
+                                                <p:tab title="URLs">  
+                                                    <h:panelGrid columns="1" cellpadding="5">  
+                                                        <h:outputText  value="Google" />
+                                                        <h:commandButton value="Gosto"/>
+                                                        
+                                                        <h:outputText  value="Sapo" />
+                                                        <h:commandButton value="Gosto"/>
+                                                    </h:panelGrid>  
+                                                </p:tab> 
+                                                
+                                            </p:accordionPanel>
+                                            </p:panel>
+                                        <!--FIM URLS-->
+                                        </h:panelGrid>
                                 </p:column>
                             </p:dataList>
+
 
                         </p:tab>  
                     </p:tabView>
 
+                    <p:notificationBar  position="top" effect="slide" widgetVar="bar" styleClass="top">  
+    <h:outputText value="Respostas guardadas." style="color:#FFCC00;font-size:36px;" />
+    <h:form>
+    <p:commandButton value="Hide" onclick="bar.hide()"/>
+    </h:form>
+    </p:notificationBar> 
+                    
                 </p:dialog>
-
+                
+                
+ 
 
 
             </ui:define>

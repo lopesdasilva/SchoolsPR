@@ -15,6 +15,6 @@ public abstract class Question implements Serializable {
     public abstract Answer getUserAnswer();
 
     public abstract String getQuestion();
-    
+        
     public abstract void setUserAnswer(Answer userAnswer);
 }

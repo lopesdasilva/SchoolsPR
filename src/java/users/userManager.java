@@ -260,6 +260,7 @@ public class userManager implements Serializable {
 
         while (rSet_multiple.next()) {
             qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1) + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6)));
+        
         }
 
         /* EXEMPLO DO RUI
