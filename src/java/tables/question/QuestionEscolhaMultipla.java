@@ -5,6 +5,7 @@
 package tables.question;
 
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -47,5 +48,10 @@ public class QuestionEscolhaMultipla extends Question {
     @Override
     public void setUserAnswer(Answer userAnswer) {
         this.userAnswer = userAnswer;
+    }
+
+    @Override
+    public LinkedList<URL> getUrls() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

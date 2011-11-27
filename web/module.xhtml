@@ -77,7 +77,7 @@
                                     </p:inplace>
                                 </p:column>-->
                                 <p:column>
-                                   <h:panelGrid columns="2">
+                                    <h:panelGrid columns="2">
                                         <p:panel style="border-color: inactiveborder">
                                             <h:form>
                                                 <h:outputText value="#{qD.question}"/><br/>
@@ -85,25 +85,28 @@
                                                     <p:inputText value="#{qD.userAnswer.s}"  required="true" label="text"/>
                                                 </p:inplace>
                                             </h:form>
-                                           
-                                        <!--URLS-->
+
+                                            <!--URLS-->
                                         </p:panel>
                                         <p:panel style="border-color: inactiveborder">
-                                        <p:accordionPanel value="Google" style="border: #AFAFAF" activeIndex="off">  
+                                            <p:accordionPanel value="Google" style="border: #AFAFAF" activeIndex="off" >  
                                                 <p:tab title="URLs">  
                                                     <h:panelGrid columns="1" cellpadding="5">  
-                                                        <h:outputText  value="Google" />
-                                                        <h:commandButton value="Gosto"/>
-                                                        
-                                                        <h:outputText  value="Sapo" />
-                                                        <h:commandButton value="Gosto"/>
+                                                        <h:form>
+                                                            <p:dataList value="#{qD.urls}" itemType="none" var="urls">               
+                                                                        <!--<h:outputText  value="#{urls.name}" />-->
+                                                                        <a href="#{urls.url}" target="_blank">#{urls.name}</a>
+                                                                        <h:commandButton value="Gosto"/>
+                                                            </p:dataList>
+                                                        </h:form>
+
                                                     </h:panelGrid>  
                                                 </p:tab> 
-                                                
+
                                             </p:accordionPanel>
-                                            </p:panel>
+                                        </p:panel>
                                         <!--FIM URLS-->
-                                        </h:panelGrid>
+                                    </h:panelGrid>
                                 </p:column>
                             </p:dataList>
 
@@ -112,16 +115,16 @@
                     </p:tabView>
 
                     <p:notificationBar  position="top" effect="slide" widgetVar="bar" styleClass="top">  
-    <h:outputText value="Respostas guardadas." style="color:#FFCC00;font-size:36px;" />
-    <h:form>
-    <p:commandButton value="Hide" onclick="bar.hide()"/>
-    </h:form>
-    </p:notificationBar> 
-                    
+                        <h:outputText value="Respostas guardadas." style="color:#FFCC00;font-size:36px;" />
+                        <h:form>
+                            <p:commandButton value="Hide" onclick="bar.hide()"/>
+                        </h:form>
+                    </p:notificationBar> 
+
                 </p:dialog>
-                
-                
- 
+
+
+
 
 
             </ui:define>

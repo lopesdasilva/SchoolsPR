@@ -5,12 +5,17 @@
 package tables.question;
 
 import java.io.Serializable;
+import java.util.LinkedList;
 
 /**
  *
  * @author lopesdasilva
  */
+
+
 public abstract class Question implements Serializable {
+    
+    public abstract LinkedList<URL> getUrls();
 
     public abstract Answer getUserAnswer();
 

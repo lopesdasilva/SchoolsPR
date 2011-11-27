@@ -79,6 +79,12 @@ public class SQLInstruct {
         return "INSERT INTO answer (user_id, development_id) VALUES ('"+user_id+"', '"+development_id+"')";
     }
 
+    public static String urls(int question_id) {
+            return "SELECT name, url, url.evaluation FROM url,developmenturl,development WHERE development.id='"+question_id+"' AND"
+            +" development.id=developmenturl.development_id AND developmenturl.url_id=url.id";
+
+    }
+
   
     
 }

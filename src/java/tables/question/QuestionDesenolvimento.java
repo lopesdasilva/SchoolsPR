@@ -4,6 +4,8 @@
  */
 package tables.question;
 
+import java.util.LinkedList;
+
 /**
  *
  * @author lopesdasilva
@@ -12,6 +14,12 @@ public class QuestionDesenolvimento extends Question {
 
     
     String testarrrr="1234";
+    
+    LinkedList<URL> urls = new LinkedList<URL>();
+
+    public LinkedList<URL> getUrls() {
+        return urls;
+    }
 
     public void setTestarrrr(String testarrrr) {
         this.testarrrr = testarrrr;

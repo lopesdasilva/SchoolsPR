@@ -26,6 +26,7 @@ import tables.question.Question;
 import tables.Test;
 import tables.question.QuestionDesenolvimento;
 import tables.question.QuestionEscolhaMultipla;
+import tables.question.URL;
 
 /**
  *
@@ -281,7 +282,17 @@ public class userManager implements Serializable {
             String development_answer = SQLInstruct.developmentAnswer(loginname, disciplineSelected, moduleSelected, testSelected.getName(), rSet_development.getString(1));
             ResultSet rSet_development_answer = db.queryDB(development_answer);
             if (rSet_development_answer.next()) {
-                qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), rSet_development_answer.getString(1)));
+                QuestionDesenolvimento qD = new QuestionDesenolvimento(rSet_development.getString(1), rSet_development_answer.getString(1));
+                qDesen.add(qD);
+                
+                //ir buscar URL
+                String queryURL = SQLInstruct.urls(rSet_development.getInt(4));
+                ResultSet rSet_urls = db.queryDB(queryURL);
+                        
+                while(rSet_urls.next()){
+                qD.getUrls().addLast(new URL(rSet_urls.getString(2),rSet_urls.getString(1),rSet_urls.getInt(3)));
+
+                }
             } else {
                 String add_development_answer=SQLInstruct.addDevelopmentAnswer(development_id,user_id);
                 db.updateDB(add_development_answer);
