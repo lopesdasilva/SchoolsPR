@@ -79,12 +79,32 @@ public class SQLInstruct {
         return "INSERT INTO answer (user_id, development_id) VALUES ('"+user_id+"', '"+development_id+"')";
     }
 
+    public static String addMultipleAnswer(int multiple_id, int user_id) {
+        return "INSERT INTO answer (user_id, multiple_id) VALUES ('"+user_id+"', '"+multiple_id+"')";
+    }
+    
     public static String urls(int question_id) {
             return "SELECT name, url, url.evaluation FROM url,developmenturl,development WHERE development.id='"+question_id+"' AND"
             +" development.id=developmenturl.development_id AND developmenturl.url_id=url.id";
 
     }
+    
+    public static String addUrl(String name, String url){
+        return "INSERT INTO url (name,url) VALUES ('"+name+"','"+url+"')";
+    }
+    
+    
+    public static String linkUrlQuestion(String question,String url){
+        return "INSERT INTO developmenturl (development_id,url_id)"
+    +" SELECT development.id, url.id" 
+    +" From development, url"
+    +" WHERE development.question='"+question+"' AND url.name='"+url+"'";
 
+    }
+    
+    public static String updateUrl(String question, String name,int evaluation){
+    return "UPDATE url SET evaluation=(evaluation+1) WHERE name='"+name+"'";
+    }
   
     
 }
