@@ -47,7 +47,7 @@
 
                 <p:dialog id="testes" header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" width="800" > 
 
-
+                    <p:growl id="growl" showDetail="true" sticky="true" />  
                     <p:tabView id="tabv" dynamic="true" cache="false" >  
 
                         <p:tab id="EM" title="Escolha Multipla" >
@@ -82,11 +82,12 @@
                                             <!--URLS-->
                                         </p:panel>
                                         <p:panel id="urls" style="border-color: inactiveborder">
-                                            <p:dataList value="#{qD.urls}" itemType="none" var="urls">               
+                                            <p:dataList  value="#{qD.urls}" itemType="none" var="urls">               
                                                 <p:column>
                                                     <h:form title="#{qD.question}">
+                                                        <h:outputText value="#{urls.evaluation}" />
                                                         <a href="#{urls.url}" target="_blank">#{urls.name}</a>
-                                                        <p:commandButton value="Gosto" actionListener="#{userM.like}" label="#{urls.name}"/>
+                                                        <p:commandButton value="Gosto" actionListener="#{userM.like}" label="#{urls.name}" update="growl"/>
                                                     </h:form>
                                                 </p:column>
                                             </p:dataList>
@@ -121,7 +122,7 @@
 
                         <h:panelGrid columns="2" cellpadding="5">  
                             <h:outputLabel for="Titulo" value="Titulo: *" />  
-                        <p:inputText value="#{userM.newURL.name}"   
+                            <p:inputText value="#{userM.newURL.name}"   
                                          id="title" required="true" label="title" />  
 
                             <h:outputLabel for="url" value="URL: * " />  

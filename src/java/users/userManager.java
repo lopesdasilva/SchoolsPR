@@ -379,7 +379,7 @@ public class userManager implements Serializable {
         selectedQustion = cb.getLabel();
     }
     
-    public void insertURL(ActionEvent actionEvent){
+    public void insertURL(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
         UIComponent a = actionEvent.getComponent();
         
         System.out.println("DEBUG: Botao URL");
@@ -387,14 +387,47 @@ public class userManager implements Serializable {
         System.out.println("DEBUG: url: "+newURL.getUrl());
         System.out.println(selectedQustion);
         
+        DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+        db.loadDriver();
+        String insert_url = SQLInstruct.addUrl(newURL.getName(),newURL.getUrl());
+        db.updateDB(insert_url);
+        String link_url = SQLInstruct.linkUrlQuestion(selectedQustion,newURL.getName());
+        db.updateDB(link_url); 
+        
+        
+        
+        
+        
     }
-    public void like(ActionEvent actionEvent){
+    public void like(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
         
         CommandButton cb= (CommandButton) actionEvent.getComponent();
          HtmlForm hf= (HtmlForm) cb.getParent();
          System.out.println("DEBUG: Botao like");
-       System.out.println("DEBUG: PERGUNTA "+hf.getTitle());
-        System.out.println("DEBUG: TITULO URL: "+cb.getLabel());
+         System.out.println("DEBUG: PERGUNTA "+hf.getTitle());
+         System.out.println("DEBUG: TITULO URL: "+cb.getLabel());
         
+        
+         
+          DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+          db.loadDriver();
+          String is_voted = SQLInstruct.isVoted(hf.getTitle(), loginname);
+          System.out.println(is_voted);
+          ResultSet rSet_voted = db.queryDB(is_voted);
+          rSet_voted.next();
+          int v = rSet_voted.getInt(1);
+          System.out.println("VOTED:" + v);
+          System.out.println("USER: " + loginname);
+          if(v!=1){
+         String add_evaluation = SQLInstruct.updateUrl(cb.getLabel());
+         db.updateDB(add_evaluation); 
+         String voted = SQLInstruct.voted(hf.getTitle(), loginname);
+         db.updateDB(voted);
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sucesso", "Voto Enviado."));
+
+          }else{
+                      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Já Votou uma vez."));
+              System.out.println("JA VOTASTE ALDRABAO");
+          }
     }
 }

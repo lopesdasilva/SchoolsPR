@@ -94,15 +94,27 @@ public class SQLInstruct {
     }
     
     
-    public static String linkUrlQuestion(String question,String url){
+    public static String linkUrlQuestion(String question,String url_name){
         return "INSERT INTO developmenturl (development_id,url_id)"
     +" SELECT development.id, url.id" 
     +" From development, url"
-    +" WHERE development.question='"+question+"' AND url.name='"+url+"'";
+    +" WHERE development.question='"+question+"' AND url.name='"+url_name+"'";
 
     }
     
-    public static String updateUrl(String question, String name,int evaluation){
+    public static String voted(String question,String user){
+        return "UPDATE answer SET voted='1' WHERE EXISTS"
++" (SELECT user.id, development.id, answer.answer FROM user,development WHERE"
++" user.name='"+user+"' AND user.id=answer.user_id AND development.question='"+question+"' "
++" AND answer.development_id=development.id)";
+    }
+    
+         public static String isVoted(String question,String user){
+        
+return "SELECT voted FROM user,development,answer WHERE user.name='"+user+"' AND user.id=answer.user_id AND development.question='"+question+"' AND answer.development_id=development.id";
+         }
+
+public static String updateUrl(String name){
     return "UPDATE url SET evaluation=(evaluation+1) WHERE name='"+name+"'";
     }
   
