@@ -4,6 +4,7 @@ package users;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+
 import db.DBConnect;
 import db.SQLInstruct;
 import java.io.Serializable;
@@ -14,6 +15,8 @@ import java.util.LinkedList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.component.html.HtmlForm;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
 import org.primefaces.component.commandbutton.CommandButton;
@@ -27,6 +30,9 @@ import tables.Test;
 import tables.question.QuestionDesenolvimento;
 import tables.question.QuestionEscolhaMultipla;
 import tables.question.URL;
+
+
+
 
 /**
  *
@@ -56,6 +62,17 @@ public class userManager implements Serializable {
     Module moduleSelectedList;
     Discipline disciplineSelectedList;
     Test testSelected;
+    URL newURL=new URL("","",0);
+
+    String selectedQustion="";
+    
+    public void setNewURL(URL newURL) {
+        this.newURL = newURL;
+    }
+
+    public URL getNewURL() {
+        return newURL;
+    }
 
     public void setTestSelected(Test testSelected) {
         this.testSelected = testSelected;
@@ -168,6 +185,11 @@ public class userManager implements Serializable {
     public String homeRedirect() {
         System.out.println("home");
         return "home";
+    }
+    
+    public String logOff(){
+        System.out.println("User: "+current.username+" has loggedOff.");
+        return "logoff";
     }
 
     public String infoRedirect() {
@@ -317,9 +339,6 @@ public class userManager implements Serializable {
     public void guardar(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
 
 
-
-
-
         //  System.out.println("PERGUNTA: "+qD.getQuestion());
         // System.out.println("Resposta: "+qD.getUserAnswer().getS());
 
@@ -353,5 +372,29 @@ public class userManager implements Serializable {
 
         }
         db.closeDB();
+    }
+    
+    public void selectQuestion(ActionEvent actionEvent){
+        CommandButton cb= (CommandButton) actionEvent.getComponent();
+        selectedQustion = cb.getLabel();
+    }
+    
+    public void insertURL(ActionEvent actionEvent){
+        UIComponent a = actionEvent.getComponent();
+        
+        System.out.println("DEBUG: Botao URL");
+        System.out.println("DEBUG: Name: "+newURL.getName());
+        System.out.println("DEBUG: url: "+newURL.getUrl());
+        System.out.println(selectedQustion);
+        
+    }
+    public void like(ActionEvent actionEvent){
+        
+        CommandButton cb= (CommandButton) actionEvent.getComponent();
+         HtmlForm hf= (HtmlForm) cb.getParent();
+         System.out.println("DEBUG: Botao like");
+       System.out.println("DEBUG: PERGUNTA "+hf.getTitle());
+        System.out.println("DEBUG: TITULO URL: "+cb.getLabel());
+        
     }
 }

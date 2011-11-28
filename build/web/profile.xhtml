@@ -15,8 +15,10 @@
     <h:body>
 
 
-        <div id="top" class="top"  >
-            <h:button value="logout" image="http://www.bbvitamins.com/images/logoutButton.gif"/>
+        <div id="top" class="top" >
+            <h:form>
+                <h:commandButton value="logout" actionListener="#{userM.logOff}" image="http://www.bbvitamins.com/images/logoutButton.gif"/>
+            </h:form>
             <h:outputText style="color: white" value=" Aluno: #{userM.loginname}"/>
             <br/>
             <p:panel>

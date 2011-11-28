@@ -1,2 +1,4 @@
 
 nbproject/private/private.properties
+
+build/web/WEB-INF/classes/users/userManager.class

@@ -68,16 +68,9 @@
                                     <p:commandButton value="Guardar" actionListener="#{userM.guardar}" onclick="bar.show()"></p:commandButton>
                                 </h:form>
                             </p:column>
-
                             <p:dataList value="#{userM.testSelected.questionsDesenvolvimento}" itemType="none" var="qD">
-                                <!--<p:column>
-                                    <h:outputText value="#{qD.question}" />  
-                                    <p:inplace  editor="true" >
-                                        <p:inputText value="#{qD.userAnswer.s}" label="Editar"/>
-                                    </p:inplace>
-                                </p:column>-->
                                 <p:column>
-                                    <h:panelGrid columns="2">
+                                    <h:panelGrid columns="2" cellpadding="5">
                                         <p:panel style="border-color: inactiveborder">
                                             <h:form>
                                                 <h:outputText value="#{qD.question}"/><br/>
@@ -88,22 +81,18 @@
 
                                             <!--URLS-->
                                         </p:panel>
-                                        <p:panel style="border-color: inactiveborder">
-                                            <p:accordionPanel value="Google" style="border: #AFAFAF" activeIndex="off" >  
-                                                <p:tab title="URLs">  
-                                                    <h:panelGrid columns="1" cellpadding="5">  
-                                                        <h:form>
-                                                            <p:dataList value="#{qD.urls}" itemType="none" var="urls">               
-                                                                        <!--<h:outputText  value="#{urls.name}" />-->
-                                                                        <a href="#{urls.url}" target="_blank">#{urls.name}</a>
-                                                                        <h:commandButton value="Gosto"/>
-                                                            </p:dataList>
-                                                        </h:form>
-
-                                                    </h:panelGrid>  
-                                                </p:tab> 
-
-                                            </p:accordionPanel>
+                                        <p:panel id="urls" style="border-color: inactiveborder">
+                                            <p:dataList value="#{qD.urls}" itemType="none" var="urls">               
+                                                <p:column>
+                                                    <h:form title="#{qD.question}">
+                                                        <a href="#{urls.url}" target="_blank">#{urls.name}</a>
+                                                        <p:commandButton value="Gosto" actionListener="#{userM.like}" label="#{urls.name}"/>
+                                                    </h:form>
+                                                </p:column>
+                                            </p:dataList>
+                                            <h:form>
+                                                <p:commandButton value="Inserir URL" actionListener="#{userM.selectQuestion}" onclick="dlgURL.show();" label="#{qD.question}"/>
+                                            </h:form>
                                         </p:panel>
                                         <!--FIM URLS-->
                                     </h:panelGrid>
@@ -121,11 +110,32 @@
                         </h:form>
                     </p:notificationBar> 
 
+
+
                 </p:dialog>
 
 
 
+                <p:dialog id="dlgURL" header="Adicionar URL" widgetVar="dlgURL">
+                    <h:form>  
 
+                        <h:panelGrid columns="2" cellpadding="5">  
+                            <h:outputLabel for="Titulo" value="Titulo: *" />  
+                        <p:inputText value="#{userM.newURL.name}"   
+                                         id="title" required="true" label="title" />  
+
+                            <h:outputLabel for="url" value="URL: * " />  
+                            <p:inputText value="#{userM.newURL.url}"   
+                                         id="url" required="true" label="url" />  
+
+                            <f:facet name="footer">  
+                                <p:commandButton value="Inserir"  
+                                                 actionListener="#{userM.insertURL}" update="urls" oncomplete="dlgURL.hide()"/>  
+                            </f:facet>  
+                        </h:panelGrid>  
+
+                    </h:form>  
+                </p:dialog>
 
             </ui:define>
 
