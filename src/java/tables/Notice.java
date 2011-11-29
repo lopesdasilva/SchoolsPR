@@ -4,11 +4,13 @@
  */
 package tables;
 
+import java.io.Serializable;
+
 /**
  *
  * @author lopesdasilva
  */
-public class Notice {
+public class Notice implements Serializable{
     private String text;
     private final String disciplineName;
     private boolean isRead;

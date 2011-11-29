@@ -4,14 +4,14 @@
  */
 package tables;
 
-import java.sql.ResultSet;
 import java.util.LinkedList;
+import java.io.Serializable;
 
 /**
  *
  * @author lopesdasilva
  */
-public class Discipline {
+public class Discipline implements Serializable{
     private String name;
     private String info;
 

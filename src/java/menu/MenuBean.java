@@ -1,5 +1,6 @@
 package menu;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 import javax.el.ELContext;
 import javax.el.ExpressionFactory;
@@ -23,10 +24,10 @@ import tables.Module;
  *
  * @author lopesdasilva
  */
-public class MenuBean {
+public class MenuBean implements Serializable{
 
     private MenuModel model;
-
+   
     public MenuBean(LinkedList<Discipline> disciplines) {
 
 

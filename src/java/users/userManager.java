@@ -4,7 +4,6 @@ package users;
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 import db.DBConnect;
 import db.SQLInstruct;
 import java.io.Serializable;
@@ -31,9 +30,6 @@ import tables.question.QuestionDesenolvimento;
 import tables.question.QuestionEscolhaMultipla;
 import tables.question.URL;
 
-
-
-
 /**
  *
  * @author lopesdasilva
@@ -51,7 +47,6 @@ public class userManager implements Serializable {
     public String getRui() {
         return rui;
     }
-    
     int user_id;
     String loginname;
     String password;
@@ -62,10 +57,9 @@ public class userManager implements Serializable {
     Module moduleSelectedList;
     Discipline disciplineSelectedList;
     Test testSelected;
-    URL newURL=new URL("","",0);
+    URL newURL = new URL("", "", 0);
+    String selectedQuestion = "";
 
-    String selectedQustion="";
-    
     public void setNewURL(URL newURL) {
         this.newURL = newURL;
     }
@@ -148,8 +142,8 @@ public class userManager implements Serializable {
 
 
             if (rSet.next()) {
-                user_id=rSet.getInt(1);
-                
+                user_id = rSet.getInt(1);
+
                 this.loggedIn = true;
                 current = new User(loginname);
                 System.out.println("User: " + loginname + " has logged On. ADMIN: " + rSet.getBoolean("isAdmin"));
@@ -186,9 +180,9 @@ public class userManager implements Serializable {
         System.out.println("home");
         return "home";
     }
-    
-    public String logOff(){
-        System.out.println("User: "+current.username+" has loggedOff.");
+
+    public String logOff() {
+        System.out.println("User: " + current.username + " has loggedOff.");
         return "logoff";
     }
 
@@ -283,7 +277,7 @@ public class userManager implements Serializable {
 
         while (rSet_multiple.next()) {
             qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1) + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6)));
-        
+
         }
 
         /* EXEMPLO DO RUI
@@ -300,23 +294,23 @@ public class userManager implements Serializable {
 
         LinkedList<Question> qDesen = new LinkedList<Question>();
         while (rSet_development.next()) {
-            int development_id=rSet_development.getInt(4);
+            int development_id = rSet_development.getInt(4);
             String development_answer = SQLInstruct.developmentAnswer(loginname, disciplineSelected, moduleSelected, testSelected.getName(), rSet_development.getString(1));
             ResultSet rSet_development_answer = db.queryDB(development_answer);
             if (rSet_development_answer.next()) {
                 QuestionDesenolvimento qD = new QuestionDesenolvimento(rSet_development.getString(1), rSet_development_answer.getString(1));
                 qDesen.add(qD);
-                
+
                 //ir buscar URL
                 String queryURL = SQLInstruct.urls(rSet_development.getInt(4));
                 ResultSet rSet_urls = db.queryDB(queryURL);
-                        
-                while(rSet_urls.next()){
-                qD.getUrls().addLast(new URL(rSet_urls.getString(2),rSet_urls.getString(1),rSet_urls.getInt(3)));
+
+                while (rSet_urls.next()) {
+                    qD.getUrls().addLast(new URL(rSet_urls.getString(2), rSet_urls.getString(1), rSet_urls.getInt(3)));
 
                 }
             } else {
-                String add_development_answer=SQLInstruct.addDevelopmentAnswer(development_id,user_id);
+                String add_development_answer = SQLInstruct.addDevelopmentAnswer(development_id, user_id);
                 db.updateDB(add_development_answer);
                 qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), "Sem resposta.clique aqui para responder."));
             }
@@ -372,62 +366,92 @@ public class userManager implements Serializable {
 
         }
         db.closeDB();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Respostas guardadas."));
+
     }
-    
-    public void selectQuestion(ActionEvent actionEvent){
-        CommandButton cb= (CommandButton) actionEvent.getComponent();
-        selectedQustion = cb.getLabel();
+
+    public void selectQuestion(ActionEvent actionEvent) {
+        CommandButton cb = (CommandButton) actionEvent.getComponent();
+        selectedQuestion = cb.getLabel();
     }
-    
-    public void insertURL(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
+
+    public void insertURL(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         UIComponent a = actionEvent.getComponent();
-        
+
         System.out.println("DEBUG: Botao URL");
-        System.out.println("DEBUG: Name: "+newURL.getName());
-        System.out.println("DEBUG: url: "+newURL.getUrl());
-        System.out.println(selectedQustion);
-        
+        System.out.println("DEBUG: Name: " + newURL.getName());
+        System.out.println("DEBUG: url: " + newURL.getUrl());
+        System.out.println(selectedQuestion);
+
         DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
         db.loadDriver();
-        String insert_url = SQLInstruct.addUrl(newURL.getName(),newURL.getUrl());
+        String insert_url = SQLInstruct.addUrl(newURL.getName(), newURL.getUrl());
         db.updateDB(insert_url);
-        String link_url = SQLInstruct.linkUrlQuestion(selectedQustion,newURL.getName());
-        db.updateDB(link_url); 
-        
-        
-        
-        
-        
-    }
-    public void like(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException{
-        
-        CommandButton cb= (CommandButton) actionEvent.getComponent();
-         HtmlForm hf= (HtmlForm) cb.getParent();
-         System.out.println("DEBUG: Botao like");
-         System.out.println("DEBUG: PERGUNTA "+hf.getTitle());
-         System.out.println("DEBUG: TITULO URL: "+cb.getLabel());
-        
-        
-         
-          DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
-          db.loadDriver();
-          String is_voted = SQLInstruct.isVoted(hf.getTitle(), loginname);
-          System.out.println(is_voted);
-          ResultSet rSet_voted = db.queryDB(is_voted);
-          rSet_voted.next();
-          int v = rSet_voted.getInt(1);
-          System.out.println("VOTED:" + v);
-          System.out.println("USER: " + loginname);
-          if(v!=1){
-         String add_evaluation = SQLInstruct.updateUrl(cb.getLabel());
-         db.updateDB(add_evaluation); 
-         String voted = SQLInstruct.voted(hf.getTitle(), loginname);
-         db.updateDB(voted);
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Sucesso", "Voto Enviado."));
+        String link_url = SQLInstruct.linkUrlQuestion(selectedQuestion, newURL.getName());
+        db.updateDB(link_url);
 
-          }else{
-                      FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Já Votou uma vez."));
-              System.out.println("JA VOTASTE ALDRABAO");
-          }
+        for (Question q : testSelected.getQuestionsDesenvolvimento()) {
+            
+            if(q.getQuestion().equals(selectedQuestion)){
+                System.out.println("A adicionar o url");
+                q.getUrls().addLast(newURL);
+            }
+        }
+        
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "URL "+newURL.getName()+" adicionado."));
+
+
+        db.closeDB();
+
+
+
+
+    }
+
+    public void like(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+
+        CommandButton cb = (CommandButton) actionEvent.getComponent();
+        HtmlForm hf = (HtmlForm) cb.getParent();
+        System.out.println("DEBUG: Botao like");
+        System.out.println("DEBUG: PERGUNTA " + hf.getTitle());
+        System.out.println("DEBUG: TITULO URL: " + cb.getLabel());
+
+
+
+        DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+        db.loadDriver();
+        String is_voted = SQLInstruct.isVoted(hf.getTitle(), loginname);
+        System.out.println(is_voted);
+        ResultSet rSet_voted = db.queryDB(is_voted);
+        rSet_voted.next();
+        int v = rSet_voted.getInt(1);
+        System.out.println("VOTED:" + v);
+        System.out.println("USER: " + loginname);
+        if (v != 1) {
+            String add_evaluation = SQLInstruct.updateUrl(cb.getLabel());
+            db.updateDB(add_evaluation);
+            String voted = SQLInstruct.voted(hf.getTitle(), loginname);
+            db.updateDB(voted);
+
+            for (Question q : testSelected.getQuestionsDesenvolvimento()) {
+                if (q.getQuestion().equals(hf.getTitle())) {
+                    for (URL url : q.getUrls()) {
+                        if (url.getName().equals(cb.getLabel())) {
+                            url.setEvaluation(url.getEvaluation() + 1);
+                            System.out.println(url.getName());
+                        }
+                    }
+                }
+
+            }
+
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Voto Enviado."));
+
+
+
+        } else {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Já Votou uma vez."));
+            System.out.println("JA VOTASTE ALDRABAO");
+        }
     }
 }

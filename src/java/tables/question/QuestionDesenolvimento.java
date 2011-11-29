@@ -4,13 +4,14 @@
  */
 package tables.question;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
 /**
  *
  * @author lopesdasilva
  */
-public class QuestionDesenolvimento extends Question {
+public class QuestionDesenolvimento extends Question implements Serializable {
 
     
     String testarrrr="1234";
@@ -50,5 +51,10 @@ public class QuestionDesenolvimento extends Question {
     @Override
     public void setUserAnswer(Answer userAnswer) {
         this.userAnswer = userAnswer;
+    }
+
+    @Override
+    public void addURL(URL url) {
+        this.addURL(url);
     }
 }

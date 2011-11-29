@@ -4,9 +4,11 @@
  */
 package tables.question;
 
+import java.io.Serializable;
 
 
-public class URL {
+
+public class URL implements Serializable {
     
 private String url;
 private String name;

@@ -3,80 +3,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://java.sun.com/jsf/html"
-       xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui">
 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <link href="./resources/css/default.css" rel="stylesheet" type="text/css" />
         <link href="./resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
-        <title>Admin</title>
+        <title>Perfil</title>
     </h:head>
 
     <h:body>
 
-        <div id="top" class="top">
-            <ui:insert name="top">
-                
-                <P ALIGN="right"> Modo Professor <h:button value="logout" image="http://www.bbvitamins.com/images/logoutButton.gif"/>
-            </P>
+
+        <div id="top" class="top" >
+            <h:form>
+                <h:commandButton value="logout" actionListener="#{userM.logOff}" image="http://www.bbvitamins.com/images/logoutButton.gif"/>
+            </h:form>
+            <h:outputText style="color: white" value=" Aluno: #{userM.loginname}"/>
+            <br/>
             <p:panel>
-                <img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/>
+            <ui:insert name="top"><img src="http://home.iscte-iul.pt/~jpsp/ISCTE_IUL_IBS_PORT.jpg" width="450"/></ui:insert>
             </p:panel>
-
-                <p:menubar>  
-                <p:submenu label="Disciplinas" icon="ui-icon ui-icon-document">  
-                    <p:menuitem value="Adicionar Avisos" action="" url="#"/>
-                        <p:menuitem value="Aidicionar Disciplina" url="#"/>
-                    
-                </p:submenu>
-                </p:menubar>
-                
-            <!--<p:menubar>  
-                <p:submenu label="Disciplinas" icon="ui-icon ui-icon-document">  
-                    <p:submenu label="Disciplina I" icon="ui-icon ui-icon-contact"> 
-                        <p:menuitem value="Avisos" url="#"/>
-                        <p:menuitem value="Alunos" url="#"/>
-                        <p:menuitem value="Gestão de Inscrições" url="#"/>
-                        <p:separator />
-                        <p:submenu label="Modulo I" >
-                            <p:menuitem value="Informação" url="#"/>
-                            <p:menuitem value="Testes" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Modulo II">
-                            <p:menuitem value="Informação" url="#"/>
-                            <p:menuitem value="Testes" url="#"/>
-                        </p:submenu>
-                    </p:submenu> 
-                    <p:submenu label="Disciplina II" icon="ui-icon ui-icon-contact">
-                        <p:menuitem value="Avisos" url="#"/>
-                        <p:menuitem value="Alunos" url="#"/>
-                        <p:menuitem value="Gestão de Inscrições" url="#"/>
-                        <p:separator />
-                        <p:submenu label="Modulo I" >
-                            <p:menuitem value="Informação" url="#"/>
-                            <p:menuitem value="Testes" url="#"/>
-                        </p:submenu>
-                        <p:submenu label="Modulo II">
-                            <p:menuitem value="Informação" url="#"/>
-                            <p:menuitem value="Testes" url="#"/>
-                        </p:submenu>
-                    </p:submenu>
-                </p:submenu>
-                <p:menuitem value="Gestão de Conta" url="admin/manager.xhtml"/>
-            </p:menubar>
--->
-                
-            </ui:insert>
         </div>
-
-        <div id="content" class="center_content">
-            <ui:insert name="content">Content</ui:insert>
+        <div>
+            <div id="left" >
+                <ui:insert name="left" >
+                    <h:form>
+                        <p:menu  model="#{userM.current.userMenu.model}" style="width: auto " />
+                        </h:form>
+                </ui:insert>
+            </div>
+            <div id="content" class="left_content">
+                <ui:insert name="content">Content</ui:insert>
+            </div>
         </div>
-
-                <div id="top" class="top">
-                    
-                </div>
-        
     </h:body>
 
 </html>

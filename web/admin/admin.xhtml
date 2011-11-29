@@ -8,34 +8,10 @@
     <body>
 
         <ui:composition template="./adminTemplate.xhtml">
-
-           
-
             <ui:define name="content">
                 <center>
-                   <!-- <p:carousel value="#{userM.current.notices}" var="discipline" headerText="Avisos" rows="1" itemStyle="height:200px;width:600px;" effect="easeInStrong">  
-                        <p:tab> 
-                            <h:outputText  value="#{discipline.disciplineName}" style="text-align: left"/>
-                            <h:panelGrid columns="2" cellpadding="10">
-                                <p:graphicImage value="http://www.w3schools.com/images/icon_doc.gif" />  
-                                <h:outputText  
-                                    value="#{discipline.text}" />  
-                            </h:panelGrid>  
-                        </p:tab>
-                    </p:carousel> -->
-                
-                <div>
-            <div id="left" >
-                <ui:insert name="left" >
-                    <h:form>
-                        <p:menu  model="#{userM.current.userMenu.model}" style="width: auto " />
-                        </h:form>
-                </ui:insert>
-            </div>
-            <div id="content" class="left_content">
-                <ui:insert name="content">Content</ui:insert>
-            </div>
-        </div>
+                   
+           
                 
                 </center>
             </ui:define>

@@ -22,4 +22,6 @@ public abstract class Question implements Serializable {
     public abstract String getQuestion();
         
     public abstract void setUserAnswer(Answer userAnswer);
+    
+    public abstract void addURL(URL url);
 }

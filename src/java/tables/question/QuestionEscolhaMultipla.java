@@ -4,6 +4,7 @@
  */
 package tables.question;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
@@ -12,7 +13,7 @@ import java.util.Map;
  *
  * @author lopesdasilva
  */
-public class QuestionEscolhaMultipla extends Question {
+public class QuestionEscolhaMultipla extends Question implements Serializable {
 
     String question;
     Map<String, String> hipoteses = new HashMap<String, String>();
@@ -52,6 +53,11 @@ public class QuestionEscolhaMultipla extends Question {
 
     @Override
     public LinkedList<URL> getUrls() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void addURL(URL url) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

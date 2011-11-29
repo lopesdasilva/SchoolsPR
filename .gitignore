@@ -2,3 +2,21 @@
 nbproject/private/private.properties
 
 build/web/WEB-INF/classes/users/userManager.class
+
+build/web/WEB-INF/classes/menu/MenuBean.class
+
+build/web/WEB-INF/classes/menu/MenuBean.class
+
+build/web/WEB-INF/classes/tables/Discipline.class
+
+build/web/WEB-INF/classes/menu/MenuBean.class
+
+build/web/WEB-INF/classes/tables/Notice.class
+
+build/web/WEB-INF/classes/tables/Module.class
+
+build/web/WEB-INF/classes/tables/question/Answer.class
+
+build/web/WEB-INF/classes/menu/MenuBean.class
+
+build/web/WEB-INF/classes/users/userManager.class
