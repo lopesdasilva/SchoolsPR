@@ -276,10 +276,10 @@ public class userManager implements Serializable {
         //TODO importar as perguntas so de uma escolha para o java
         LinkedList<Question> qMulti = new LinkedList<Question>();
 
-        while (rSet_multiple.next()) {
+       while (rSet_multiple.next()) {
             qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1) + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6)));
 
-        }
+       }
 
         /* EXEMPLO DO RUI
         qMulti.add(new QuestionEscolhaMultipla("2+2=","4","5","3","6"));

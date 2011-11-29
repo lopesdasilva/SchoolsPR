@@ -15,6 +15,7 @@ import java.util.Map;
  */
 public class QuestionEscolhaMultipla extends Question implements Serializable {
 
+    
     String question;
     Map<String, String> hipoteses = new HashMap<String, String>();
     Answer userAnswer;
