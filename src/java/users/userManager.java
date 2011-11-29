@@ -10,6 +10,7 @@ import java.io.Serializable;
 import java.security.NoSuchAlgorithmException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.LinkedList;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -308,12 +309,16 @@ public class userManager implements Serializable {
                 while (rSet_urls.next()) {
                     qD.getUrls().addLast(new URL(rSet_urls.getString(2), rSet_urls.getString(1), rSet_urls.getInt(3)));
 
-                }
+                }  
+                //Collections.sort(qD.getUrls());
+                
             } else {
                 String add_development_answer = SQLInstruct.addDevelopmentAnswer(development_id, user_id);
                 db.updateDB(add_development_answer);
                 qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), "Sem resposta.clique aqui para responder."));
             }
+            
+          
         }
 
         //EXEMPLO DO RUI
@@ -397,6 +402,7 @@ public class userManager implements Serializable {
                 q.getUrls().addLast(newURL);
             }
         }
+        
         
         FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "URL "+newURL.getName()+" adicionado."));
 

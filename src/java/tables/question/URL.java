@@ -8,11 +8,12 @@ import java.io.Serializable;
 
 
 
-public class URL implements Serializable {
+public class URL implements Serializable, Comparable<URL>{
     
 private String url;
 private String name;
 private int evaluation;
+
 
     public URL(String url, String name, int evaluation) {
         this.url = url;
@@ -46,8 +47,13 @@ private int evaluation;
         this.url = url;
     }
 
-    
-    
+    @Override
+    public int compareTo(URL url){
+        if (this.evaluation>url.evaluation)
+            return 1;
+        else return -1;
+   
+    }
 
     
     

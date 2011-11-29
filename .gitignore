@@ -20,3 +20,7 @@ build/web/WEB-INF/classes/tables/question/Answer.class
 build/web/WEB-INF/classes/menu/MenuBean.class
 
 build/web/WEB-INF/classes/users/userManager.class
+
+build/web/WEB-INF/classes/tables/question/<error>$Answer.class
+
+build/web/WEB-INF/classes/tables/question/<error>$Answer.class
