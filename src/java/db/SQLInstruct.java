@@ -85,7 +85,7 @@ public class SQLInstruct {
     
     public static String urls(int question_id) {
             return "SELECT name, url, url.evaluation FROM url,developmenturl,development WHERE development.id='"+question_id+"' AND"
-            +" development.id=developmenturl.development_id AND developmenturl.url_id=url.id";
+            +" development.id=developmenturl.development_id AND developmenturl.url_id=url.id ORDER BY url.evaluation DESC";
 
     }
     

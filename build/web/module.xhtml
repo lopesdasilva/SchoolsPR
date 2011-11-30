@@ -65,41 +65,54 @@
                         <p:tab id="DS" title="Desenvolvimento">
                             <p:column>
                                 <h:form> 
-                                    <p:commandButton value="Guardar" actionListener="#{userM.guardar}" update="growl"></p:commandButton>
+                                    <p:commandButton value="Guardar" image="ui-icon ui-icon-disk" actionListener="#{userM.guardar}" update="growl"></p:commandButton>
                                 </h:form>
                             </p:column>
                             <p:dataTable value="#{userM.testSelected.questionsDesenvolvimento}"  style="border-color: #ffffff" var="qD">
-                                <p:column>
+                                <p:column headerText="Perguntas">
                                     <h:form>
-                                        <h:outputText value="#{qD.question}"/><br/>
-                                        <p:inplace  editor="true" >
+                                        <h:outputText value="#{qD.question}" style="font-size: larger"/>
+                                        <p></p>
+                                        <p:inplace style="color: #036fab" editor="true" >
                                             <p:inputText value="#{qD.userAnswer.s}"  required="true" label="text"/>
                                         </p:inplace>
                                     </h:form>
                                 </p:column>
-                                <p:column>
+                                <p:column headerText="Documentos de Ajuda">
                                     <!--URLS-->
-                                    <p:scrollPanel style="width:400px;height:130px">  
-                                    <p:dataList  value="#{qD.urls}" style="outline-color: inactiveborder" var="urls"  >               
-                                        <p:column>
-                                            <h:form title="#{qD.question}">
-                                                <p:commandButton value="Gosto" actionListener="#{userM.like}" label="#{urls.name}" update="growl,evaluation" /><p:spacer width="50" height="5" />
-                                                <h:outputText id="evaluation" value="#{urls.evaluation}"/>
-                                                <a href="#{urls.url}" target="_blank">#{urls.name}</a>
-                                            </h:form>
 
-                                        </p:column>
-                                    </p:dataList>
-                                    </p:scrollPanel>
-                                    <h:form>
-                                        <p:commandButton value="Inserir URL" actionListener="#{userM.selectQuestion}" onclick="dlgURL.show();" label="#{qD.question}"/>
-                                    </h:form>
-                                    <!--FIM URLS-->
+                                    <h:panelGrid columns="2" style="border-color: inactiveborder">
+                                        <p:scrollPanel style="width:300px;height:115px">  
+                                            <style type="text/css">
+                                                .datalist-noborder .ui-widget-content {
+                                                    border: none;
+                                                }
+                                            </style>
+
+                                            <div class="datalist-noborder">
+                                                <p:dataList  value="#{qD.urls}" style="outline-color: inactiveborder" var="urls"  >               
+                                                    <p:column>
+                                                        <h:form title="#{qD.question}">
+                                                            <p:commandButton actionListener="#{userM.like}" label="#{urls.name}" update="growl,evaluation" image="ui-icon ui-icon-heart" /><p:spacer width="50" height="5" />
+                                                            <h:outputText id="evaluation" value="#{urls.evaluation}"/>
+                                                            <a href="#{urls.url}" target="_blank">#{urls.name}</a>
+                                                        </h:form>
+
+                                                    </p:column>
+                                                </p:dataList>
+                                            </div>
+                                        </p:scrollPanel>
+                                        <h:form>
+                                            <p:commandButton image="ui-icon ui-icon-circle-plus" actionListener="#{userM.selectQuestion}" onclick="dlgURL.show();" label="#{qD.question}"/>
+                                        </h:form>
+                                        <!--FIM URLS-->
+                                    </h:panelGrid>
                                 </p:column>
                             </p:dataTable>
 
 
-                        </p:tab>  
+                        </p:tab>
+                       
                     </p:tabView>
 
                 </p:dialog>
