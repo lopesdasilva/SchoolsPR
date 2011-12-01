@@ -16,6 +16,7 @@
                 <h1 class="title ui-widget-header ui-corner-all">Perfil</h1>
                 
                 <center>
+                    <h:panelGrid columns="2">
                     <p:carousel value="#{userM.current.notices}" var="discipline" headerText="Avisos" rows="1" itemStyle="height:200px;width:600px;" effect="easeInStrong">  
                         <p:tab> 
                             <h:form>
@@ -28,6 +29,8 @@
                             </h:form>
                         </p:tab>
                     </p:carousel> 
+                    <p:calendar value="#{calendarBean.date1}" mode="inline"/> 
+                    </h:panelGrid>
                 </center>
 
 
