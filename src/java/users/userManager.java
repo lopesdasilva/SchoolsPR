@@ -313,7 +313,7 @@ public class userManager implements Serializable {
                 //Collections.sort(qD.getUrls());
                 
             } else {
-                String add_development_answer = SQLInstruct.addDevelopmentAnswer(development_id, user_id);
+                String add_development_answer = SQLInstruct.addDevelopmentAnswer(development_id, user_id,"Sem resposta.Clique aqui para responder");
                 db.updateDB(add_development_answer);
                 qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), "Sem resposta.clique aqui para responder."));
             }

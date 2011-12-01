@@ -75,8 +75,8 @@ public class SQLInstruct {
         
     }
 
-    public static String addDevelopmentAnswer(int development_id, int user_id) {
-        return "INSERT INTO answer (user_id, development_id) VALUES ('"+user_id+"', '"+development_id+"')";
+    public static String addDevelopmentAnswer(int development_id, int user_id, String answer) {
+        return "INSERT INTO answer (user_id, development_id,answer) VALUES ('"+user_id+"', '"+development_id+"','"+answer+"')";
     }
 
     public static String addMultipleAnswer(int multiple_id, int user_id) {
