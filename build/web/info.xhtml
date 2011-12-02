@@ -13,12 +13,12 @@
                 <h1 class="title ui-widget-header ui-corner-all">#{userM.disciplineSelectedList.name}</h1>
                 <div class="entry">
                     <h:form>  
-
-                        <h:outputText value="yahoo: "/>
-                        <p:inplace  editor="true" >
-                            <p:inputText value="#{userM.rui}" required="true" label="text"/>
-                        </p:inplace>
-
+                    <br/>
+                    <p:panel>
+                        <p:dataGrid value="#{userM.disciplineSelectedList}" var="dis">
+                        <h:outputText value="#{dis.info}"/>    
+                        </p:dataGrid>
+                    </p:panel>
                     </h:form>  
 
                 </div>

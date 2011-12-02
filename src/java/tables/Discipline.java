@@ -25,7 +25,7 @@ public class Discipline implements Serializable{
     public Discipline(String name,String info) {
        this.name=name;
        this.info=info;
-       System.out.println(this.name+":"+this.info);
+       System.out.println("AQUIIIII - "+this.name+":"+this.info);
        modules=new LinkedList<Module>();
     }
 
