@@ -265,13 +265,30 @@ public class userManager implements Serializable {
         String multiple = SQLInstruct.multipleQuestions(selectedTest);
         ResultSet rSet_multiple = db.queryDB(multiple);
 
+        testSelected = new Test(this.selectedTest);
+        
         //TODO importar as perguntas so de uma escolha para o java
         LinkedList<Question> qMulti = new LinkedList<Question>();
-
+        
         while (rSet_multiple.next()) {
-            //ultimo argumento é a resposta
-            qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1) + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6),"Sem Resposta"));
-
+            int multiple_id=rSet_multiple.getInt(8);
+            String question = rSet_multiple.getString(1);
+            String multiple_answer = SQLInstruct.multipleAnswer(loginname, disciplineSelected, moduleSelected, testSelected.getName(),question);
+            System.out.println(multiple_answer);
+            ResultSet rSet_multiple_answer = db.queryDB(multiple_answer);
+            if(rSet_multiple_answer.next()){
+                System.out.println("ENTREI AQUI");
+                qMulti.add(new QuestionEscolhaMultipla(question + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6),rSet_multiple_answer.getString(1)));
+            }else{
+               String add_multiple_answer = SQLInstruct.addMultipleAnswer(multiple_id, user_id);
+                db.updateDB(add_multiple_answer);
+                qMulti.add(new QuestionEscolhaMultipla(question + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6),"Sem resposta"));
+                
+                
+            }
+            
+            
+        
         }
 
         /* EXEMPLO DO RUI
@@ -280,7 +297,7 @@ public class userManager implements Serializable {
         qMulti.add(new QuestionEscolhaMultipla("2/2=","1","5","9","6"));
          */
 
-        testSelected = new Test(this.selectedTest);
+        
 
 
         String development = SQLInstruct.developmentQuestions(selectedTest);
@@ -328,12 +345,26 @@ public class userManager implements Serializable {
 
     }
 
-    public void guardarEM(ActionEvent event) {
+    public void guardarEM(ActionEvent event) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+        
+        DBConnect db = new DBConnect(SQLInstruct.dbAdress, SQLInstruct.dbUsername, SQLInstruct.dbPassword);
+        db.loadDriver();
+
         for (Question q : testSelected.getQuestions()) {
             System.out.println("----GUARDAR ESCOLHA MULTIPLA----");
             System.out.println("Pergunta: "+q.getQuestion());
-            System.out.println("Opção seleccionada: " + q.getUserAnswer().getS());    
+            System.out.println("Opção seleccionada: " + q.getUserAnswer().getS());
+            
+            String question = q.getQuestion().replace("=","");
+            
+            String saveMultipleAnswer = SQLInstruct.updateMultipleAnswer(q.getUserAnswer().getS(), loginname, disciplineSelected, moduleSelected, testSelected.getName(), question);
+            db.updateDB(saveMultipleAnswer);
+            
+            
         }
+        
+                db.closeDB();
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Respostas guardadas."));
     }
 
     public void guardar(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {

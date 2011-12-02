@@ -38,7 +38,7 @@ public class SQLInstruct {
     }
     
     public static String multipleQuestions(String test){
-        return "SELECT question,answer,h1,h2,h3,h4,correct_answer FROM multiple, test,testmultiple WHERE test.test='"+test+"' AND test.id=testmultiple.test_id AND testmultiple.multiple_id = multiple.id";
+        return "SELECT question,answer,h1,h2,h3,h4,correct_answer,multiple_id FROM multiple, test,testmultiple WHERE test.test='"+test+"' AND test.id=testmultiple.test_id AND testmultiple.multiple_id = multiple.id";
     }
     
     public static String developmentAnswer(String user,String discipline,String module,String test, String question){
@@ -55,6 +55,20 @@ public class SQLInstruct {
                   +" development.question='"+question+"' AND development.id=answer.development_id";
        
     }
+    
+       public static String multipleAnswer(String user,String discipline,String module,String test, String question){
+       return "SELECT multi_answer.answer FROM user,userdiscipline,discipline,disciplinemodule,module,moduletest,test,testmultiple,multiple,multi_answer WHERE"
+                  +" user.name = '"+user+"' AND user.id=multi_answer.user_id AND"
+                  +" user.id=userdiscipline.user_id AND"
+                  +" userdiscipline.discipline_id=discipline.id AND"
+                  +" discipline.discipline='"+discipline+"' AND"
+                  +" discipline.id=disciplinemodule.discipline_id AND"
+                  +" disciplinemodule.module_id=module.id AND module.module='"+module+"' AND"
+                  +" module.id=moduletest.module_id AND"
+                  +" moduletest.test_id = test.id AND test.test='"+test+"' AND"
+                  +" test.id=testmultiple.test_id AND testmultiple.multiple_id=multiple.id AND"
+                  +" multiple.question='"+question+"' AND multiple.id=multi_answer.multiple_id";
+       }
     
 
     
@@ -74,13 +88,28 @@ public class SQLInstruct {
                   +" development.question='"+question+"' AND development.id=answer.development_id) ";
         
     }
+    
+        public static String updateMultipleAnswer(String answer, String user, String discipline, String module,String test,String question){
+return "UPDATE multi_answer SET multi_answer.answer='"+answer+"' WHERE EXISTS"
+                 +" (SELECT answer FROM user,userdiscipline,discipline,disciplinemodule,module,moduletest,test,testmultiple,multiple WHERE"
+                  +" user.name = '"+user+"' AND user.id=multi_answer.user_id AND"
+                  +" user.id=userdiscipline.user_id AND"
+                  +" userdiscipline.discipline_id=discipline.id AND"
+                  +" discipline.discipline='"+discipline+"' AND"
+                  +" discipline.id=disciplinemodule.discipline_id AND"
+                  +" disciplinemodule.module_id=module.id AND module.module='"+module+"' AND"
+                  +" module.id=moduletest.module_id AND"
+                  +" moduletest.test_id = test.id AND test.test='"+test+"' AND"
+                  +" test.id=testmultiple.test_id AND testmultiple.multiple_id=multiple.id AND"
+                  +" multiple.question='"+question+"' AND multiple.id=multi_answer.multiple_id)";
+        }
 
     public static String addDevelopmentAnswer(int development_id, int user_id, String answer) {
         return "INSERT INTO answer (user_id, development_id,answer) VALUES ('"+user_id+"', '"+development_id+"','"+answer+"')";
     }
 
     public static String addMultipleAnswer(int multiple_id, int user_id) {
-        return "INSERT INTO answer (user_id, multiple_id) VALUES ('"+user_id+"', '"+multiple_id+"')";
+        return "INSERT INTO multi_answer (user_id, multiple_id) VALUES ('"+user_id+"', '"+multiple_id+"')";
     }
     
     public static String urls(int question_id) {
