@@ -10,22 +10,22 @@ import java.io.Serializable;
  *
  * @author lopesdasilva
  */
- public class Answer implements Serializable{
+public class Answer implements Serializable {
 
-        private String s;
+    private String s;
 
     public void setS(String s) {
         this.s = s;
     }
 
-        public String getS() {
-            return s;
-        }
-
-        public Answer(String s) {
-
-
-            this.s = s;
-
-        }
+    public String getS() {
+        return s;
     }
+
+    public Answer(String s) {
+
+
+        this.s = s;
+
+    }
+}

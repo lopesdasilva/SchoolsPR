@@ -18,10 +18,11 @@ public abstract class Question implements Serializable {
     public abstract LinkedList<URL> getUrls();
 
     public abstract Answer getUserAnswer();
+    
+    public abstract void setUserAnswer(Answer userAnswer);
 
     public abstract String getQuestion();
         
-    public abstract void setUserAnswer(Answer userAnswer);
-    
     public abstract void addURL(URL url);
+    
 }

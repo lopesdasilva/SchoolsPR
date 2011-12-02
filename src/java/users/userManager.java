@@ -39,15 +39,7 @@ import tables.question.URL;
 @SessionScoped
 public class userManager implements Serializable {
 
-    String rui = "teste";
-
-    public void setRui(String rui) {
-        this.rui = rui;
-    }
-
-    public String getRui() {
-        return rui;
-    }
+   
     int user_id;
     String loginname;
     String password;
@@ -276,10 +268,11 @@ public class userManager implements Serializable {
         //TODO importar as perguntas so de uma escolha para o java
         LinkedList<Question> qMulti = new LinkedList<Question>();
 
-       while (rSet_multiple.next()) {
-            qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1) + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6)));
+        while (rSet_multiple.next()) {
+            //ultimo argumento é a resposta
+            qMulti.add(new QuestionEscolhaMultipla(rSet_multiple.getString(1) + "=", rSet_multiple.getString(3), rSet_multiple.getString(4), rSet_multiple.getString(5), rSet_multiple.getString(6),"Sem Resposta"));
 
-       }
+        }
 
         /* EXEMPLO DO RUI
         qMulti.add(new QuestionEscolhaMultipla("2+2=","4","5","3","6"));
@@ -309,16 +302,16 @@ public class userManager implements Serializable {
                 while (rSet_urls.next()) {
                     qD.getUrls().addLast(new URL(rSet_urls.getString(2), rSet_urls.getString(1), rSet_urls.getInt(3)));
 
-                }  
+                }
                 //Collections.sort(qD.getUrls());
-                
+
             } else {
-                String add_development_answer = SQLInstruct.addDevelopmentAnswer(development_id, user_id,"Sem resposta.Clique aqui para responder");
+                String add_development_answer = SQLInstruct.addDevelopmentAnswer(development_id, user_id, "Sem resposta.Clique aqui para responder");
                 db.updateDB(add_development_answer);
                 qDesen.add(new QuestionDesenolvimento(rSet_development.getString(1), "Sem resposta.clique aqui para responder."));
             }
-            
-          
+
+
         }
 
         //EXEMPLO DO RUI
@@ -333,6 +326,14 @@ public class userManager implements Serializable {
         testSelected.setQuestions(qMulti);
         testSelected.setQuestionsDesenvolvimento(qDesen);
 
+    }
+
+    public void guardarEM(ActionEvent event) {
+        for (Question q : testSelected.getQuestions()) {
+            System.out.println("----GUARDAR ESCOLHA MULTIPLA----");
+            System.out.println("Pergunta: "+q.getQuestion());
+            System.out.println("Opção seleccionada: " + q.getUserAnswer().getS());    
+        }
     }
 
     public void guardar(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
@@ -396,15 +397,15 @@ public class userManager implements Serializable {
         db.updateDB(link_url);
 
         for (Question q : testSelected.getQuestionsDesenvolvimento()) {
-            
-            if(q.getQuestion().equals(selectedQuestion)){
+
+            if (q.getQuestion().equals(selectedQuestion)) {
                 System.out.println("A adicionar o url");
                 q.getUrls().addLast(newURL);
             }
         }
-        
-        
-        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "URL "+newURL.getName()+" adicionado."));
+
+
+        FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "URL " + newURL.getName() + " adicionado."));
 
 
         db.closeDB();

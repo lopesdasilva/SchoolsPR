@@ -15,27 +15,34 @@ import java.util.Map;
  */
 public class QuestionEscolhaMultipla extends Question implements Serializable {
 
+   
     
     String question;
     Map<String, String> hipoteses = new HashMap<String, String>();
     Answer userAnswer;
 
     @Override
-    public tables.question.Answer getUserAnswer() {
+    public Answer getUserAnswer() {
         return userAnswer;
+    }
+    
+    @Override
+    public void setUserAnswer(Answer userAnswer) {
+        this.userAnswer = userAnswer;
     }
 
     public Map<String, String> getHipoteses() {
         return hipoteses;
     }
 
-    public QuestionEscolhaMultipla(String question, String h1, String h2, String h3, String h4) {
+    public QuestionEscolhaMultipla(String question, String h1, String h2, String h3, String h4,String resposta) {
         //TODO ARRANJAR
         hipoteses.put(h1, h1);
         hipoteses.put(h2, h2);
         hipoteses.put(h3, h3);
         hipoteses.put(h4, h4);
         this.question = question;
+        this.userAnswer=new Answer(resposta);
 
     }
 
@@ -47,10 +54,7 @@ public class QuestionEscolhaMultipla extends Question implements Serializable {
         this.question = question;
     }
 
-    @Override
-    public void setUserAnswer(Answer userAnswer) {
-        this.userAnswer = userAnswer;
-    }
+    
 
     @Override
     public LinkedList<URL> getUrls() {

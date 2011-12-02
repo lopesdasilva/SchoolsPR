@@ -13,24 +13,16 @@ import java.util.LinkedList;
  */
 public class QuestionDesenolvimento extends Question implements Serializable {
 
-    
-    String testarrrr="1234";
+
+    String question;
+    Answer userAnswer;
     
     LinkedList<URL> urls = new LinkedList<URL>();
 
     public LinkedList<URL> getUrls() {
         return urls;
     }
-
-    public void setTestarrrr(String testarrrr) {
-        this.testarrrr = testarrrr;
-    }
-
-    public String getTestarrrr() {
-        return testarrrr;
-    }
-    String question;
-    Answer userAnswer;
+    
 
     public QuestionDesenolvimento(String question,String userAnswer) {
         this.question = question;

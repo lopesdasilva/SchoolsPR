@@ -14,15 +14,6 @@ import java.util.LinkedList;
  */
 public class Test implements Serializable {
     
-    private String testarrrr="1234";
-
-    public void setTestarrrr(String testarrrr) {
-        this.testarrrr = testarrrr;
-    }
-
-    public String getTestarrrr() {
-        return testarrrr;
-    }
  
     private LinkedList<Question> questions= new LinkedList<Question>();
     private LinkedList<Question> questionsDesenvolvimento= new LinkedList<Question>();

@@ -51,13 +51,24 @@
                     <p:tabView id="tabv" dynamic="true" cache="false" >  
 
                         <p:tab id="EM" title="Escolha Multipla" >
-                            <p:dataList value="#{userM.testSelected.questions}" var="q">
 
+                            <p:column>
+                                <h:form> 
+                                    <p:commandButton value="Guardar" image="ui-icon ui-icon-disk" actionListener="#{userM.guardarEM}" update="growl"></p:commandButton>
+                                </h:form>
+                            </p:column>
+                            <p:dataList value="#{userM.testSelected.questions}" var="q">
                                 <p:column>
-                                    <h:outputText value="#{q.question}" />  
-                                    <p:selectOneRadio value="#{q.question}" layout="pageDirection" >  
-                                        <f:selectItems value="#{q.hipoteses}" />  
-                                    </p:selectOneRadio>
+                                    <h:form>
+                                        <h:outputText value="#{q.question}" style="font-size: larger"/> 
+                                        <p:inplace style="color: #036fab" editor="true" >
+                                            <p:selectOneRadio value="#{q.userAnswer.s}" required="true" layout="pageDirection" >  
+                                                <f:selectItems value="#{q.hipoteses}"  />  
+                                            </p:selectOneRadio>
+
+
+                                        </p:inplace>
+                                    </h:form>
                                 </p:column>
                             </p:dataList> 
                         </p:tab>  
@@ -112,7 +123,7 @@
 
 
                         </p:tab>
-                       
+
                     </p:tabView>
 
                 </p:dialog>
