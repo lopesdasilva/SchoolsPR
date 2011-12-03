@@ -14,7 +14,9 @@
             <ui:define name="content">
                 <h1 class="title ui-widget-header ui-corner-all">#{userM.disciplineSelected} > #{userM.moduleSelected}</h1>
                 <div class="entry">
+                    <p:panel>
                     <h:outputText value="#{userM.moduleSelectedList.info}"></h:outputText>
+                    </p:panel>
                     <p:accordionPanel id="panel" value="#{userM.moduleSelectedList.tests}" var="test">
 
                         <p:tab title="#{test.name}">
@@ -30,7 +32,7 @@
                                     <!-- <p:commandButton value="Resolver teste"  onclick="dlg1.show();" type="button"  /> -->
                                     <h:form >  
                                         <!-- aqui esta um martelo que o tabv diz que nao existe?? :S-->
-                                        <p:commandButton  value="Resolver teste" update="tabv" onclick="dlg1.show();" actionListener="#{userM.yahoo}"   label="#{test.name}" />
+                                        <p:commandButton image="ui-icon ui-icon-pencil"  value="Resolver teste" update="tabv" onclick="dlg1.show();" actionListener="#{userM.resolverTeste}"   label="#{test.name}" />
                                     </h:form>
                                     <p:dialog header="Resolva o teste" widgetVar="dlg1" modal="true" height="500" >  
                                         <h:outputText value="Teste" />  
@@ -89,7 +91,7 @@
                                         </p:inplace>
                                     </h:form>
                                 </p:column>
-                                <p:column headerText="Documentos de Ajuda">
+                                <p:column  headerText="Documentos de Ajuda">
                                     <!--URLS-->
 
                                     <h:panelGrid columns="2" style="border-color: inactiveborder">
@@ -144,7 +146,7 @@
 
                             <f:facet name="footer">  
                                 <p:commandButton value="Inserir"  
-                                                 actionListener="#{userM.insertURL}" oncomplete="dlgURL.hide();dlg1.show()" update="growl, testes,urls"/>  
+                                                 image ="ui-icon ui-icon-circle-plus" actionListener="#{userM.insertURL}" oncomplete="dlgURL.hide();dlg1.show()" update="growl, testes,urls"/>  
                             </f:facet>  
                         </h:panelGrid>  
 

@@ -24,7 +24,7 @@ public class Answer implements Serializable {
 
     public Answer(String s) {
 
-
+        
         this.s = s;
 
     }

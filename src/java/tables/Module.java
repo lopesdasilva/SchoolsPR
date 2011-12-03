@@ -39,8 +39,8 @@ public class Module  implements Serializable{
        return name;
    }
 
-    void addTest(String test) {
-        tests.addLast(new Test(test));
+    void addTest(String test,String description) {
+        tests.addLast(new Test(test,description));
     }
    
    

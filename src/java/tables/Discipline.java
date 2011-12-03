@@ -58,10 +58,10 @@ public class Discipline implements Serializable{
                 }
                 m=null;        }
     
-    public void addTest(String module,String test){
+    public void addTest(String module,String test,String description){
         for(Module m: modules){
             if(m.getName().equals(module)){
-                m.addTest(test);
+                m.addTest(test,description);
             }
         }
     }

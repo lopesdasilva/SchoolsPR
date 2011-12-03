@@ -206,7 +206,7 @@ public class userManager implements Serializable {
             if (d.getName().equals(disciplineSelected)) {
                 if (d.existe(moduleSelected).getTests().size() == 0) {//só adiciona caso a lista ainda esteja vazia :)
                     while (rSet.next()) {
-                        d.addTest(moduleSelected, rSet.getString(1));//Substituir SumModule
+                        d.addTest(moduleSelected, rSet.getString(1),rSet.getString(2));//Substituir SumModule
                     }
                 }
 
@@ -251,7 +251,7 @@ public class userManager implements Serializable {
         this.selectedTest = cb.getLabel();
     }
 
-    public void yahoo(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
+    public void resolverTeste(ActionEvent actionEvent) throws InstantiationException, IllegalAccessException, ClassNotFoundException, SQLException {
         Object obj = actionEvent.getSource();
         CommandButton cb = (CommandButton) obj;
         this.selectedTest = cb.getLabel();
@@ -265,7 +265,7 @@ public class userManager implements Serializable {
         String multiple = SQLInstruct.multipleQuestions(selectedTest);
         ResultSet rSet_multiple = db.queryDB(multiple);
 
-        testSelected = new Test(this.selectedTest);
+        testSelected = new Test(this.selectedTest,"");
         
         //TODO importar as perguntas so de uma escolha para o java
         LinkedList<Question> qMulti = new LinkedList<Question>();
@@ -491,5 +491,7 @@ public class userManager implements Serializable {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Já Votou uma vez."));
             System.out.println("JA VOTASTE ALDRABAO");
         }
+        
+        
     }
 }

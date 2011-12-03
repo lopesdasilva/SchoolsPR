@@ -25,7 +25,7 @@ public class SQLInstruct {
     }
 
     public static String tests(String discipline, String module) {
-        return "SELECT test FROM discipline,disciplinemodule,module,moduletest,test WHERE discipline.discipline='"+ discipline +"' AND module.module='"+ module+"' AND discipline.id=disciplinemodule.discipline_id AND disciplinemodule.module_id=module.id AND module.id=moduletest.module_id AND moduletest.test_id=test.id";
+        return "SELECT test,description FROM discipline,disciplinemodule,module,moduletest,test WHERE discipline.discipline='"+ discipline +"' AND module.module='"+ module+"' AND discipline.id=disciplinemodule.discipline_id AND disciplinemodule.module_id=module.id AND module.id=moduletest.module_id AND moduletest.test_id=test.id";
     }
     
     public static String notices(String userName){
