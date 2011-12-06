@@ -36,7 +36,6 @@ public class QuestionEscolhaMultipla extends Question implements Serializable {
     }
 
     public QuestionEscolhaMultipla(String question, String h1, String h2, String h3, String h4,String resposta) {
-        //TODO ARRANJAR
         hipoteses.put(h1, h1);
         hipoteses.put(h2, h2);
         hipoteses.put(h3, h3);

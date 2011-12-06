@@ -62,16 +62,6 @@ public class MenuBean implements Serializable{
                 item.setValue(m.getName());
                 item.setAjax(false);
 
-                //item.setActionListener(createActionListener("#{user.moduleSelection}"));
-
-                //para usar mais tarde
-                // item.setActionExpression(createAction("#{user.yahoo}", String.class ,String.class));
-                //   String[] names={d.getName()};
-                //Class[] sadsa= {String.class};
-                //System.out.println("AQUIIIII"+resloveMethodExpression("#{user.moduleSelection}", null,new Class[] {String.class},null).toString());
-                // item.setActionExpression((MethodExpression)resloveMethodExpression("#{user.moduleSelection}", null,new Class[] {String.class},null));
-
-                //MARTELO!!!
                 item.setActionListener(createActionListener("#{userM.moduleSelection}"));
                 item.setActionExpression(createAction_old("#{userM.moduleRedirect}", String.class));
                 submenu.getChildren().add(item);

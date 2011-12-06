@@ -91,12 +91,7 @@ public class User implements Serializable{
         } catch (Exception e) {
         }
 
-        //test
-        //disciplines.addLast(new Discipline("PSM"));
-        //disciplines.addLast(new Discipline("IGRS"));
-        //disciplines.addLast(new Discipline("PSM"));
-        //disciplines.addLast(new Discipline("SRCMA"));
-        //disciplines.addLast(new Discipline("GESTAO I"));
+    
 
         this.userMenu = new MenuBean(disciplines);
 
@@ -105,7 +100,6 @@ public class User implements Serializable{
     
     
     public String putRead(){
-        //falta identificar o que é o text para comparar com as noticias q existem.
         System.out.println("Entrei no putRead do user." + text);
         for(Notice n:notices){
             if(n.getText().equals(text)){

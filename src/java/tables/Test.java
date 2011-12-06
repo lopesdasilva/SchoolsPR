@@ -47,7 +47,6 @@ public class Test implements Serializable {
     
     public Test(String name,String description){
         this.name=name;
-        //TODO: adicionar  
         this.description=description;
     }
 }
