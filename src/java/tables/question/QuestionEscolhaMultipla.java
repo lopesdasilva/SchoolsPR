@@ -9,10 +9,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Map;
 
-/**
- *
- * @author lopesdasilva
- */
 public class QuestionEscolhaMultipla extends Question implements Serializable {
 
    

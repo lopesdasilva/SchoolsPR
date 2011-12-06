@@ -14,10 +14,6 @@ import tables.Discipline;
 import tables.Notice;
 
 
-/**
- *
- * @author lopesdasilva
- */
 public class User implements Serializable{
     
     String text;

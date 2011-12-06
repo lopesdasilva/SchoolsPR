@@ -8,10 +8,6 @@ import tables.question.Question;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-/**
- *
- * @author lopesdasilva
- */
 public class Test implements Serializable {
     
  

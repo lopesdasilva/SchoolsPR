@@ -6,10 +6,7 @@ package tables;
 
 import java.io.Serializable;
 
-/**
- *
- * @author lopesdasilva
- */
+
 public class Notice implements Serializable{
     private String text;
     private final String disciplineName;

@@ -7,10 +7,7 @@ package tables;
 import java.util.LinkedList;
 import java.io.Serializable;
 
-/**
- *
- * @author lopesdasilva
- */
+
 public class Module  implements Serializable{
    private String info;
 

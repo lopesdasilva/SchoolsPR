@@ -31,10 +31,7 @@ import tables.question.QuestionDesenolvimento;
 import tables.question.QuestionEscolhaMultipla;
 import tables.question.URL;
 
-/**
- *
- * @author lopesdasilva
- */
+
 @ManagedBean(name = "userM")
 @SessionScoped
 public class userManager implements Serializable {

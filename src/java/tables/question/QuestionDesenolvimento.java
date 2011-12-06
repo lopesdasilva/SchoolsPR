@@ -7,10 +7,7 @@ package tables.question;
 import java.io.Serializable;
 import java.util.LinkedList;
 
-/**
- *
- * @author lopesdasilva
- */
+
 public class QuestionDesenolvimento extends Question implements Serializable {
 
 

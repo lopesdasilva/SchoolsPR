@@ -6,10 +6,7 @@ package tables.question;
 
 import java.io.Serializable;
 
-/**
- *
- * @author lopesdasilva
- */
+
 public class Answer implements Serializable {
 
     private String s;
